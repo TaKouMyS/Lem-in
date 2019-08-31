@@ -16,11 +16,16 @@ CC = clang
 CFLAGS += -Wall -Werror -Wextra -g
 OBJDIR = obj
 SRCDIR = src
+PARSDIR = $(SRCDIR)/parsing
 LIBDIR	= libft
 INCLUDES = includes
 HEAD	= $(INCLUDES)/lem-in.h
 
-SRCS 	= $(SRCDIR)/main.c
+SRCS 	= $(SRCDIR)/main.c				\
+		$(PARSDIR)/get_input.c			\
+		$(PARSDIR)/get_room.c			\
+		$(PARSDIR)/check_comment.c		\
+		$(PARSDIR)/new_room.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
@@ -43,9 +48,6 @@ all: $(NAME)
 	@echo "                                       "
 	@echo "                                       "
 
-test:
-	echo $(OBJ)
-
 $(NAME): $(LIB) $(OBJ)
 	@$(PRINT) "Compilation OK! "
 	@$(CC) $(CFLAGS) $(OBJ) $< -o $@
@@ -62,7 +64,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 
 
 $(OBJDIR) :
-	mkdir  $@ $@/$(SRCDIR)
+	mkdir  $@ $@/$(SRCDIR) $@/$(PARSDIR)
 
 $(OBJ) : | $(OBJDIR)
 

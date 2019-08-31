@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   new_room.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/08/30 16:57:37 by amamy            ###   ########.fr       */
+/*   Created: 2019/08/31 22:02:47 by amamy             #+#    #+#             */
+/*   Updated: 2019/08/31 22:52:26 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
 
-int	main(void)
-{
-	t_farm	*f;
-	t_room	*r;
+/*
+** new_room :
+** Creates a new room and link it to the chained list.
+** If START or END flag is raised, store it.
+*/
 
-	if (!(f = ft_memalloc(sizeof(t_farm))))
-		return (-1);
-	if (!(r = ft_memalloc(sizeof(t_room))))
-		return (-1);
-	if (get_input(f, r) == -1)
-		return (-1);
-	ft_putstr("No errors!\n");
-	return 0;
+int	new_room(t_room *r, t_farm *f)
+{
+	t_room *new;
+	t_room *tmp;
+
+	tmp = r;
+	if (r->name != NULL)
+	{
+		if (!(new = ft_memalloc(sizeof(t_room))))
+			return (-1);
+		r->next = new;
+		r = new;
+		r->prev = tmp;
+	}
+	if (f->flags &= START)
+		f->start = r;
+	if (f->flags &= END)
+		f->end = r;
+	return (0);
 }
