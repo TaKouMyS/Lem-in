@@ -22,14 +22,14 @@ INCLUDES = includes
 HEAD	= $(INCLUDES)/lem-in.h
 
 SRCS 	= $(SRCDIR)/main.c				\
+		$(SRCDIR)/ft_free.c				\
 		$(PARSDIR)/get_input.c			\
 		$(PARSDIR)/get_room.c			\
 		$(PARSDIR)/check_comment.c		\
 		$(PARSDIR)/new_room.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
-# OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
-OBJ = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
 LIB		= $(LIBDIR)/libft.a
 RM = rm -rf
 PRINT = printf
@@ -58,14 +58,14 @@ $(LIB): | $(OBJDIR)
 	@$(PRINT) "Compiling objects :\n"
 	@make -C $(LIBDIR)
 
-$(OBJDIR)/%.o: %.c $(HEAD)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@$(PRINT) "Lem-in : "
 	@$(CC) -c $(CFLAGS) $(ALLFLAGS) $@ $<
 	@$(PRINT) "$(_CYAN)$<\n$(_END)"
 
 
 $(OBJDIR) :
-	mkdir  $@ $@/$(SRCDIR) $@/$(PARSDIR)
+	@mkdir  $@ $@/parsing
 
 $(OBJ) : | $(OBJDIR)
 

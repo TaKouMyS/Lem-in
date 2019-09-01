@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_room.c                                         :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/31 22:02:47 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/01 21:17:45 by amamy            ###   ########.fr       */
+/*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
+/*   Updated: 2019/09/01 21:15:28 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,25 @@
 #include "libft.h"
 
 /*
-** new_room :
-** Creates a new room and link it to the chained list.
-** If START or END flag is raised, store it.
+** ft_free :
+** free all stuff.
+** Receive a pointeur to the first link of the chain r.
 */
 
-t_room	*new_room(t_room *r, t_farm *f)
+void ft_free_lemin(t_farm *f, t_room *r)
 {
-	t_room *new;
-	t_room *tmp;
+	t_room	*tmp_r;
 
-	tmp = r;
-	if (r->name != NULL)
+	while (r->next)
 	{
-		if (!(new = ft_memalloc(sizeof(t_room))))
-			return (NULL);
-		r->next = new;
-		r = new;
-		r->prev = tmp;
+		tmp_r = r->next;
+		ft_memdel((void*)&r->name);
+		ft_memdel((void*)&r->links);
+		ft_memdel((void*)&r);
+		r = tmp_r;
 	}
-	if (f->flags &= START)
-		f->start = r;
-	if (f->flags &= END)
-		f->end = r;
-	return (r);
+	ft_memdel((void*)&r->name);
+	ft_memdel((void*)&r->links);
+	ft_memdel((void*)&r);
+	ft_memdel((void*)&f);
 }

@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/01 13:39:50 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/01 19:00:07 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 
 /*
 ** first_line :
-** Receive the first line and checks if it's a val ant's number.
+** Read the first line on stdin and checks if it's a valid ant's number.
 ** Store this number in the farm's structure.
 */
 
-static int	first_line(t_farm *f, char *line)
+static int	first_line(t_farm *f)
 {
 	int		i;
+	char	*line;
 
 	i = 0;
+	get_next_line(0, &line);
 	if (line)
 	{
 		while (line[i] != '\0')
@@ -35,21 +37,19 @@ static int	first_line(t_farm *f, char *line)
 	}
 	else
 		return (-1);
+	ft_memdel((void*)&line);
 	return (0);
 }
 
 /*
 ** get_input :
-** Read the first line on stdin and  send it for checks.
-** Launch the functions that gest rooms.
+** Launch the functions that get and check input.
 */
 
 int			get_input(t_farm *f, t_room *r)
 {
-	char	*line;
 
-	get_next_line(0, &line);
-	if (first_line(f, line) != 0 || get_room(r, f, line) != 0)
+	if (first_line(f) != 0 || get_room(r, f) != 0)
 		return (-1);
 	return (0);
 }
