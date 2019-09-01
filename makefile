@@ -28,7 +28,8 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(PARSDIR)/new_room.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
-OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
+# OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
+OBJ = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIB		= $(LIBDIR)/libft.a
 RM = rm -rf
 PRINT = printf
@@ -57,7 +58,7 @@ $(LIB): | $(OBJDIR)
 	@$(PRINT) "Compiling objects :\n"
 	@make -C $(LIBDIR)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
+$(OBJDIR)/%.o: %.c $(HEAD)
 	@$(PRINT) "Lem-in : "
 	@$(CC) -c $(CFLAGS) $(ALLFLAGS) $@ $<
 	@$(PRINT) "$(_CYAN)$<\n$(_END)"

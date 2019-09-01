@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:01:30 by amamy             #+#    #+#             */
-/*   Updated: 2019/08/31 22:50:01 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/01 13:22:44 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_comment(char *line, t_farm *f)
 			|| (ft_strcmp(line, "##end\n") == 0 && f->end == NULL))
 			{
 				get_next_line(0, &line);
-				if ((!(line) || room_check_syntax(line, f, r) != 0))
+				if ((!(line) || room_check_syntax(line, f) != 0))
 					return (-1);
 				if (ft_strcmp(tmp, "##start\n") == 0)
 					f->flags |= START;
@@ -40,6 +40,6 @@ int	check_comment(char *line, t_farm *f)
 					f->flags |= END;
 			}
 	}
-	ft_memdel(tmp);
+	ft_memdel((void*)&tmp);
 	return (0);
 }
