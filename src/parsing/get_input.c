@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/01 19:00:07 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/02 13:39:14 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	first_line(t_farm *f)
 	char	*line;
 
 	i = 0;
-	get_next_line(0, &line);
-	if (line)
+	line = NULL;
+	if ((get_next_line(0, &line) > 0) && line)
 	{
 		while (line[i] != '\0')
 		{
