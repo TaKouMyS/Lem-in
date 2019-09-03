@@ -6,20 +6,39 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/02 13:39:14 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/03 18:24:56 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
+/*
+** creates_table :
+** According to the id assigned in init_room, creates a tables matching ids and
+** pointers to the room assigned.
+*/
+
+static int	creates_table(t_room *r, t_farm *f)
+{
+	while (r->next)
+		r = r->next;
+	if (!(f->id_table = ft_memalloc(sizeof(t_room*) * (r->id + 1))))
+		return (-1);
+	while (r->prev)
+	{
+		f->id_table[r->id] = r;
+		r = r->prev;
+	}
+	return (0);
+}
 
 /*
-** first_line :
+** get_quantity_ants :
 ** Read the first line on stdin and checks if it's a valid ant's number.
 ** Store this number in the farm's structure.
 */
 
-static int	first_line(t_farm *f)
+static int	get_quantity_ants(t_farm *f)
 {
 	int		i;
 	char	*line;
@@ -49,7 +68,8 @@ static int	first_line(t_farm *f)
 int			get_input(t_farm *f, t_room *r)
 {
 
-	if (first_line(f) != 0 || get_room(r, f) != 0)
+	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
+		|| creates_table(r, f) != 0)
 		return (-1);
 	return (0);
 }

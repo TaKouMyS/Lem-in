@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/02 21:56:34 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/03 18:24:44 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct			s_farm
 {
 	int					ant_nb;
 	int					flags;
+	t_room				**id_table;
 	t_room				*start;
 	t_room				*end;
 }						t_farm;

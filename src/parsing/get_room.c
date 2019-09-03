@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/03 00:03:57 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/03 16:45:20 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char			*room_check_syntax(char *line, t_farm *f)
 
 /*
 ** init_room :
+** Get the room's name, write it in the room's node and assigns a unic id to
+** the room (first is 0, second is 1, etc...).
 */
 
 static int	init_room(t_room *r, char *line, int id)
