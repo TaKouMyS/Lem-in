@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/04 22:28:56 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/06 01:12:21 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,10 @@ int			get_room(t_room *r, t_farm *f)
 		ft_memdel((void*)&line);
 		ret = get_next_line(0, &line);
 	}
-	ft_memdel((void*)&line);
+	if (ft_strchr(line, '-') != NULL)
+		f->line = line;
+	else
+		ft_memdel((void*)&line);
 	if (ret <= 0)
 		return (-1);
 	return (0);

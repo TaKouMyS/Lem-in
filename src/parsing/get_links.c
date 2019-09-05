@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/05 02:08:04 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/06 01:07:05 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,19 +94,23 @@ int	get_links(t_farm *f)
 	t_room	*ids[2];
 
 	if (init_links(f) == -1)
-	{
-
-		ft_printf("get_links - -1\n");
 		return (-1);
-	}
-	ret = get_next_line(0, &line);
+	ret = 1;
+	if (f->line)
+		line = f->line;
+	else
+		ret = get_next_line(0, &line);
+	ft_printf("line : %s\n", line);
 	while (ret > 0 && (dash = ft_strchr(line, '-')) != NULL)
 	{
 		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL) 	\
 			|| (room_exist(f, room[0], ids, 0) != 1)					\
 			|| ((room[1] = get_rooms_name((dash + 1), 2)) == NULL)		\
 			|| (room_exist(f, room[1], ids, 1) != 1))
+			{
+				free_current(ids, line, room);
 				return (-1);
+			}
 		save_links(f, ids);
 		free_current(ids, line, room);
 		ret = get_next_line(0, &line);
@@ -114,9 +118,6 @@ int	get_links(t_farm *f)
 	ft_printf("links :\n");
 	int j = 0;
 	while (j < f->room_nb)
-	{
 		ft_printf("%s\n", f->links[j++]);
-	}
-	
 	return (0);
 }

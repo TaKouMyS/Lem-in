@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/04 20:17:16 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/06 00:54:04 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ typedef struct			s_room
 	struct s_room		*prev;
 }						t_room;
 
+
 typedef struct			s_farm
 {
+	char				*line;
 	int					ant_nb;
 	int					flags;
 	int					room_nb;
