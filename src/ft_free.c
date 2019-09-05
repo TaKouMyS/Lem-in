@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/03 19:10:08 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/05 01:42:11 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,18 @@
 
 void ft_free_lemin(t_farm *f, t_room *r)
 {
-	t_room	*tmp_r;
+	int		i;
 
-	while (r->next)
+	(void)r;
+	i = 0;
+	while (i < f->room_nb)
 	{
-		tmp_r = r->next;
-		ft_memdel((void*)&r->name);
-		ft_memdel((void*)&r->links);
-		ft_memdel((void*)&r);
-		r = tmp_r;
+		ft_memdel((void*)&f->id_table[i]->name);
+		ft_memdel((void*)&f->links[i]);
+		ft_memdel((void*)&f->id_table[i++]);
 	}
-	ft_memdel((void*)&r->name);
-	ft_memdel((void*)&r->links);
-	ft_memdel((void*)&r);
 	ft_memdel((void*)&f->id_table);
+	ft_memdel((void*)&f->links[i]);
+	ft_memdel((void*)&f->links);
 	ft_memdel((void*)&f);
 }

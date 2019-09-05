@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/04 01:33:27 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/04 20:19:29 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static int	creates_table(t_room *r, t_farm *f)
 {
 	while (r->next)
 		r = r->next;
-	r->room_nb = r->id + 1;
-	if (!(f->id_table = ft_memalloc(sizeof(t_room*) * r->room_nb)))
+	f->room_nb = r->id + 1;
+	if (!(f->id_table = ft_memalloc(sizeof(t_room*) * (f->room_nb + 1))))
 		return (-1);
 	while (r->prev)
 	{
@@ -71,7 +71,10 @@ int			get_input(t_farm *f, t_room *r)
 {
 
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
-		|| creates_table(r, f) != 0 || get_links(f, r) != 0)
+		|| creates_table(r, f) != 0 || get_links(f) != 0)
+	{
+		ft_printf("return get_input\n");
 		return (-1);
+	}
 	return (0);
 }
