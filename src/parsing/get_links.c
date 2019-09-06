@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/06 03:40:53 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/06 04:48:22 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ static char	*get_rooms_name(char *line, int mode)
 		while (line[room_length] != '-' && line[room_length] != '\0')
 			room_length++;
 	else if (mode == 2)
+	{
+		line = ft_strchr(line, '-') + 1;
 		while (line[room_length] != '\0')
-		room_length++;
+			room_length++;
+	}
 	room = ft_strndup(line, room_length);
 	return (room);
 }
@@ -76,7 +79,6 @@ int	get_links(t_farm *f)
 {
 	int		ret;
 	char	*line;
-	char	*dash;
 	char	*room[2];
 	t_room	*ids[2];
 
@@ -87,12 +89,11 @@ int	get_links(t_farm *f)
 		line = f->line;
 	else
 		ret = get_next_line(0, &line);
-	ft_printf("line : %s\n", line);
-	while (ret > 0 && (dash = ft_strchr(line, '-')) != NULL)
+	while (ret > 0)
 	{
 		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL) 	\
 			|| (room_exist(f, room[0], ids, 0) != 1)					\
-			|| ((room[1] = get_rooms_name((dash + 1), 2)) == NULL)		\
+			|| ((room[1] = get_rooms_name(line, 2)) == NULL)		\
 			|| (room_exist(f, room[1], ids, 1) != 1))
 			{
 				free_current(line, room);
@@ -104,18 +105,18 @@ int	get_links(t_farm *f)
 	}
 
 	// links printing ; debug
-	ft_printf("links :\n");
-	int j = 0;
-	int i = 0;
-	while (i < f->room_nb + 1)
-	{
-		if (i < f->room_nb)
-			while (j < f->room_nb)
-				ft_putnbr(f->links[i][j++]);
-		i++;
-		j = 0;
-		ft_printf("\n");
-	}
+	// ft_printf("links :\n");
+	// int j = 0;
+	// int i = 0;
+	// while (i < f->room_nb + 1)
+	// {
+	// 	if (i < f->room_nb)
+	// 		while (j < f->room_nb)
+	// 			ft_putnbr(f->links[i][j++]);
+	// 	i++;
+	// 	j = 0;
+	// 	ft_printf("\n");
+	// }
 
 	return (0);
 }

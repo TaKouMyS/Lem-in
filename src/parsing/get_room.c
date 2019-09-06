@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/06 01:12:21 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/06 04:52:57 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	init_room(t_room *r, char *line, int id)
 	if (!(r->name = ft_strndup(line, name_size)))
 		return (-1);
 	r->id = id;
-	ft_printf("name : |%s|	id : %d\n", r->name, id);
+	// ft_printf("name : |%s|	id : %d\n", r->name, id);
 	return (0);
 }
 /*
