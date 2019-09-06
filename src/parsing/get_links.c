@@ -6,51 +6,38 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/06 01:07:05 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/06 03:40:53 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
 
-static void free_current(t_room **ids, char *line, char **rooms)
+static void free_current(char *line, char **rooms)
 {
-	(void)rooms;
-	(void)ids;
 	ft_memdel((void*)&rooms[0]);
 	ft_memdel((void*)&rooms[1]);
 	ft_memdel((void*)&line);
-
-
 }
 
 static int	init_links(t_farm *f)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	if (!(f->links = ft_memalloc(sizeof(char*) * (f->room_nb + 1))))
+	if (!(f->links = ft_memalloc(sizeof(int*) * (f->room_nb + 1))))
 		return (-1);
 	while (i < f->room_nb + 1)
-	{
-		if (!(f->links[i] = ft_memalloc(sizeof(char) * (f->room_nb + 1))))
+		if (!(f->links[i++] = ft_memalloc(sizeof(int) * (f->room_nb + 1))))
 			return (-1);
-		if (i < f->room_nb)
-			while (j < f->room_nb)
-				f->links[i][j++] = '0';
-		i++;
-		j = 0;
-	}
 	return (0);
 }
 
 
 static void	save_links(t_farm *f, t_room **ids)
 {
-	f->links[ids[0]->id][ids[1]->id] = '1';
-	f->links[ids[1]->id][ids[0]->id] = '1';
+	f->links[ids[0]->id][ids[1]->id] = 1;
+	f->links[ids[1]->id][ids[0]->id] = 1;
 }
 
 static int	room_exist(t_farm *f, char *room, t_room **ids, int mode)
@@ -108,16 +95,27 @@ int	get_links(t_farm *f)
 			|| ((room[1] = get_rooms_name((dash + 1), 2)) == NULL)		\
 			|| (room_exist(f, room[1], ids, 1) != 1))
 			{
-				free_current(ids, line, room);
+				free_current(line, room);
 				return (-1);
 			}
 		save_links(f, ids);
-		free_current(ids, line, room);
+		free_current(line, room);
 		ret = get_next_line(0, &line);
 	}
+
+	// links printing ; debug
 	ft_printf("links :\n");
 	int j = 0;
-	while (j < f->room_nb)
-		ft_printf("%s\n", f->links[j++]);
+	int i = 0;
+	while (i < f->room_nb + 1)
+	{
+		if (i < f->room_nb)
+			while (j < f->room_nb)
+				ft_putnbr(f->links[i][j++]);
+		i++;
+		j = 0;
+		ft_printf("\n");
+	}
+
 	return (0);
 }
