@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/06 00:39:03 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/07 22:56:36 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ static int	get_quantity_ants(t_farm *f)
 		while (line[i] != '\0')
 		{
 			if (ft_isdigit(line[i++]) != 1)
+			{
+				ft_memdel((void*)&line);
 				return (-1);
+			}
 		}
 		f->ant_nb = ft_atoi(line);
 	}
@@ -72,9 +75,6 @@ int			get_input(t_farm *f, t_room *r)
 
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0)
-	{
-		ft_printf("return get_input\n");
 		return (-1);
-	}
 	return (0);
 }

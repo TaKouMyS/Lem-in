@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/05 23:32:37 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/07 21:05:45 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ int	main(void)
 	}
 	if (get_input(f, r) == -1)
 	{
-		ft_printf("ret main\n");
+		ft_printf("ERROR\n");
 		ft_free_lemin(f, r);
 		return (-1);
 	}
+	ft_printf("start room's name :%s\n id : %d\n", f->start->name, f->start->id);
+	ft_printf("end room's name :%s\n id : %d\n", f->end->name, f->end->id);
 	ft_free_lemin(f, r);
 	ft_putstr("No errors!\n");
 	return 0;

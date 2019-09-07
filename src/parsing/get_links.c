@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/06 04:48:22 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/07 19:39:49 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,18 @@ int	get_links(t_farm *f)
 	}
 
 	// links printing ; debug
-	// ft_printf("links :\n");
-	// int j = 0;
-	// int i = 0;
-	// while (i < f->room_nb + 1)
-	// {
-	// 	if (i < f->room_nb)
-	// 		while (j < f->room_nb)
-	// 			ft_putnbr(f->links[i][j++]);
-	// 	i++;
-	// 	j = 0;
-	// 	ft_printf("\n");
-	// }
+	ft_printf("links :\n");
+	int j = 0;
+	int i = 0;
+	while (i < f->room_nb + 1)
+	{
+		if (i < f->room_nb)
+			while (j < f->room_nb)
+				ft_putnbr(f->links[i][j++]);
+		i++;
+		j = 0;
+		ft_printf("\n");
+	}
 
 	return (0);
 }

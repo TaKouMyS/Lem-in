@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/06 04:52:57 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/07 23:22:13 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ char			*room_check_syntax(char *line, t_farm *f)
 			if (((tmp = ft_strchr(tmp, ' ')) != NULL) && tmp++)
 				sp++;
 		if (sp != 2 || line[0] == 'L' || room_check_coo(line) != 0)
+		{
+			ft_memdel((void*)&line);
 			return (NULL);
+		}
 	}
 	else
 		if (get_next_line(0, &next_line) <= 0 \
@@ -84,7 +87,7 @@ char			*room_check_syntax(char *line, t_farm *f)
 ** the room (first is 0, second is 1, etc...).
 */
 
-static int	init_room(t_room *r, char *line, int id)
+static int	init_room(t_farm *f, t_room *r, char *line, int id)
 {
 	int		name_size;
 
@@ -94,7 +97,11 @@ static int	init_room(t_room *r, char *line, int id)
 	if (!(r->name = ft_strndup(line, name_size)))
 		return (-1);
 	r->id = id;
-	// ft_printf("name : |%s|	id : %d\n", r->name, id);
+	ft_printf("room : %s	id : %d\n", r->name, id);
+	if (f->start == NULL && (f->flags & START))
+		f->start = r;
+	if (f->end == NULL && (f->flags & END))
+		f->end = r;
 	return (0);
 }
 /*
@@ -110,20 +117,19 @@ int			get_room(t_room *r, t_farm *f)
 
 	id = 0;
 	ret = get_next_line(0, &line);
-	while (ret > 0 && ft_strchr(line, '-') == NULL)
+	while (ret > 0 && line && ft_strchr(line, '-') == NULL)
 	{
 		if ((!(line) || check_start_end(line, f) != 0 			\
 			|| (line = room_check_syntax(line, f)) == NULL) 	\
-			|| (r = new_room(r, f)) == NULL || init_room(r, line, id) != 0)
+			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
 		{
 			ft_memdel((void*)&line);
 			return (-1);
 		}
-		id++;
 		ft_memdel((void*)&line);
 		ret = get_next_line(0, &line);
 	}
-	if (ft_strchr(line, '-') != NULL)
+	if (line && ft_strchr(line, '-') != NULL)
 		f->line = line;
 	else
 		ft_memdel((void*)&line);
