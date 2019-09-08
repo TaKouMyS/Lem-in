@@ -6,12 +6,39 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 22:56:36 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:35:56 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
+
+/*
+** ==================== is_start_end_linked ====================
+** When input is done, check if startand end have links, if not, return error.
+*/
+
+static int	is_start_end_linked(t_farm *f)
+{
+	int	i;
+	int	start;
+	int	end;
+
+	i = 0;
+	start = 0;
+	end = 0;
+	while (i < f->room_nb)
+	{
+		if (f->links[f->start->id][i] == 1)
+			start = 1;
+		if (f->links[f->end->id][i++] == 1)
+			end = 1;
+		if (start == 1 && end == 1)
+			return (0);
+	}
+	return (-1);
+}
+
 /*
 ** creates_table :
 ** According to the id assigned in init_room, creates a tables matching ids and
@@ -72,9 +99,9 @@ static int	get_quantity_ants(t_farm *f)
 
 int			get_input(t_farm *f, t_room *r)
 {
-
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
-		|| creates_table(r, f) != 0 || get_links(f) != 0)
+		|| creates_table(r, f) != 0 || get_links(f) != 0 \
+		|| is_start_end_linked(f) != 0)
 		return (-1);
 	return (0);
 }

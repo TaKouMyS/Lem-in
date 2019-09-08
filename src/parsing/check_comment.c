@@ -6,12 +6,17 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:01:30 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 20:03:06 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:05:20 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
+
+/*
+** ==================== check_stack_cmd ====================
+** If ##start follows ##end or the other way arround, return error.
+*/
 
 static int	check_stack_cmd(char *line, char *tmp)
 {
@@ -21,6 +26,11 @@ static int	check_stack_cmd(char *line, char *tmp)
 		return (-1);
 	return (0);
 }
+
+/*
+** ==================== raise_flag ====================
+** If line equal ##start or ##end, raise mathcing flag.
+*/
 
 static int	raise_flag(t_farm *f, char *line)
 {
@@ -35,9 +45,10 @@ static int	raise_flag(t_farm *f, char *line)
 ** check_comment :
 ** Receive a comment.
 ** If it is a command, get next line and if correct, raises matching flag.
+** Checks for double starts and end.
 */
 
-char	*check_comment(char *line, char *next_line, t_farm *f)
+char		*check_comment(char *line, char *next_line, t_farm *f)
 {
 	if (line[1] != '#' && (next_line = room_check_syntax(next_line, f)))
 		return (next_line);

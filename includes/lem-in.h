@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 21:22:20 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:10:23 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_room					*new_room(t_room *r);
 char					*check_comment(char *line, char *next_line, t_farm *f);
 char					*room_check_syntax(char *line, t_farm *f);
 void					ft_free_lemin(t_farm *f, t_room *r);
+int						free_links(char *line, char **rooms, int ret);
 int						get_links(t_farm *f);
 
 #endif

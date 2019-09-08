@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 21:05:45 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:04:33 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int	main(void)
 	ft_printf("end room's name :%s\n id : %d\n", f->end->name, f->end->id);
 	ft_free_lemin(f, r);
 	ft_putstr("No errors!\n");
-	return 0;
+	return (0);
 }

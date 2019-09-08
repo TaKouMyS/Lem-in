@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 23:01:47 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:13:07 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 #include "libft.h"
 
 /*
+** ==================== free_current ====================
+** Used in get_links to free temporary data if error detected.
+** Free stored ids and line.
+*/
+
+int		free_links(char *line, char **rooms, int ret)
+{
+	ft_memdel((void*)&rooms[0]);
+	ft_memdel((void*)&rooms[1]);
+	ft_memdel((void*)&line);
+	return (ret);
+}
+
+/*
 ** ft_free :
 ** free all stuff.
 ** Receive a pointeur to the first link of the chain r.
 */
 
-void ft_free_lemin(t_farm *f, t_room *r)
+void	ft_free_lemin(t_farm *f, t_room *r)
 {
 	int		i;
 	t_room	*tmp;

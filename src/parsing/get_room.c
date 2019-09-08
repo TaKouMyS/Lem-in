@@ -6,12 +6,18 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 23:22:13 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:18:28 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
+
+/*
+** ==================== check_start_end ====================
+** If the line passed equals ##start or ##end and we've already has some,
+** return an error.
+*/
 
 static int	check_start_end(char *line, t_farm *f)
 {
@@ -29,8 +35,8 @@ static int	check_start_end(char *line, t_farm *f)
 
 static int	room_check_coo(char *line)
 {
-	char *tmp;
-	int	i;
+	char	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = ft_strchr(line, ' ') + 1;
@@ -39,7 +45,7 @@ static int	room_check_coo(char *line)
 			return (-1);
 	if (tmp[i++] != ' ')
 		return (-1);
-	while (tmp[i] != '\0' && i <= 20 )
+	while (tmp[i] != '\0' && i <= 20)
 		if (ft_isdigit(tmp[i++]) != 1)
 			return (-1);
 	return (0);
@@ -53,12 +59,12 @@ static int	room_check_coo(char *line)
 ** If line is a comment, sends it for checks.
 */
 
-char			*room_check_syntax(char *line, t_farm *f)
+char		*room_check_syntax(char *line, t_farm *f)
 {
-	int	sp;
-	int	i;
-	char *tmp;
-	char *next_line;
+	int		sp;
+	int		i;
+	char	*tmp;
+	char	*next_line;
 
 	i = 0;
 	sp = 0;
@@ -92,7 +98,7 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 	int		name_size;
 
 	name_size = 0;
-	while (line[name_size] != ' ') // need to add && line[name_size] != '\0'?
+	while (line[name_size] != ' ')
 		name_size++;
 	if (!(r->name = ft_strndup(line, name_size)))
 		return (-1);
@@ -104,6 +110,7 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 		f->end = r;
 	return (0);
 }
+
 /*
 ** get_room :
 ** Read stdin for rooms. Check room syntax and store them.

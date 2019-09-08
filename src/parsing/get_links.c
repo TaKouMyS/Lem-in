@@ -6,19 +6,17 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/07 19:39:49 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:29:50 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
 
-static void free_current(char *line, char **rooms)
-{
-	ft_memdel((void*)&rooms[0]);
-	ft_memdel((void*)&rooms[1]);
-	ft_memdel((void*)&line);
-}
+/*
+** ==================== init_links ====================
+** Create a squared matrice the size matching rooms number.
+*/
 
 static int	init_links(t_farm *f)
 {
@@ -33,12 +31,21 @@ static int	init_links(t_farm *f)
 	return (0);
 }
 
+/*
+** ==================== save_links ====================
+** Save links into link's matrice.
+*/
 
 static void	save_links(t_farm *f, t_room **ids)
 {
 	f->links[ids[0]->id][ids[1]->id] = 1;
 	f->links[ids[1]->id][ids[0]->id] = 1;
 }
+
+/*
+** ==================== room_exist ====================
+** Check if the room has been stored previously.
+*/
 
 static int	room_exist(t_farm *f, char *room, t_room **ids, int mode)
 {
@@ -55,6 +62,13 @@ static int	room_exist(t_farm *f, char *room, t_room **ids, int mode)
 	}
 	return (0);
 }
+
+/*
+** ==================== get_rooms_name ====================
+** Mode 1 : get the name of the first room
+** Mode 2 : get the name of the second room
+** Return the name.
+*/
 
 static char	*get_rooms_name(char *line, int mode)
 {
@@ -75,7 +89,13 @@ static char	*get_rooms_name(char *line, int mode)
 	return (room);
 }
 
-int	get_links(t_farm *f)
+/*
+** ==================== get_links ====================
+** Read stdin, get rooms name, check if they exist and if they do,
+** save the link.
+*/
+
+int			get_links(t_farm *f)
 {
 	int		ret;
 	char	*line;
@@ -95,15 +115,11 @@ int	get_links(t_farm *f)
 			|| (room_exist(f, room[0], ids, 0) != 1)					\
 			|| ((room[1] = get_rooms_name(line, 2)) == NULL)		\
 			|| (room_exist(f, room[1], ids, 1) != 1))
-			{
-				free_current(line, room);
-				return (-1);
-			}
+			return (free_links(line, room, -1));
 		save_links(f, ids);
-		free_current(line, room);
+		free_links(line, room, 0);
 		ret = get_next_line(0, &line);
 	}
-
 	// links printing ; debug
 	ft_printf("links :\n");
 	int j = 0;
@@ -117,6 +133,5 @@ int	get_links(t_farm *f)
 		j = 0;
 		ft_printf("\n");
 	}
-
 	return (0);
 }
