@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/08 02:13:07 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/08 02:40:13 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 
 /*
-** ==================== free_current ====================
+** ==================== free_links ====================
 ** Used in get_links to free temporary data if error detected.
 ** Free stored ids and line.
 */
