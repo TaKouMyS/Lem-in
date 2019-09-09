@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct			s_queue
 {
@@ -8,26 +10,26 @@ typedef struct			s_queue
     int                 position;
 }						t_queue;
 
-int     initialise_set_to_n(int *set, int length, int n)
+int     initialise_set_to_n(int **set, int length, int n)
 {
     int i;
 
     i = -1;
-    if (!(set = malloc(sizeof(int) * length)))
+    if (!(*set = malloc(sizeof(int) * length)))
         return (-1);
     while (++i < length)
-        set[i] = n;
+         *set[0] = n;
     return (0);
 }
  
- int intialise_queue(t_queue *q, int length, int start)
+ int initialise_queue(t_queue *q, int length, int start)
  {
     q->length = length;
-    if ((initialise_set_to_n(q->queue, length, -1)) < 0)
+    if ((initialise_set_to_n(&q->queue, length, -1)) < 0)
         return (-1);
-    if ((initialise_set_to_n(q->prev, length, -1)) < 0)
+    if ((initialise_set_to_n(&q->prev, length, -1)) < 0)
         return (-1);
-    if ((initialise_set_to_n(q->visited, length, 0)) < 0)
+    if ((initialise_set_to_n(&q->visited, length, 0)) < 0)
         return (-1);
     q->queue[0] = start;
     q->visited[start] = 1;
@@ -40,8 +42,9 @@ int find_neighbours(t_queue *q, int **map, int node)
     int j;
 
     j = 0;
-    while (map[node][j] < q->length)
+    while (j < q->length)
     {
+       
         if (map[node][j] == 1 && q->visited[j] == 0)
          {   
              q->queue[q->position] = j;
@@ -60,10 +63,10 @@ int fill_path(int **map, t_queue *q, int start, int end)
     int node;
 
     i = -1;
-    while (++i <= q->length && q->visited[end] != 1)
+    while (++i < q->length && q->visited[end] != 1)
     {
         node = q->queue[i];
-        find_neighbours(q, node, map);
+        find_neighbours(q, map, node);
     }
     if (q->visited[end] != 1)
         return (-1);
@@ -89,20 +92,23 @@ int print_path(t_queue *q, int start, int end)
     int i;
 
     steps = count_steps(q, start, end);
-    i = 0;
+    i = 1;
     if (!(rev_path = malloc(sizeof(int) * steps)))
         return (-1);
-    while (i <= steps)
+    rev_path[steps] = end;
+    while (i < steps)
     {
         rev_path[steps - i] = q->prev[end];
         end = q->prev[end];
         ++i;
     }
     i = 0;
-    while (i <= steps)
+    while (i < steps)
     {
-        printf("")
+        printf("%d to %d\n", rev_path[i], rev_path[i + 1]);
+        ++i;
     }
+    return (0);
   
 }
 
@@ -115,15 +121,52 @@ int     solve(int **map, int length, int start, int end)
     if ((fill_path(map, &q, start, end)) < 0)
     {
         printf("Path not found\n");
-        return (0);
+            return (0);
     }
-    reverse_path(&q, start, end);
+    if (!(print_path(&q, start, end)))
+        return (0);
+    return (0);
+}
 
+int **create_matrix(int **map)
+{
+    int i;
+    int j;
+    int *cpy;
+    int matrice[7][7] =
+    {
+        {0, 1, 1, 0, 0, 0, 0},
+        {0, 0, 1, 1, 0, 1, 0},
+        {1, 1, 0, 0, 1, 0, 0},
+        {0, 1, 0, 0, 0, 0, 1},
+        {0, 0, 1, 0, 0, 1, 0},
+        {0, 1, 0, 0, 1, 0, 1},
+        {0, 0, 0, 1, 0, 1, 0}
+    };
 
+    i = 0;
+    if (!(*map = malloc(sizeof(int*) * 7)))
+        return (0);
+    while (i < 7)
+    {
+        j = 0;
+        if (!(map[i] = malloc(sizeof(int) * 7)))
+            return (0);
+        while (j < 7)
+        {   
+            map[i][j] = matrice[i][j];
+            ++j;
+        }
+        ++i;
+    }
+    return (map);
+}
 
+int main()
+{
+    int **map;
+    map = create_matrix(map); //this is just so the rest of the functions work well with dynamically allocated matrices
 
-
-
-    
-
+    solve(map, 7, 0, 6);
+    return (0);
 }
