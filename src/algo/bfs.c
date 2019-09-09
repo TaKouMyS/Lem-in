@@ -1,16 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "../../includes/lem-in.h"
 
-typedef struct			s_queue
-{
-	int	    			*queue;
-	int					*prev;
-	int         		*visited;
-    int                 length;
-    int                 position;
-}						t_queue;
 
-int     initialise_set_to_n(int **set, int length, int n)
+int initialise_set_to_n(int **set, int length, int n)
 {
     int i;
 
@@ -44,7 +37,6 @@ int find_neighbours(t_queue *q, int **map, int node)
     j = 0;
     while (j < q->length)
     {
-       
         if (map[node][j] == 1 && q->visited[j] == 0)
          {   
              q->queue[q->position] = j;
@@ -66,6 +58,7 @@ int fill_path(int **map, t_queue *q, int start, int end)
     while (++i < q->length && q->visited[end] != 1)
     {
         node = q->queue[i];
+        printf("node = %d i = %d\n", node, i);
         find_neighbours(q, map, node);
     }
     if (q->visited[end] != 1)
