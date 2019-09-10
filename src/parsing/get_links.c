@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/08 02:29:50 by amamy            ###   ########.fr       */
+/*   Updated: 2019/09/10 02:46:02 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 ** Create a squared matrice the size matching rooms number.
 */
 
-static int	init_links(t_farm *f)
+static int	init_links(t_farm *f, char **room)
 {
 	int	i;
 
 	i = 0;
+	room[1] = NULL;
+	room[2] = NULL;
 	if (!(f->links = ft_memalloc(sizeof(int*) * (f->room_nb + 1))))
 		return (-1);
 	while (i < f->room_nb + 1)
@@ -102,7 +104,7 @@ int			get_links(t_farm *f)
 	char	*room[2];
 	t_room	*ids[2];
 
-	if (init_links(f) == -1)
+	if (init_links(f, room) == -1)
 		return (-1);
 	ret = 1;
 	if (f->line)
@@ -113,7 +115,7 @@ int			get_links(t_farm *f)
 	{
 		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL) 	\
 			|| (room_exist(f, room[0], ids, 0) != 1)					\
-			|| ((room[1] = get_rooms_name(line, 2)) == NULL)		\
+			|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
 			|| (room_exist(f, room[1], ids, 1) != 1))
 			return (free_links(line, room, -1));
 		save_links(f, ids);
