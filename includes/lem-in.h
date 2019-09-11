@@ -16,6 +16,15 @@
 #define START 1
 #define END 2
 
+typedef struct			s_queue
+{
+	int					*queue;
+	int					*visited;
+	int					*prev;
+	int					length;
+	int					position;
+}						t_queue;
+
 typedef struct			s_room
 {
 	int					id;
