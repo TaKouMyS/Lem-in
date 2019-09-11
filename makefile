@@ -22,10 +22,12 @@ INCLUDES = includes
 HEAD	= $(INCLUDES)/lem-in.h
 
 SRCS 	= $(SRCDIR)/main.c				\
+		$(SRCDIR)/ft_free.c				\
 		$(PARSDIR)/get_input.c			\
 		$(PARSDIR)/get_room.c			\
 		$(PARSDIR)/check_comment.c		\
-		$(PARSDIR)/new_room.c
+		$(PARSDIR)/new_room.c			\
+		$(PARSDIR)/get_links.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
@@ -64,7 +66,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 
 
 $(OBJDIR) :
-	mkdir  $@ $@/$(SRCDIR) $@/$(PARSDIR)
+	@mkdir  $@ $@/parsing
 
 $(OBJ) : | $(OBJDIR)
 
