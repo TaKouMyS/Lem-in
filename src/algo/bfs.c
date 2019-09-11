@@ -49,7 +49,7 @@ int find_neighbours(t_queue *q, int **map, int node)
     return (0);
 }
 
-int fill_path(int **map, t_queue *q, int start, int end)
+int fill_path(int **map, t_queue *q, int end)
 {
     int i;
     int node;
@@ -110,7 +110,10 @@ int     solve(int **map, int length, int start, int end)
 
     if ((initialise_queue(&q, length, start)) < 0)
         return (-1);
-    if ((fill_path(map, &q, start, end)) < 0)
+    printf("length = %d\n", length);
+    printf("start = %d\n", start);
+    printf("end = %d\n", end);
+    if ((fill_path(map, &q, end)) < 0)
     {
         printf("Path not found\n");
             return (0);
@@ -126,7 +129,6 @@ int **create_matrix(int **map)
 {
     int i;
     int j;
-    int *cpy;
     int matrice[7][7] =
     {
         {0, 1, 1, 0, 0, 0, 0},
@@ -155,12 +157,13 @@ int **create_matrix(int **map)
     }
     return (map);
 }
-
+/*
 int main()
 {
-    int **map;
+    int **map = NULL;
     map = create_matrix(map); //this is just so the rest of the functions work well with dynamically allocated matrices
 
     solve(map, 7, 0, 6);
     return (0);
 }
+*/

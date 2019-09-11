@@ -12,6 +12,7 @@
 
 #include "lem-in.h"
 #include "libft.h"
+#include <stdio.h>
 
 int	main(void)
 {
@@ -33,6 +34,7 @@ int	main(void)
 	}
 	ft_printf("start room's name :%s\n id : %d\n", f->start->name, f->start->id);
 	ft_printf("end room's name :%s\n id : %d\n", f->end->name, f->end->id);
+	//solve(f->links, f->room_nb, f->start->id, f->end->id);
 	ft_free_lemin(f, r);
 	ft_putstr("No errors!\n");
 	return (0);

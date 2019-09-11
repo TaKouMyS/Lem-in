@@ -122,6 +122,7 @@ int			get_links(t_farm *f)
 		free_links(line, room, 0);
 		ret = get_next_line(0, &line);
 	}
+	printf("here ia m");
 	// links printing ; debug
 	ft_printf("links :\n");
 	int j = 0;

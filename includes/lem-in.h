@@ -55,5 +55,6 @@ char					*room_check_syntax(char *line, t_farm *f);
 void					ft_free_lemin(t_farm *f, t_room *r);
 int						free_links(char *line, char **rooms, int ret);
 int						get_links(t_farm *f);
+int     solve(int **map, int length, int start, int end);
 
 #endif
