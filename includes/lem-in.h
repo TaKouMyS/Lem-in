@@ -32,6 +32,7 @@ typedef struct			s_room
 	struct s_room		*next;
 	struct s_room		*prev;
 	char				*name;
+	int					empty;
 }						t_room;
 
 

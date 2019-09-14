@@ -77,7 +77,7 @@ int count_steps(t_queue *q, int start, int end)
     return (steps);
 }
 
-int print_path(t_farm *f, t_queue *q, int start, int end)
+int rev_path(t_farm *f, t_queue *q, int start, int end)
 {
     int *rev_path;
     int steps;
@@ -95,14 +95,39 @@ int print_path(t_farm *f, t_queue *q, int start, int end)
         ++i;
     }
     i = 0;
-    while (i < steps) //prints path -> this could all be divided into subfunctions to make it tidier
+    print_path(f, rev_path, steps);
+    return (0);
+}
+
+int print_path(t_farm *f, int *path, int steps)
+{
+  int i; 
+  int steps_taken;
+  int moving;
+  int finished;
+
+  i = 1;
+  finished = 0;
+  steps_taken = 0;
+  moving = 1;
+  while (finished < f->ant_nb)
+  {
+    ++steps_taken;
+    i = finished;
+    while (i < moving)
     {
-        printf("L%s-L%s\n", f->id_table[rev_path[i]]->name, f->id_table[rev_path[i + 1]]->name);
+        printf("L%d-%s ", i + 1, f->id_table[path[steps_taken - i]]->name);
+        if (path[steps_taken - i] == f->end->id)
+            ++finished;
         ++i;
     }
-    return (0);
-  
+    putchar('\n');
+    if (moving < f->ant_nb)
+        ++moving;
+    i = finished;
+  }  
 }
+
 void    print_map(int **map, int length)
 {
     int i;
@@ -134,7 +159,7 @@ int     solve(t_farm *f, int length, int start, int end)
         printf("Path not found\n");
             return (0);
     }
-    if (!(print_path(f, &q, start, end)))
+    if (!(rev_path(f, &q, start, end)))
         return (0);
     return (0);
 }
