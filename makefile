@@ -69,6 +69,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 
 $(OBJDIR) :
 	@mkdir  $@ $@/parsing
+	@mkdir  $@ $@/algo
 	
 
 $(OBJ) : | $(OBJDIR)

@@ -77,7 +77,7 @@ int count_steps(t_queue *q, int start, int end)
     return (steps);
 }
 
-int print_path(t_queue *q, int start, int end)
+int print_path(t_farm *f, t_queue *q, int start, int end)
 {
     int *rev_path;
     int steps;
@@ -97,35 +97,51 @@ int print_path(t_queue *q, int start, int end)
     i = 0;
     while (i < steps) //prints path -> this could all be divided into subfunctions to make it tidier
     {
-        printf("%d to %d\n", rev_path[i], rev_path[i + 1]);
+        printf("L%s-L%s\n", f->id_table[rev_path[i]]->name, f->id_table[rev_path[i + 1]]->name);
         ++i;
     }
     return (0);
   
 }
+void    print_map(int **map, int length)
+{
+    int i;
+    int j;
 
-int     solve(int **map, int length, int start, int end)
+    i = 0;
+
+    while (i < length)
+    {
+        j = 0;
+        while (j < length)
+        {
+            printf("%d", map[i][j]);
+            ++j;
+        }
+        putchar('\n');
+        ++i;
+    }
+}
+int     solve(t_farm *f, int length, int start, int end)
 {
     t_queue q;
 
+  //  print_map(map, length);
     if ((initialise_queue(&q, length, start)) < 0)
         return (-1);
-    printf("length = %d\n", length);
-    printf("start = %d\n", start);
-    printf("end = %d\n", end);
-    if ((fill_path(map, &q, end)) < 0)
+    if ((fill_path(f->links, &q, end)) < 0)
     {
         printf("Path not found\n");
             return (0);
     }
-    if (!(print_path(&q, start, end)))
+    if (!(print_path(f, &q, start, end)))
         return (0);
     return (0);
 }
 
 //This is an unnecessary function in the long run, it's just to make the matrix dynamically allocated as the room links 
 //will be dynamically allocated. 
-int **create_matrix(int **map)
+/*int **create_matrix(int **map)
 {
     int i;
     int j;
@@ -157,7 +173,7 @@ int **create_matrix(int **map)
     }
     return (map);
 }
-/*
+
 int main()
 {
     int **map = NULL;

@@ -56,6 +56,7 @@ static int	room_exist(t_farm *f, char *room, t_room **ids, int mode)
 	i = 0;
 	while (i < f->room_nb)
 	{
+		
 		if (ft_strcmp(room, f->id_table[i++]->name) == 0)
 		{
 			ids[mode] = f->id_table[i - 1];
@@ -113,7 +114,7 @@ int			get_links(t_farm *f)
 		ret = get_next_line(0, &line);
 	while (ret > 0)
 	{
-		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL) 	\
+		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL)	\
 			|| (room_exist(f, room[0], ids, 0) != 1)					\
 			|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
 			|| (room_exist(f, room[1], ids, 1) != 1))
@@ -122,11 +123,11 @@ int			get_links(t_farm *f)
 		free_links(line, room, 0);
 		ret = get_next_line(0, &line);
 	}
-	printf("here ia m");
 	// links printing ; debug
-	ft_printf("links :\n");
+/*	ft_printf("links :\n");
 	int j = 0;
 	int i = 0;
+	printf("room nb = %d\n", f->room_nb);
 	while (i < f->room_nb + 1)
 	{
 		if (i < f->room_nb)
@@ -135,6 +136,6 @@ int			get_links(t_farm *f)
 		i++;
 		j = 0;
 		ft_printf("\n");
-	}
+	}*/
 	return (0);
 }

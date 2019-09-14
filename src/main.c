@@ -28,14 +28,12 @@ int	main(void)
 	}
 	if (get_input(f, r) == -1)
 	{
-		ft_printf("ERROR\n");
+		ft_printf("INPUT ERROR\n");
 		ft_free_lemin(f, r);
 		return (-1);
 	}
-	ft_printf("start room's name :%s\n id : %d\n", f->start->name, f->start->id);
-	ft_printf("end room's name :%s\n id : %d\n", f->end->name, f->end->id);
-	//solve(f->links, f->room_nb, f->start->id, f->end->id);
+	solve(f, f->room_nb, f->start->id, f->end->id);
 	ft_free_lemin(f, r);
-	ft_putstr("No errors!\n");
+//	ft_putstr("No errors!\n");
 	return (0);
 }
