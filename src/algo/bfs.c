@@ -39,7 +39,7 @@ int find_neighbours(t_queue *q, int **map, int node)
     {
         if (map[node][j] == 1 && q->visited[j] == 0) //if there is a link and we have not visited the link
          {   
-             q->queue[q->position] = j; // add to end of queue
+            q->queue[q->position] = j; // add to end of queue
              q->prev[j] = node; //note from which node we linked this node
              q->visited[j] = 1; //mark it as visited
              ++q->position; //move up the end of queue marker
@@ -49,21 +49,24 @@ int find_neighbours(t_queue *q, int **map, int node)
     return (0);
 }
 
-int fill_path(int **map, t_queue *q, int end)
+int bfs(t_farm *f, t_queue *q)
 {
     int i;
     int node;
 
     i = -1;
-    while (++i < q->length && q->visited[end] != 1)
+    q->queue[0] = f->start->id;
+    q->position = 1;
+    while (++i < q->length && q->visited[f->end->id] != 1)
     {
         node = q->queue[i]; //sets node to the next node in the queue
-        find_neighbours(q, map, node); 
+        find_neighbours(q, f->links, node);
     }
-    if (q->visited[end] != 1) //if while path finding we did not reach the end, we failed
+    if (q->visited[f->end->id] != 1) //if while path finding we did not reach the end, we failed
         return (-1);
     return (0);
 }
+
 int count_steps(t_queue *q, int start, int end)
 {
       int steps;
@@ -77,16 +80,18 @@ int count_steps(t_queue *q, int start, int end)
     return (steps);
 }
 
-int rev_path(t_farm *f, t_queue *q, int start, int end)
+int *rev_path(t_farm *f, t_queue *q)
 {
     int *rev_path;
     int steps;
     int i;
+    int end;
 
-    steps = count_steps(q, start, end); //count how many moves we made
+    end = f->end->id;
+    steps = count_steps(q, f->start->id, end); //count how many moves we made
     i = 1;
     if (!(rev_path = malloc((sizeof(int)) * (steps + 1))))
-        return (-1);
+        return (NULL);
     rev_path[steps] = end;
     while (i <= steps) //save the path reversed as it is currently stored from end to start
     {
@@ -95,8 +100,8 @@ int rev_path(t_farm *f, t_queue *q, int start, int end)
         ++i;
     }
     i = 0;
-    print_path(f, rev_path, steps);
-    return (0);
+  //  print_path(f, rev_path, steps);
+    return (rev_path);
 }
 
 int print_path(t_farm *f, int *path, int steps)
@@ -119,34 +124,19 @@ int print_path(t_farm *f, int *path, int steps)
         printf("L%d-%s ", i + 1, f->id_table[path[steps_taken - i]]->name);
         if (path[steps_taken - i] == f->end->id)
             ++finished;
+        //here some kind of thing like if there's another path -> Go there
+        f->id_table[path[steps_taken -i]]->empty = 1;
+        f->id_table[path[steps_taken - i - 1]]->empty = 0;
         ++i;
     }
     putchar('\n');
     if (moving < f->ant_nb)
         ++moving;
     i = finished;
-  }  
+  } 
+  return (0);
 }
 
-void    print_map(int **map, int length)
-{
-    int i;
-    int j;
-
-    i = 0;
-
-    while (i < length)
-    {
-        j = 0;
-        while (j < length)
-        {
-            printf("%d", map[i][j]);
-            ++j;
-        }
-        putchar('\n');
-        ++i;
-    }
-}
 int     solve(t_farm *f, int length, int start, int end)
 {
     t_queue q;
@@ -154,13 +144,15 @@ int     solve(t_farm *f, int length, int start, int end)
   //  print_map(map, length);
     if ((initialise_queue(&q, length, start)) < 0)
         return (-1);
-    if ((fill_path(f->links, &q, end)) < 0)
+        edmondskarp(&q, f);
+ //   printf("%d\n", max_flow(&q, f));
+  /*  if ((bfs(f->links, &q, end)) < 0)
     {
         printf("Path not found\n");
             return (0);
     }
     if (!(rev_path(f, &q, start, end)))
-        return (0);
+        return (0);*/
     return (0);
 }
 

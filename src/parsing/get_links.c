@@ -102,7 +102,7 @@ int			get_links(t_farm *f)
 {
 	int		ret;
 	char	*line;
-	char	*room[2];
+	char	*room[3]; //changed from 2 to 3 stack buffer overflow
 	t_room	*ids[2];
 
 	if (init_links(f, room) == -1)

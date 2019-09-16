@@ -57,5 +57,11 @@ void					ft_free_lemin(t_farm *f, t_room *r);
 int						free_links(char *line, char **rooms, int ret);
 int						get_links(t_farm *f);
 int     				solve(t_farm *f, int length, int start, int end);
+int 					bfs(t_farm *f, t_queue *q);
+int 					max_flow(t_queue *q, t_farm *f);
+int 					count_steps(t_queue *q, int start, int end);
+int 					*rev_path(t_farm *f, t_queue *q);
+int 					edmondskarp(t_queue *q, t_farm *f);
+int     				send_ants(t_farm *f, int **paths, int max_paths, int ants);
 
 #endif

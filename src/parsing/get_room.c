@@ -132,7 +132,6 @@ int			get_room(t_room *r, t_farm *f)
 			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
 		{
 			ft_memdel((void*)&line);
-			printf("returning here\n");
 			return (-1);
 		}
 		ft_memdel((void*)&line);

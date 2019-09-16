@@ -29,7 +29,8 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(PARSDIR)/check_comment.c		\
 		$(PARSDIR)/new_room.c			\
 		$(PARSDIR)/get_links.c			\
-		$(ALGDIR)/bfs.c
+		$(ALGDIR)/bfs.c					\
+		$(ALGDIR)/edmondskarp.c 		
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
