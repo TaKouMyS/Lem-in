@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../../includes/lem-in.h"
+#include "../../libft/includes/libft.h"
 
 
 int initialise_set_to_n(int **set, int length, int n)
@@ -17,6 +18,9 @@ int initialise_set_to_n(int **set, int length, int n)
  
  int initialise_queue(t_queue *q, int length, int start)
  {
+    int i;
+
+    i = 0;
     q->length = length;
     if ((initialise_set_to_n(&q->queue, length, -1)) < 0) // initialise to minus one to avoid confusion with 0 position
         return (-1);
@@ -24,27 +28,42 @@ int initialise_set_to_n(int **set, int length, int n)
         return (-1);
     if ((initialise_set_to_n(&q->visited, length, 0)) < 0) // set to 0 to mark all as unvisited
         return (-1);
+    if (!(q->flow = ft_memalloc(sizeof(int *) * q->length)))
+        return (-1);
+    while (i < q->length)
+    {
+        if (!(q->flow[i] = ft_memalloc(sizeof(int) * q->length)))
+            return (-1);
+		++i;
+    }
     q->queue[0] = start; //first element in queue is the start of path
     q->visited[start] = 1; //mark start as visited
     q->position = 1; //we have one item in the queue
     return (0);
  }
 
-int find_neighbours(t_queue *q, int **map, int node)
+int find_neighbours_bhs(t_queue *q, int **map, int node)
 {
     int j;
 
-    j = 0;
+    j = 0;                                                                                                                                                    
     while (j < q->length)
     {
-        if (map[node][j] == 1 && q->visited[j] == 0) //if there is a link and we have not visited the link
-         {   
-            q->queue[q->position] = j; // add to end of queue
-             q->prev[j] = node; //note from which node we linked this node
-             q->visited[j] = 1; //mark it as visited
-             ++q->position; //move up the end of queue marker
-         }
-         ++j; 
+        if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 0) //if there is a link and we have not visited the link
+        {
+			printf("node = %d j = %d\n", node, j);
+			if (q->flow[node][j] == -1)
+			{
+				printf("HERe node = %d j = %d\n", node, j);
+				q->flow[node][j] = 0;
+				q->flow[j][node] = 0;
+			}
+			q->queue[q->position] = j; // add to end of queue
+            q->prev[j] = node; //note from which node we linked this node
+			q->visited[j] = 1; //mark it as visited
+            ++q->position; //move up the end of queue marker
+        }
+        ++j; 
     }
     return (0);
 }
@@ -55,27 +74,36 @@ int bfs(t_farm *f, t_queue *q)
     int node;
 
     i = -1;
-    q->queue[0] = f->start->id;
+    
     q->position = 1;
-    while (++i < q->length && q->visited[f->end->id] != 1)
+	i = 0;
+	while (i < q->length)
+	{
+		q->queue[i] = 0;
+		++i;
+	}
+	i = -1;
+	q->visited[f->start->id] = 1;
+	q->queue[0] = f->start->id;
+    while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
     {
         node = q->queue[i]; //sets node to the next node in the queue
-        find_neighbours(q, f->links, node);
+		find_neighbours_bhs(q, f->links, node);
     }
     if (q->visited[f->end->id] != 1) //if while path finding we did not reach the end, we failed
-        return (-1);
+		    return (-1);
     return (0);
 }
 
 int count_steps(t_queue *q, int start, int end)
 {
-      int steps;
+    int steps;
 
     steps = 0;
     while (end != start)
     {
         end = q->prev[end];
-        ++steps;
+		++steps;
     }
     return (steps);
 }
@@ -104,47 +132,34 @@ int *rev_path(t_farm *f, t_queue *q)
     return (rev_path);
 }
 
-int print_path(t_farm *f, int *path, int steps)
-{
-  int i; 
-  int steps_taken;
-  int moving;
-  int finished;
 
-  i = 1;
-  finished = 0;
-  steps_taken = 0;
-  moving = 1;
-  while (finished < f->ant_nb)
-  {
-    ++steps_taken;
-    i = finished;
-    while (i < moving)
-    {
-        printf("L%d-%s ", i + 1, f->id_table[path[steps_taken - i]]->name);
-        if (path[steps_taken - i] == f->end->id)
-            ++finished;
-        //here some kind of thing like if there's another path -> Go there
-        f->id_table[path[steps_taken -i]]->empty = 1;
-        f->id_table[path[steps_taken - i - 1]]->empty = 0;
-        ++i;
-    }
-    putchar('\n');
-    if (moving < f->ant_nb)
-        ++moving;
-    i = finished;
-  } 
-  return (0);
-}
 
 int     solve(t_farm *f, int length, int start, int end)
 {
     t_queue q;
+	int i;
+	int j;
 
-  //  print_map(map, length);
-    if ((initialise_queue(&q, length, start)) < 0)
-        return (-1);
-        edmondskarp(&q, f);
+	i = 0;
+    if (initialise_queue(&q, length, start) < 0)
+       return (-1);
+	/* while (bfs(f, &q) >= 0)
+	 { 
+		 i =  0;
+		while (i < q.length)
+		{
+			j = 0;
+			while (j < q.length)
+			{
+				printf("%d ", q.flow[i][j]);
+				++j;
+			}
+		putchar('\n');
+		++i;
+		}
+		printf("-------\n");
+	 }*/
+    edmondskarp(&q, f);
  //   printf("%d\n", max_flow(&q, f));
   /*  if ((bfs(f->links, &q, end)) < 0)
     {
@@ -198,5 +213,38 @@ int main()
 
     solve(map, 7, 0, 6);
     return (0);
+}
+
+int print_path(t_farm *f, int *path, int steps)
+{
+  int i; 
+  int steps_taken;
+  int moving;
+  int finished;
+
+  i = 1;
+  finished = 0;
+  steps_taken = 0;
+  moving = 1;
+  while (finished < f->ant_nb)
+  {
+    ++steps_taken;
+    i = finished;
+    while (i < moving)
+    {
+        printf("L%d-%s ", i + 1, f->id_table[path[steps_taken - i]]->name);
+        if (path[steps_taken - i] == f->end->id)
+            ++finished;
+        //here some kind of thing like if there's another path -> Go there
+        f->id_table[path[steps_taken -i]]->empty = 1;
+        f->id_table[path[steps_taken - i - 1]]->empty = 0;
+        ++i;
+    }
+    putchar('\n');
+    if (moving < f->ant_nb)
+        ++moving;
+    i = finished;
+  } 
+  return (0);
 }
 */

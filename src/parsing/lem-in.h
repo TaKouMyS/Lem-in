@@ -23,7 +23,6 @@ typedef struct			s_queue
 	int					*prev;
 	int					length;
 	int					position;
-	int					**flow;
 }						t_queue;
 
 typedef struct			s_room
@@ -64,6 +63,5 @@ int 					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
 int 					edmondskarp(t_queue *q, t_farm *f);
 int     				send_ants(t_farm *f, int **paths, int max_paths, int ants);
-int 					optimise_flow(t_farm *f, t_queue *q);
 
 #endif
