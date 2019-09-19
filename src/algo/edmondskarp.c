@@ -87,9 +87,11 @@ void print_map(int **map, int length)
 	int j;
 
 	i = 0;
+	printf("\n...........................\n");
 	while (i < length)
 	{
 		j = 0;
+		printf("%d  |", i);
 		while (j < length)
 		{
 			printf("%d ", map[i][j]);
@@ -98,19 +100,25 @@ void print_map(int **map, int length)
 		putchar('\n');
 		++i;
 	}
-
+	printf("...........................\n");
 }
 int edmondskarp(t_queue *q, t_farm *f)
 {
 	int flow;
 	int j = 0;
 	int **paths;
-
-	while ((optimise_flow(f, q)) >= 0)
+optimise_flow(f, q);
+print_map(q->flow, q->length);
+optimise_flow(f, q);
+print_map(q->flow, q->length);
+/*
+print_map(q->flow, q->length);
+	while ((optimise_flow(f, q)) >= 0 && j < 2)
 	{
-	//	print_map(q->flow, q->length);
+		print_map(q->flow, q->length);
 		printf("\n\n");
-	}
+		++j;
+	}*/
 //	print_map(q->flow, q->length);
 	  while (j < q->length)
     {
@@ -119,7 +127,7 @@ int edmondskarp(t_queue *q, t_farm *f)
 		q->queue[j] = -1;	
         ++j;
     }
-	flow = max_flow(q, f);
+//	flow = max_flow(q, f);
 //	paths = save_paths(q, f, flow);
 	
 //	send_ants(f, paths, flow, 0);

@@ -51,13 +51,6 @@ int find_neighbours_bhs(t_queue *q, int **map, int node)
     {
         if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 0) //if there is a link and we have not visited the link
         {
-			printf("node = %d j = %d\n", node, j);
-			if (q->flow[node][j] == -1)
-			{
-				printf("HERe node = %d j = %d\n", node, j);
-				q->flow[node][j] = 0;
-				q->flow[j][node] = 0;
-			}
 			q->queue[q->position] = j; // add to end of queue
             q->prev[j] = node; //note from which node we linked this node
 			q->visited[j] = 1; //mark it as visited

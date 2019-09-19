@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "../../includes/lem-in.h"
@@ -11,7 +12,7 @@ int find_neighbours(t_queue *q, int **map, int node)
     while (j < q->length)
     {
 		//printf("link %d to %d = %d\n", node, j, map[node][j]);
-        if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] < 1) //if there is a link and we have not visited the link
+        if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
         {
 		//	printf("link %d to %d\n", node, j);
      //   if (node == 5 && j == 4)
@@ -35,14 +36,23 @@ int find_neighbours(t_queue *q, int **map, int node)
 
 void save_flow(t_queue *q, t_farm *f)
 {
-	int position; 
-
-	position = f->end->id;
-	while (position != f->start->id)
+	int p;
+	int s;
+	p = f->end->id;
+	while (p != f->start->id)
 	{
-		q->flow[position][q->prev[position]] = -1;
-		q->flow[q->prev[position]][position] = 1;
-		position = q->prev[position];
+		s = q->prev[p];
+        if (q->flow[p][s] == 0)
+        { 
+			q->flow[p][s] = -1;
+			q->flow[s][p] = 1;
+		}	
+        else if (q->flow[p][s] == -1)
+        { 
+			q->flow[p][s] = 0;
+			q->flow[s][p] = 0;
+		}
+		p = s;
 	}
 }
 
