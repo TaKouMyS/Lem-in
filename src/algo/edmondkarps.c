@@ -73,5 +73,5 @@ int edmondskarp(t_queue *q, t_farm *f, int **paths)
 		return (-1);
 	clear_queue(q);
 	paths = save_paths(q, f, max);
-	return (0);
+	return (max);
 }

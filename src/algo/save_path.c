@@ -2,8 +2,6 @@
 #include "../../libft/includes/libft.h"
 #include <stdio.h>
 
-
-
 void mark_path(t_farm *f, t_queue *q, int i)
 {
     int path;
@@ -13,7 +11,7 @@ void mark_path(t_farm *f, t_queue *q, int i)
     path = q->prev[f->end->id];
     while (path != f->start->id) 
     {
-        q->visited[path] = i; //mark path using int
+        q->visited[path] = i; //mark path using an int other than 1, as 1 donates visited. 
 		path = q->prev[path];
     }
     while (j < q->length)

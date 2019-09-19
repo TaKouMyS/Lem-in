@@ -30,12 +30,11 @@ int     solve(t_farm *f, int length, int start, int end)
 {
     t_queue q;
     int		**paths;
-	int		i;
-	int		j;
+	int		max_paths;
 
 	i = 0;
 	if (initialise_queue(&q, length, start) < 0)
         return (-1);
-    edmondskarp(&q, f, paths);
+    max_paths = edmondskarp(&q, f, paths);
     return (0);
 }
