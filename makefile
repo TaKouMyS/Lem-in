@@ -30,7 +30,10 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(PARSDIR)/new_room.c			\
 		$(PARSDIR)/get_links.c			\
 		$(ALGDIR)/bfs.c					\
-		$(ALGDIR)/edmondskarp.c 		
+		$(ALGDIR)/edmondkarps.c 		\
+		$(ALGDIR)/queue_functions.c 	\
+		$(ALGDIR)/save_path.c 			\
+		$(ALGDIR)/solve.c 				\
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))

@@ -62,8 +62,17 @@ int 					bfs(t_farm *f, t_queue *q);
 int 					max_flow(t_queue *q, t_farm *f);
 int 					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
-int 					edmondskarp(t_queue *q, t_farm *f);
+int 					edmondskarp(t_queue *q, t_farm *f, int **paths);
 int     				send_ants(t_farm *f, int **paths, int max_paths, int ants);
 int 					optimise_flow(t_farm *f, t_queue *q);
+void 					save_flow(t_queue *q, t_farm *f);
+void 					clear_queue(t_queue *q);
+int 					**save_paths(t_queue *q, t_farm *f, int max);
+int 					count_paths(t_queue *q, t_farm *f);
+int 					initialise_queue(t_queue *q, int length, int start);
+void 					print_map(int **map, int length);
+void 					reset_queue(t_queue *q, int start, int end);
+int 					set_to_n(int **set, int length, int n);
+
 
 #endif
