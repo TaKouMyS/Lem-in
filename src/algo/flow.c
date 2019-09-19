@@ -22,11 +22,6 @@ int find_neighbours(t_queue *q, int **map, int node)
 			q->queue[q->position] = j; // add to end of queue
             q->prev[j] = node; //note from which node we linked this node
 			q->visited[j] = 1; //mark it as visited
-            if (q->flow[node][j] == -1)
-            {
-			    q->flow[node][j] = 0;
-			    q->flow[j][node] = 0;
-            }
             ++q->position; //move up the end of queue marker
         }
         ++j; 
@@ -41,13 +36,14 @@ void save_flow(t_queue *q, t_farm *f)
 	p = f->end->id;
 	while (p != f->start->id)
 	{
+		
 		s = q->prev[p];
         if (q->flow[p][s] == 0)
         { 
 			q->flow[p][s] = -1;
 			q->flow[s][p] = 1;
-		}	
-        else if (q->flow[p][s] == -1)
+		}                              	
+        else if (q->flow[p][s] == -1 || q->flow[p][s] == 1)
         { 
 			q->flow[p][s] = 0;
 			q->flow[s][p] = 0;
