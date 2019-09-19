@@ -6,7 +6,7 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/19 02:22:52 by amamy             #+#    #+#              #
-#    Updated: 2019/09/19 22:59:11 by amamy            ###   ########.fr        #
+#    Updated: 2019/09/20 01:23:45 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ class farm:
         
 
     
-def parser():
+def farm_parser():
     input_list=[]
     i = 0   
     ant_farm = farm()
@@ -35,13 +35,18 @@ def parser():
         input_list.append((line.strip()).split())
         i += 1
     len_input_list = i
-    i = 0
-    while i < len_input_list and len(input_list[i]) == 3:
-        ant_farm.nodes.append(input_list[i][0])
+    i = 1
+    while i < len_input_list and re.search(r"()-()", input_list[i][0]) is None:
+        if len(input_list[i]) == 3:
+            ant_farm.nodes.append(input_list[i][0])
+            if i > 1 and re.search(r"^#{2}(start|end)", input_list[i - 1][0]):
+                if re.search(r"^#{2}(start)", input_list[i - 1][0]):
+                    ant_farm.start = input_list[i][0] 
+                else:
+                    ant_farm.end = input_list[i][0]
         i += 1
     while i < len_input_list and re.search(r"()-()", input_list[i][0]):
         ant_farm.links.append(input_list[i][0].split('-'))
-        print i
         i += 1
     return ant_farm
 
