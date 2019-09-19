@@ -2,6 +2,7 @@
 #include "../../libft/includes/libft.h"
 #include <stdio.h>
 
+/*
 int    send_new_ants(t_farm *f, int **paths, int max_paths, int *moving_ants)
 {
     int i;
@@ -74,4 +75,16 @@ int     send_ants(t_farm *f, int **paths, int max_paths, int ants)
 	}
     }
     return (0);
+
+}
+*/
+
+int send_ants(t_farm *f, int **paths, int max, int ants)
+{
+	
+	int finished_ants;
+	int moving_ants;
+
+
+	return (0);
 }

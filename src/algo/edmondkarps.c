@@ -63,7 +63,7 @@ int optimise_flow(t_farm *f, t_queue *q)
     return (0);
 }
 
-int edmondskarp(t_queue *q, t_farm *f, int **paths)
+int edmondskarp(t_queue *q, t_farm *f, int ***paths)
 {
 	int max;
 	
@@ -72,6 +72,6 @@ int edmondskarp(t_queue *q, t_farm *f, int **paths)
 	if ((max = count_paths(q, f)) <= 0)
 		return (-1);
 	clear_queue(q);
-	paths = save_paths(q, f, max);
+	*paths = save_paths(q, f, max);
 	return (max);
 }

@@ -24,7 +24,25 @@ void print_map(int **map, int length)
 	}
 	printf("...........................\n");
 }
+//same for debugging
+void print_paths(int **paths, t_farm *f, int max_paths)
+{
+	int i;
+	int j;
 
+	i = 0;
+	while (i < max_paths)
+	{
+		j = 0;
+		while (paths[i][j] != f->end->id)
+		{
+			printf("%s ", f->id_table[paths[i][j]]->name);
+			++j;
+		}
+		putchar('\n');
+		++i;
+	}
+}
 
 int     solve(t_farm *f, int length, int start, int end)
 {
@@ -32,9 +50,10 @@ int     solve(t_farm *f, int length, int start, int end)
     int		**paths;
 	int		max_paths;
 
-	i = 0;
 	if (initialise_queue(&q, length, start) < 0)
         return (-1);
-    max_paths = edmondskarp(&q, f, paths);
+    max_paths = edmondskarp(&q, f, &paths);
+	print_paths(paths, f, max_paths);
+	//send_ants(f, paths, max_paths, f->ant_nb);
     return (0);
 }
