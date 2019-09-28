@@ -58,17 +58,20 @@ int optimise_flow(t_farm *f, t_queue *q)
         node = q->queue[i]; //sets node to the next node in the queue
 		find_flow(q, f->links, node);
     }
-    if (q->visited[f->end->id] != 1) //if while path finding we did not reach the end, we failed
-		    return (-1);
+    if (q->visited[f->end->id] == 0) //if while path finding we did not reach the end, we failed
+	    return(-1);
     return (0);
 }
 
 int edmondskarp(t_queue *q, t_farm *f, int ***paths)
 {
 	int max;
-	
-	while ((optimise_flow(f, q)) >= 0)
-		save_flow(q, f);
+	int i;
+
+	i = 0;
+	while (optimise_flow(f, q) == 0)
+			save_flow(q, f);
+	reset_queue(q, f->start->id, f->end->id);
 	if ((max = count_paths(q, f)) <= 0)
 		return (-1);
 	clear_queue(q);

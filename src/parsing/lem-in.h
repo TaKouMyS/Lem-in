@@ -43,6 +43,7 @@ typedef struct			s_farm
 	int					flags;
 	int					room_nb;
 	int					**links;
+	int					max_paths;
 	t_room				**id_table;
 	t_room				*start;
 	t_room				*end;

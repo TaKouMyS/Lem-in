@@ -11,15 +11,16 @@ void mark_path(t_farm *f, t_queue *q, int i)
     path = q->prev[f->end->id];
     while (path != f->start->id) 
     {
-        q->visited[path] = i; //mark path using an int other than 1, as 1 donates visited. 
-		path = q->prev[path];
+        q->visited[path] = i;
+        path = q->prev[path];
+
     }
     while (j < q->length)
     {
-     	if (q->visited[j] == 1)
-	       	q->visited[j] = 0;  //any nodes we have not used in the path but have visited we remark as unvisited/can be used for next path
         q->prev[j] = -1;
 		q->queue[j] = -1;
+        if (q->visited[j] == 1)
+            q->visited[j] = 0;
         ++j;
     }
 }
@@ -31,10 +32,10 @@ int count_paths(t_queue *q, t_farm *f)
     i = 2;
     int j = 0;
 	while (bfs(f, q) == 0)
-	{
+    {
 	  mark_path(f, q, i);
 		++i;
-	}
+    }
     printf("paths = %d\n", i - 2);
     return (i - 2);
 }
