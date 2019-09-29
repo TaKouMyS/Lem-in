@@ -103,7 +103,7 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 	if (!(r->name = ft_strndup(line, name_size)))
 		return (-1);
 	r->id = id;
-	r->empty = 0;
+	r->empty = -1;
 	ft_printf("room : %s	id : %d\n", r->name, id);
 	if (f->start == NULL && (f->flags & START))
 		f->start = r;

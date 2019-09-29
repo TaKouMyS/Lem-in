@@ -84,13 +84,13 @@ int *rev_path(t_farm *f, t_queue *q)
 
     pos = f->end->id;
     steps = count_steps(q, f->start->id, f->end->id); //count how many moves we made
-    i = 1;
+    i = 0;
     if (!(rev_path = malloc((sizeof(int)) * (steps + 1))))
         return (NULL);
     rev_path[steps] = pos;
     while (i <= steps) //save the path reversed as it is currently stored from end to start
     {
-        rev_path[steps - i] = q->prev[pos];
+        rev_path[steps - i] = pos;
         pos = q->prev[pos];
         ++i;
     }

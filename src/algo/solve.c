@@ -39,6 +39,7 @@ void print_paths(int **paths, t_farm *f, int max_paths)
 			printf("%s ", f->id_table[paths[i][j]]->name);
 			++j;
 		}
+		printf("%s ", f->id_table[paths[i][j]]->name);
 		putchar('\n');
 		++i;
 	}
@@ -48,12 +49,11 @@ int     solve(t_farm *f, int length, int start, int end)
 {
     t_queue q;
     int		**paths;
-	int		max_paths;
 
 	if (initialise_queue(&q, length, start) < 0)
         return (-1);
     f->max_paths = edmondskarp(&q, f, &paths);
-	print_paths(paths, f, max_paths);
-	send_ants(f, paths, max_paths, f->ant_nb);
+	print_paths(paths, f, f->max_paths);
+	send_ants(f, paths, f->max_paths, f->ant_nb);
     return (0);
 }
