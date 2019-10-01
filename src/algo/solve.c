@@ -53,7 +53,7 @@ int     solve(t_farm *f, int length, int start, int end)
 	if (initialise_queue(&q, length, start) < 0)
         return (-1);
     f->max_paths = edmondskarp(&q, f, &paths);
-	print_paths(paths, f, f->max_paths);
+//	print_paths(paths, f, f->max_paths);
 	send_ants(f, paths, f->max_paths, f->ant_nb);
     return (0);
 }

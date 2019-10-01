@@ -84,8 +84,9 @@ int     send_ants(t_farm *f, int **paths, int max_paths, int moving_ants)
     moving_ants = 0;
     finished_ants = 0;
     i = 0;
+	int j = 0;
 	f->id_table[paths[0][0]]->empty = 0;
-	printf("total ant s= %d\n", f->ant_nb); //to be deleted, for debugging
+//	printf("total ant s= %d\n", f->ant_nb); //to be deleted, for debugging
     while (finished_ants < f->ant_nb)
     {
 		i = 0;
@@ -98,7 +99,9 @@ int     send_ants(t_farm *f, int **paths, int max_paths, int moving_ants)
 			++i;
 		}
 		ft_putchar('\n');
+		++j;
 	}
+	printf("lines = %d\n", j);
     return (0);
 
 }

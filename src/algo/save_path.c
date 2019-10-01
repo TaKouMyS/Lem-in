@@ -28,15 +28,18 @@ void mark_path(t_farm *f, t_queue *q, int i)
 int count_paths(t_queue *q, t_farm *f)
 {
     int i;
+    int longest_path;
 
     i = 2;
     int j = 0;
+    longest_path = 0;
 	while (bfs(f, q) == 0)
     {
-	  mark_path(f, q, i);
+        if ((keep_path(q, f, &longest_path, i - 2)) == 0)
+            break;
+        mark_path(f, q, i);
 		++i;
     }
-    printf("paths = %d\n", i - 2);
     return (i - 2);
 }
 

@@ -104,8 +104,8 @@ int			get_input(t_farm *f, t_room *r)
 	int b;
 
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
-		|| creates_table(r, f) != 0 || get_links(f) != 0 \
-		)//|| is_start_end_linked(f) != 0)
+		|| creates_table(r, f) != 0 || get_links(f) != 0) // \
+		|| is_start_end_linked(f) != 0)
 			return (-1);
 	return (0);
 }
