@@ -25,7 +25,10 @@ int keep_path(t_queue *q, t_farm *f, int *longest_path, int paths)
             steps = longest_path[0] + ants - 1;
             new_steps = (f->ant_nb /(paths + 1)) + new_path - 1;
 			if (new_steps < steps)
+            {
+                longest_path[0] = new_path;
 				return (1);
+            }
 		}
 		return (0);
 	}   
