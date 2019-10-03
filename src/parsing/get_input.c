@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/10 02:44:49 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 03:46:11 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	get_quantity_ants(t_farm *f)
 
 	i = 0;
 	line = NULL;
-	if ((get_next_line(0, &line) > 0) && line)
+	if ((gnl_store(0, &line, f) > 0) && line)
 	{
 		while (line[i] != '\0')
 		{
@@ -100,9 +100,16 @@ static int	get_quantity_ants(t_farm *f)
 
 int			get_input(t_farm *f, t_room *r)
 {
-	int a;
-	int b;
+	int 	a;
+	int 	b;
+	t_input	*start;
 
+	if (!(start = ft_memalloc(sizeof(t_input))))
+		return (-1);
+	f->input = start;
+	f->input->end = start;
+	f->input->start = start;
+	f->input->next = start;
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0) // \
 		|| is_start_end_linked(f) != 0)

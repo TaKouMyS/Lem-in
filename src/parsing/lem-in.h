@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/09 23:50:32 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 03:36:51 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,16 @@ typedef struct			s_room
 }						t_room;
 
 
+typedef struct 			s_input
+{
+	char				*line;
+	struct s_input		*start;
+	struct s_input		*end;
+	struct s_input		*next;
+	struct s_input		*prev;
+}						t_input;
+
+
 typedef struct			s_farm
 {
 	int					ant_nb;
@@ -47,8 +57,10 @@ typedef struct			s_farm
 	t_room				**id_table;
 	t_room				*start;
 	t_room				*end;
+	t_input				*input;
 	char				*line;
 }						t_farm;
+
 
 int						get_input(t_farm *f, t_room *r);
 int						get_room(t_room *r, t_farm *f);
@@ -74,6 +86,7 @@ int 					initialise_queue(t_queue *q, int length, int start);
 void 					print_map(int **map, int length);
 void 					reset_queue(t_queue *q, int start, int end);
 int 					set_to_n(int **set, int length, int n);
-int keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
+int					 	keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
+int 					gnl_store(int fd, char **line, t_farm *f);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/08 02:18:28 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 03:44:30 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char		*room_check_syntax(char *line, t_farm *f)
 		}
 	}
 	else
-		if (get_next_line(0, &next_line) <= 0 \
+		if (gnl_store(0, &next_line, f) <= 0 \
 			|| ((line = check_comment(line, next_line, f)) == NULL))
 			return (NULL);
 	return (line);
@@ -124,7 +124,8 @@ int			get_room(t_room *r, t_farm *f)
 	int		id;
 
 	id = 0;
-	ret = get_next_line(0, &line);
+	// ret = get_next_line(0, &line);
+	ret = gnl_store(0, &line, f);
 	while (ret > 0 && line && ft_strchr(line, '-') == NULL)
 	{
 		if ((!(line) || check_start_end(line, f) != 0 			\
@@ -135,7 +136,9 @@ int			get_room(t_room *r, t_farm *f)
 			return (-1);
 		}
 		ft_memdel((void*)&line);
-		ret = get_next_line(0, &line);
+		// ret = get_next_line(0, &line);
+		ret = gnl_store(0, &line, f);
+		// ft_printf("line out : |%s|\n", line);
 	}
 	if (line && ft_strchr(line, '-') != NULL)
 		f->line = line;

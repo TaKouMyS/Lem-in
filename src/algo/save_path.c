@@ -1,5 +1,5 @@
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
+#include "lem-in.h"
+#include "libft.h"
 #include <stdio.h>
 
 void mark_path(t_farm *f, t_queue *q, int i)

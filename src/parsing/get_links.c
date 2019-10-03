@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/10 02:46:02 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 03:45:13 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,22 @@ int			get_links(t_farm *f)
 	if (f->line)
 		line = f->line;
 	else
-		ret = get_next_line(0, &line);
+		ret = gnl_store(0, &line, f);
 	while (ret > 0)
 	{
+		if (line && line[0] == '#')
+			ret = gnl_store(0, &line, f);
 		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL)	\
-			|| (room_exist(f, room[0], ids, 0) != 1)					\
+			|| (room_exist(f, room[0], ids, 0) != 1)						\
 			|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
 			|| (room_exist(f, room[1], ids, 1) != 1))
+			{
+			ft_printf("get_links");
 			return (free_links(line, room, -1));
+			}
 		save_links(f, ids);
 		free_links(line, room, 0);
-		ret = get_next_line(0, &line);
+		ret = gnl_store(0, &line, f);
 	}
 	// links printing ; debug
 /*	ft_printf("links :\n");

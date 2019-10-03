@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/09 23:50:32 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/02 22:42:22 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int 					initialise_queue(t_queue *q, int length, int start);
 void 					print_map(int **map, int length);
 void 					reset_queue(t_queue *q, int start, int end);
 int 					set_to_n(int **set, int length, int n);
-int keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
+int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
 
 #endif

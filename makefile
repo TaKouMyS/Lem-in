@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amamy <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/05/28 18:16:53 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/03 01:37:46 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,14 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(PARSDIR)/check_comment.c		\
 		$(PARSDIR)/new_room.c			\
 		$(PARSDIR)/get_links.c			\
+		$(PARSDIR)/gnl_store.c			\
 		$(ALGDIR)/bfs.c					\
 		$(ALGDIR)/edmondkarps.c 		\
 		$(ALGDIR)/queue_functions.c 	\
 		$(ALGDIR)/save_path.c 			\
 		$(ALGDIR)/solve.c 				\
+		$(ALGDIR)/keep_path.c 			\
+		$(ALGDIR)/send_ants.c 			
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
@@ -73,7 +76,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 
 $(OBJDIR) :
 	@mkdir  $@ $@/parsing
-	@mkdir  $@ $@/algo
+	@mkdir  $@/algo
 	
 
 $(OBJ) : | $(OBJDIR)
