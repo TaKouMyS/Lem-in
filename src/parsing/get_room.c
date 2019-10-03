@@ -6,11 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 03:44:30 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 17:27:19 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "../lem-in.h"
 #include "libft.h"
 
 /*
@@ -124,7 +124,6 @@ int			get_room(t_room *r, t_farm *f)
 	int		id;
 
 	id = 0;
-	// ret = get_next_line(0, &line);
 	ret = gnl_store(0, &line, f);
 	while (ret > 0 && line && ft_strchr(line, '-') == NULL)
 	{
@@ -136,9 +135,7 @@ int			get_room(t_room *r, t_farm *f)
 			return (-1);
 		}
 		ft_memdel((void*)&line);
-		// ret = get_next_line(0, &line);
 		ret = gnl_store(0, &line, f);
-		// ft_printf("line out : |%s|\n", line);
 	}
 	if (line && ft_strchr(line, '-') != NULL)
 		f->line = line;
