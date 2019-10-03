@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../lem-in.h"
+#include "lem-in.h"
 
 int gnl_store(int fd, char **line, t_farm *f)
 {

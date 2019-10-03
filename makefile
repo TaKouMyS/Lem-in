@@ -36,7 +36,8 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/save_path.c 			\
 		$(ALGDIR)/solve.c 				\
 		$(ALGDIR)/keep_path.c 			\
-		$(ALGDIR)/send_ants.c 			
+		$(ALGDIR)/send_ants.c 			\
+		$(ALGDIR)/optimize_ants.c 	
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))

@@ -36,6 +36,15 @@ typedef struct			s_room
 	int					empty;
 }						t_room;
 
+typedef struct 			s_input
+{
+	char				*line;
+	struct s_input		*start;
+	struct s_input		*end;
+	struct s_input		*next;
+	struct s_input		*prev;
+}						t_input;
+
 
 typedef struct			s_farm
 {
@@ -47,6 +56,7 @@ typedef struct			s_farm
 	t_room				**id_table;
 	t_room				*start;
 	t_room				*end;
+	t_input				*input;
 	char				*line;
 }						t_farm;
 
@@ -74,6 +84,6 @@ int 					initialise_queue(t_queue *q, int length, int start);
 void 					print_map(int **map, int length);
 void 					reset_queue(t_queue *q, int start, int end);
 int 					set_to_n(int **set, int length, int n);
-int keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
-
+int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
+int						*divide_ants(t_farm *f, int **paths);
 #endif
