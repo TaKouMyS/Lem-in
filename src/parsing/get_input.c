@@ -6,11 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 03:46:11 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 17:19:43 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "../lem-in.h"
 #include "libft.h"
 #include <stdio.h>
 

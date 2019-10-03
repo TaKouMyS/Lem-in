@@ -6,11 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 03:45:13 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/03 17:15:40 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "../lem-in.h"
 #include "libft.h"
 
 /*
@@ -127,6 +127,8 @@ int			get_links(t_farm *f)
 		save_links(f, ids);
 		free_links(line, room, 0);
 		ret = gnl_store(0, &line, f);
+		if (line && line[0] == '#')
+			ret = gnl_store(0, &line, f);
 	}
 	// links printing ; debug
 /*	ft_printf("links :\n");

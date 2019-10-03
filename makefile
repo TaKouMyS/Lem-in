@@ -6,7 +6,7 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/03 01:37:46 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/03 17:14:36 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,12 +73,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@$(CC) -c $(CFLAGS) $(ALLFLAGS) $@ $<
 	@$(PRINT) "$(_CYAN)$<\n$(_END)"
 
-
 $(OBJDIR) :
-	@mkdir  $@ $@/parsing
-	@mkdir  $@/algo
+	@mkdir  $@ $@/parsing $@/algo
 	
-
 $(OBJ) : | $(OBJDIR)
 
 clean:
