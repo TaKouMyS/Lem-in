@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/10 00:27:48 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/04 04:58:45 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,11 @@ void	ft_free_lemin(t_farm *f, t_room *r)
 	ft_memdel((void*)&f->links[i]);
 	ft_memdel((void*)&f->links);
 	ft_memdel((void*)&f);
+}
+
+
+int		error_free_line(char *line)
+{
+	ft_memdel((void*)&line);
+	return (-1);
 }

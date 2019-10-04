@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 17:19:43 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/04 02:39:35 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	get_quantity_ants(t_farm *f)
 
 	i = 0;
 	line = NULL;
-	if ((gnl_store(0, &line, f) > 0) && line)
+	if ((gnl_store(0, &line, f, GET_ANTS_LINKS) > 0) && line)
 	{
 		while (line[i] != '\0')
 		{
