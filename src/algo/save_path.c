@@ -31,7 +31,6 @@ int count_paths(t_queue *q, t_farm *f)
     int longest_path;
 
     i = 2;
-    int j = 0;
     longest_path = 0;
 	while (bfs(f, q) == 0)
     {

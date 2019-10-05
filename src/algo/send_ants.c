@@ -58,9 +58,8 @@ int    send_new_ant(t_farm *f, int *path, int moving_ants, int *finished_ants)
     return (moving_ants);
 }
 
-void move_ants_on_path(int moving_ants, t_farm *f, int *path, int *finished_ants)
+void move_ants_on_path(t_farm *f, int *path, int *finished_ants)
 {
-	int i; 
 	int j;
 
 	j = find_last_ant(f, path);
@@ -77,7 +76,7 @@ void move_ants_on_path(int moving_ants, t_farm *f, int *path, int *finished_ants
 }
 
 
-int		send_ants(t_farm *f, int **paths, int max_paths, int moving_ants)
+int		send_ants(t_farm *f, int **paths, int moving_ants)
 {
     int finished_ants;
     int i;
@@ -96,7 +95,7 @@ int		send_ants(t_farm *f, int **paths, int max_paths, int moving_ants)
 		//we cycle through our paths until all ants have finished paths
 		while (i < f->max_paths)
 		{
-			move_ants_on_path(moving_ants, f, paths[i], &finished_ants);
+			move_ants_on_path(f, paths[i], &finished_ants);
 			if (moving_ants < f->ant_nb && ant_division[i] >= 0) //if we have not yet sent all our ants
 				{
 					moving_ants = send_new_ant(f, paths[i], moving_ants, &finished_ants);

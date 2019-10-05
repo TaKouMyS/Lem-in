@@ -45,7 +45,7 @@ void print_paths(int **paths, t_farm *f, int max_paths)
 	}
 }
 
-int     solve(t_farm *f, int length, int start, int end)
+int     solve(t_farm *f, int length, int start)
 {
     t_queue q;
     int		**paths;
@@ -54,6 +54,6 @@ int     solve(t_farm *f, int length, int start, int end)
         return (-1);
     f->max_paths = edmondskarp(&q, f, &paths);
 	print_paths(paths, f, f->max_paths);
-	send_ants(f, paths, f->max_paths, f->ant_nb);
+	send_ants(f, paths, f->ant_nb);
     return (0);
 }
