@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/05 04:18:52 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 04:24:50 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ int			get_input(t_farm *f, t_room *r)
 		return (-1);
 	f->input = start;
 	f->input_start = start;
-	f->input->next = start;
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0)  \
 		// || is_start_end_linked(f) != 0)
