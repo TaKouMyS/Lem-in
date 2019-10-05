@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/04 23:51:20 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 03:49:11 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ int						free_links(char *line, char **rooms, int ret);
 int						error_free_line(char *line);
 int						get_links(t_farm *f);
 int 					gnl_store(int fd, char **line, t_farm *f, int origin);
-int     				solve(t_farm *f, int length, int start);
+int     				solve(t_farm *f, int length, int start, int end);
 int 					bfs(t_farm *f, t_queue *q);
 int 					max_flow(t_queue *q, t_farm *f);
 int 					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
 int 					edmondskarp(t_queue *q, t_farm *f, int ***paths);
-int     				send_ants(t_farm *f, int **paths, int ants);
+int     				send_ants(t_farm *f, int **paths, int max_paths, int ants);
 int 					optimise_flow(t_farm *f, t_queue *q);
 void 					save_flow(t_queue *q, t_farm *f);
 void 					clear_queue(t_queue *q);
