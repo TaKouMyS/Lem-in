@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/04 23:51:20 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 04:17:27 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ typedef struct			s_room
 typedef struct 			s_input
 {
 	char				*line;
-	struct s_input		*start;
-	struct s_input		*end;
 	struct s_input		*next;
 	struct s_input		*prev;
 }						t_input;
@@ -60,6 +58,7 @@ typedef struct			s_farm
 	t_room				*start;
 	t_room				*end;
 	t_input				*input;
+	t_input				*input_start;
 	char				*line;
 }						t_farm;
 
@@ -79,7 +78,7 @@ int 					max_flow(t_queue *q, t_farm *f);
 int 					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
 int 					edmondskarp(t_queue *q, t_farm *f, int ***paths);
-int     				send_ants(t_farm *f, int **paths, int ants);
+int						send_ants(t_farm *f, int **paths, int moving_ants);
 int 					optimise_flow(t_farm *f, t_queue *q);
 void 					save_flow(t_queue *q, t_farm *f);
 void 					clear_queue(t_queue *q);
