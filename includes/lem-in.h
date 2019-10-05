@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/05 04:17:27 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 04:30:44 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct 			s_input
 {
 	char				*line;
 	struct s_input		*next;
-	struct s_input		*prev;
 }						t_input;
 
 
