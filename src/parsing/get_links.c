@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/04 07:17:08 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 03:20:58 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int			get_links(t_farm *f)
 		free_links(line, room, 0);
 		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	}
+	return ((ret >= 0) ? 0 : -1);
 	// links printing ; debug
 /*	ft_printf("links :\n");
 	int j = 0;
@@ -140,5 +141,4 @@ int			get_links(t_farm *f)
 		j = 0;
 		ft_printf("\n");
 	}*/
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/04 07:12:30 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 03:20:36 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,11 @@ static int	room_check_coo(char *line)
 ** If line is a comment, sends it for checks.
 */
 
-char		*room_check_syntax(char *line, t_farm *f)
+static char		*room_check_syntax(char *line)
 {
 	int		sp;
 	int		i;
 	char	*tmp;
-	char	*next_line;
 
 	i = 0;
 	sp = 0;
@@ -137,7 +136,7 @@ int			get_room(t_room *r, t_farm *f)
 		if (line && ft_strchr(line, '-') == NULL)
 		{
 			if ((!(line) || check_start_end(line, f) != 0 			\
-			|| (line = room_check_syntax(line, f)) == NULL) 	\
+			|| (line = room_check_syntax(line)) == NULL) 	\
 			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
 				return (error_free_line(line));
 		}

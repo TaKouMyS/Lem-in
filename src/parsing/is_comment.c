@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:01:30 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/04 07:10:07 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 00:02:30 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@
 ** If ##start follows ##end or the other way arround, return error.
 */
 
-static int	check_stack_cmd(char *line, char *tmp)
-{
-	if ((ft_strcmp(tmp, "##start") == 0 && ft_strcmp(line, "##end") == 0) \
-		|| (ft_strcmp(tmp, "##end") == 0 \
-		&& ft_strcmp(line, "##start") == 0))
-		return (-1);
-	return (0);
-}
+// seem useless after reformfactor, le be here because we never know...
+
+// static int	check_stack_cmd(char *line, char *tmp)
+// {
+// 	if ((ft_strcmp(tmp, "##start") == 0 && ft_strcmp(line, "##end") == 0) \
+// 		|| (ft_strcmp(tmp, "##end") == 0 \
+// 		&& ft_strcmp(line, "##start") == 0))
+// 		return (-1);
+// 	return (0);
+// }
 
 /*
 ** ==================== raise_flag ====================
