@@ -13,7 +13,6 @@ class ant_farm:
 		self.pos    		= {}
 		self.links  		= []
 		self.used_links		= []
-		self.other_links	= []
 		self.moves  		= []
 
 	def print_ant_farm(self):
