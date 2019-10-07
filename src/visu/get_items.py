@@ -3,7 +3,7 @@
 import sys
 
 def get_ants(farm):
-    farm.ants = int(sys.stdin.read(1))
+    farm.ants = int(sys.stdin.readline())
 
 def get_start(farm, line):
     farm.start = line.split(" ")[0]
