@@ -86,4 +86,5 @@ void 					reset_queue(t_queue *q, int start, int end);
 int 					set_to_n(int **set, int length, int n);
 int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
 int						*divide_ants(t_farm *f, int **paths);
+int 					gnl_store(int fd, char **line, t_farm *f);
 #endif

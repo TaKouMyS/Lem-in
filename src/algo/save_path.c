@@ -12,6 +12,7 @@ void mark_path(t_farm *f, t_queue *q, int i)
     while (path != f->start->id) 
     {
         q->visited[path] = i;
+  //      printf("%s ", f->id_table[path]->name);
         path = q->prev[path];
 
     }
@@ -35,7 +36,7 @@ int count_paths(t_queue *q, t_farm *f)
     longest_path = 0;
 	while (bfs(f, q) == 0)
     {
-        if ((keep_path(q, f, &longest_path, i - 2)) == 0)
+        if (keep_path(q, f, &longest_path, i - 2) == 0)
             break;
         mark_path(f, q, i);
 		++i;
@@ -48,8 +49,11 @@ int **save_paths(t_queue *q, t_farm *f, int max)
 	int **paths;
 	int i;
 	int j;
+    int longest_path;
 
 	i = 0;
+   // f->max_paths = 0;
+    longest_path = 0;
 	if (!(paths = ft_memalloc(sizeof(int *) * max)))
 		return (NULL);
 	while (i < max)
@@ -57,8 +61,11 @@ int **save_paths(t_queue *q, t_farm *f, int max)
 		j = 0;
 		if (bfs(f, q) == -1)
 			return (0);
+       // f->max_paths++;
 		if (!(paths[i] = rev_path(f, q)))
 			return (NULL);
+      //  if (keep_path(q,f,&longest_path, paths) == 0)
+      //      return (paths);
 		mark_path(f, q, i + 2);
 		++i;
 	}

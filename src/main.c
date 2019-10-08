@@ -54,11 +54,10 @@ int	main(void)
 		ft_free_lemin(f, r);
 		return (-1);
 	}
-//	write_input(f);
-	putchar('\n');
-
+	write_input(f);
+	ft_putchar('\n');
 	solve(f, f->room_nb, f->start->id, f->end->id);
 	ft_free_lemin(f, r);
-	ft_putstr("No errors!\n");
+//	ft_putstr("No errors!\n");
 	return (0);
 }
