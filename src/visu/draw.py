@@ -22,7 +22,7 @@ def draw_nodes(data, settings, node_size):
 			draw_node(data, name, settings["node_color"], settings['node_size'] * 2.5)
 		else:
 			draw_node(data, name, settings["node_color"], settings['node_size'])
-	for i, path in enumerate(data['farm'].used_nodes):
+	for i, path in enumerate(data['farm'].used_nodes):	
 		for node in path:
 			draw_node(data, node, settings['used'][i], settings['node_size'])
 		
