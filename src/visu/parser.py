@@ -22,6 +22,8 @@ def regex_compile():
 	"""pre compile all regex we need to parse map"""
 
 	reg_dict = {}
+	reg_dict["is_error"] = re.compile(r"^ERROR$")
+	reg_dict["is_ant_nb"] = re.compile(r"^\d+$")
 	reg_dict["is_comment"] = re.compile(r"^#")
 	reg_dict["is_start"] = re.compile(r"^#{2}(start)")
 	reg_dict["is_end"] = re.compile(r"^#{2}(end)")
@@ -51,10 +53,11 @@ def parser():
 	farm = ant_farm()
 	reg_dict = regex_compile()
 	
-	get_ants(farm)
 	for line in sys.stdin:
 		status = check_status(farm, status, line)
-		if (reg_dict["is_start"].search(line)):
+		if (reg_dict["is_ant_nb"].search(line)):
+			farm.ants = int(line)
+		elif (reg_dict["is_start"].search(line)):
 			status = "start"
 		elif (reg_dict["is_end"].search(line)):
 			status = "end"
@@ -66,4 +69,7 @@ def parser():
 			get_move(farm, line)
 		elif (reg_dict["is_link"].search(line)):
 			get_link(farm, line)
+		elif (reg_dict["is_error"].search(line)):
+			print "ERROR"
+			quit()
 	return (farm)

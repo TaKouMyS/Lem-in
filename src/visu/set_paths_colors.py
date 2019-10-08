@@ -30,10 +30,25 @@ def remove_links_in_original_list(farm):
 			if link in farm.links:
 				farm.links.remove(link)
 
+def remove_nodes_in_original_list(farm):
+	for path in farm.used_nodes:
+		for node in path:
+			if node in farm.nodes:
+				farm.nodes.remove(node)
+			
 
-def set_links_colors(farm, ant_squad):
+def get_paths_of_nodes(paths):
+	used_nodes = []
+	for path in paths:
+		used_nodes.append(path[1:-1])
+	return (used_nodes)
+	
+		
+def set_paths_colors(farm, ant_squad):
 	nb_path = len(farm.moves[0])
 	ants = get_ants(farm)
 	paths = get_paths(farm, ant_squad, ants)
+	farm.used_nodes = get_paths_of_nodes(paths)
 	farm.used_links = convert_path_to_links(paths)
 	remove_links_in_original_list(farm)
+	remove_nodes_in_original_list(farm)

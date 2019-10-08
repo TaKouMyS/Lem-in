@@ -6,23 +6,13 @@ import sys
 
 from parser import parser 
 from animate import animate
-from create_settings import create_settings
+from create_settings import create_settings, check_args
 
-
-# Colors
-draw_data = {
-	"bg" : '#000000',
-	"line" : '#282828',
-	 "used" : ['#b61515', '#B6B615', '#66B615', '#15B615', '#15B666',
-			  '#15B6B6', '#1515B6', '#6615B6', '#B615B6', '#B61566'],
-	"node" : '#282828',
-	"start" : '#282828',
-	"end" : '#282828',
-	"text" : '#EEEEEE',
-	"ant" : '#00CCCC',
-	"steps_between_nodes" : 15,
-	"node_size" : 500
-}
+def check_is_big_map(args):
+	if check_args(args, "-f") == False:
+		if len(data['farm'].nodes) > 1000:
+			print "The map you are trying to run is really big!\n It will take lot of time to launch it, it is not going to be responsive well and, on top of that, you probably will not have a good view\n run -f to force"
+			quit()
 
 def create_data():
 	data = {}
@@ -40,5 +30,6 @@ def make_graph(farm):
 args = sys.argv
 data = create_data()
 settings = create_settings(args, data['farm'])
+check_is_big_map(args)
 ani = animate(data, settings)
 plt.show()

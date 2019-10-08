@@ -3,7 +3,7 @@ import matplotlib.animation as matAni
 import networkx as nx
 
 from class_ant import Ant
-from set_links_colors import set_links_colors
+from set_paths_colors import set_paths_colors
 from draw import draw_node, draw_nodes, draw_ant
 
 def make_squad(data, settings, s_b_n):
@@ -25,6 +25,8 @@ def action(frame, data, fig, ant_squad, settings):
 	for i, path in enumerate(data['farm'].used_links):
 		nx.draw_networkx_edges(data['g'], data['pos'], edgelist = path, edge_color=settings['used'][i], width=2.0)
 	draw_nodes(data, settings, settings['node_size'])
+	
+
 
 	# draw all the ants:
 	for ant in ant_squad:
@@ -46,9 +48,8 @@ def action(frame, data, fig, ant_squad, settings):
 	plt.axis('off')
 	
 def animate(data, settings):
-	# pos = farm.pos
 	ant_squad = make_squad(data, settings, settings['steps_between_nodes'])
-	set_links_colors(data['farm'], ant_squad)
+	set_paths_colors(data['farm'], ant_squad)
 	fig = plt.figure(figsize=(settings['window_size']))
 	ani = matAni.FuncAnimation(
 		fig,

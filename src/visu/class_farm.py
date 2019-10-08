@@ -10,6 +10,7 @@ class ant_farm:
 		self.start  		= None
 		self.end    		= None
 		self.nodes  		= []
+		self.used_nodes  	= []
 		self.pos    		= {}
 		self.links  		= []
 		self.used_links		= []
