@@ -2,13 +2,15 @@
 
 import matplotlib.pyplot as plt
 import networkx as nx
+import sys
 
 from parser import parser 
 from animate import animate
+from create_settings import create_settings
 
 
 # Colors
-colors = {
+draw_data = {
 	"bg" : '#000000',
 	"line" : '#282828',
 	 "used" : ['#b61515', '#B6B615', '#66B615', '#15B615', '#15B666',
@@ -17,7 +19,9 @@ colors = {
 	"start" : '#282828',
 	"end" : '#282828',
 	"text" : '#EEEEEE',
-	"ant" : '#00CCCC'
+	"ant" : '#00CCCC',
+	"steps_between_nodes" : 15,
+	"node_size" : 500
 }
 
 def create_data():
@@ -33,17 +37,8 @@ def make_graph(farm):
 	g.add_edges_from(farm.links)
 	return (g)
 
+args = sys.argv
 data = create_data()
-# print "len(moves[0][1][3]) : "
-# print data['farm'].moves[0][0][1]
-# print "moves :"
-# for turn in data['farm'].moves:
-#     print turn
-# print "ants :\n\n"
-# print data['farm'].ants
-# print "links :"
-# print data['farm'].links
-
-ani = animate(data, colors)
+settings = create_settings(args, data['farm'])
+ani = animate(data, settings)
 plt.show()
-
