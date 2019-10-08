@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 17:27:19 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 03:20:36 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,11 @@ static int	room_check_coo(char *line)
 ** If line is a comment, sends it for checks.
 */
 
-char		*room_check_syntax(char *line, t_farm *f)
+static char		*room_check_syntax(char *line)
 {
 	int		sp;
 	int		i;
 	char	*tmp;
-	char	*next_line;
 
 	i = 0;
 	sp = 0;
@@ -80,10 +79,6 @@ char		*room_check_syntax(char *line, t_farm *f)
 			return (NULL);
 		}
 	}
-	else
-		if (gnl_store(0, &next_line, f) <= 0 \
-			|| ((line = check_comment(line, next_line, f)) == NULL))
-			return (NULL);
 	return (line);
 }
 
@@ -104,11 +99,20 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 		return (-1);
 	r->id = id;
 	r->empty = -1;
-//	ft_printf("room : %s	id : %d\n", r->name, id);
-	if (f->start == NULL && (f->flags & START))
+	if (f->flags & START)
+	{
+		if (f->start)
+			return (-1);
 		f->start = r;
-	if (f->end == NULL && (f->flags & END))
+		f->flags &= ~START;
+	}
+	if (f->flags & END)
+	{
+		if (f->end)
+			return (-1);
 		f->end = r;
+		f->flags &= ~END;
+	}
 	return (0);
 }
 
@@ -124,24 +128,22 @@ int			get_room(t_room *r, t_farm *f)
 	int		id;
 
 	id = 0;
-	ret = gnl_store(0, &line, f);
+	ret = gnl_store(0, &line, f, GET_ROOMS);
 	while (ret > 0 && line && ft_strchr(line, '-') == NULL)
 	{
-		if ((!(line) || check_start_end(line, f) != 0 			\
-			|| (line = room_check_syntax(line, f)) == NULL) 	\
-			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
+		if (line && line[0] == '#')
+			line = is_comment(f, ret, line);
+		if (line && ft_strchr(line, '-') == NULL)
 		{
-			ft_memdel((void*)&line);
-			return (-1);
+			if ((!(line) || check_start_end(line, f) != 0 			\
+			|| (line = room_check_syntax(line)) == NULL) 	\
+			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
+				return (error_free_line(line));
 		}
+		else if (line && ft_strchr(line, '-') != NULL && ((f->line = line)))
+				return (0);
 		ft_memdel((void*)&line);
-		ret = gnl_store(0, &line, f);
+		ret = gnl_store(0, &line, f, GET_ROOMS);
 	}
-	if (line && ft_strchr(line, '-') != NULL)
-		f->line = line;
-	else
-		ft_memdel((void*)&line);
-	if (ret <= 0) //changed from <= to =
-		return (-1);
-	return (0);
+	return ((ret > 0) ? 0 : -1);
 }

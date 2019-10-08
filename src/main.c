@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 03:40:52 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 04:28:10 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,9 @@
 
 static void	write_input(t_farm *f)
 {
-	// ft_printf("1\n");
-	// f->input = f->input->start;
-	while (f->input->prev)
-	{
-		// ft_putstr(f->input->line);
-		// ft_putstr("\n");
-		f->input = f->input->prev;
-		
-	}
-	// ft_printf("2\n");
+	f->input = f->input_start;
 	while (f->input->line)
 	{
-	// ft_printf("3\n");
 		ft_putstr(f->input->line);
 		ft_putstr("\n");
 		f->input = f->input->next;
@@ -55,7 +45,12 @@ int	main(void)
 		return (-1);
 	}
 	write_input(f);
+<<<<<<< HEAD
 	ft_putchar('\n');
+=======
+	putchar('\n');
+
+>>>>>>> 15e7781a1d8588b19042ab4438ef9a6e5e215eba
 	solve(f, f->room_nb, f->start->id, f->end->id);
 	ft_free_lemin(f, r);
 //	ft_putstr("No errors!\n");

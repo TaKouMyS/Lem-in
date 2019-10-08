@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/03 17:15:40 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/05 03:20:58 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,11 @@ int			get_links(t_farm *f)
 		return (-1);
 	ret = 1;
 	if (f->line)
-		line = f->line;
+			line = f->line;
 	else
-		ret = gnl_store(0, &line, f);
+		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	while (ret > 0)
 	{
-		if (line && line[0] == '#')
-			ret = gnl_store(0, &line, f);
 		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL)	\
 			|| (room_exist(f, room[0], ids, 0) != 1)						\
 			|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
@@ -126,10 +124,9 @@ int			get_links(t_farm *f)
 			}
 		save_links(f, ids);
 		free_links(line, room, 0);
-		ret = gnl_store(0, &line, f);
-		if (line && line[0] == '#')
-			ret = gnl_store(0, &line, f);
+		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	}
+	return ((ret >= 0) ? 0 : -1);
 	// links printing ; debug
 /*	ft_printf("links :\n");
 	int j = 0;
@@ -144,5 +141,4 @@ int			get_links(t_farm *f)
 		j = 0;
 		ft_printf("\n");
 	}*/
-	return (0);
 }

@@ -6,14 +6,14 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/03 17:14:36 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/05 03:46:11 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SHELL = /bin/sh
 CC = clang
-CFLAGS += -g
+CFLAGS += -g3
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing
@@ -26,7 +26,7 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(SRCDIR)/ft_free.c				\
 		$(PARSDIR)/get_input.c			\
 		$(PARSDIR)/get_room.c			\
-		$(PARSDIR)/check_comment.c		\
+		$(PARSDIR)/is_comment.c		\
 		$(PARSDIR)/new_room.c			\
 		$(PARSDIR)/get_links.c			\
 		$(PARSDIR)/gnl_store.c			\
@@ -59,6 +59,7 @@ all: $(NAME)
 	@echo " |_|\___|_| |_| |_|          |_|_| |_| "
 	@echo "                                       "
 	@echo "                                       "
+	@echo "---------------------------------------"
 
 $(NAME): $(LIB) $(OBJ)
 	@$(PRINT) "Compilation OK! "
