@@ -11,19 +11,21 @@ def check_graph_size(farm, settings):
 	if (len(farm.nodes)) < 100:
 		settings["markersize"] = 20.0
 		settings["node_size"] = 500
+		settings["window_size"] = (12, 8)
 	elif (len(farm.nodes)) < 1000:
 		settings["markersize"] = 10.0
 		settings["node_size"] = 300
+		settings["window_size"] = (16, 12)
 	elif (len(farm.nodes)) > 1000:
 		settings["markersize"] = 5.0
 		settings["node_size"] = 100
+		settings["window_size"] = (18, 16)
 	return settings
 
 def basic_settings(settings, args, farm):
 	if check_args(args, "-dark_settings") == True or check_args(args, "-dark_settings") == False:
 		settings = check_graph_size(farm, settings)
 		settings["steps_between_nodes"] = 15
-		settings["window_size"] = None
 		settings["repeat"] = False
 		settings["link_color"] = "#101010"
 		settings["used"] = ['#F7C59F', '#5A5a86', '#7CEA9C', '#55D6BE', '#2E5EAA', '#00C9FF', '#2A324B', '#F6C0D0', '#B8E1FF', '#808D8E', '#202030']
