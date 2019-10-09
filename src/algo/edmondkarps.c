@@ -4,25 +4,7 @@
 #include "../../includes/lem-in.h"
 #include "../../libft/includes/libft.h"
 
-int find_neg_flow(t_queue *q, int **map, int node)
-{
-	int j; 
 
-	j = 0;
-	while (j < q->length)
-    {
-        if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] == -1) //if there is a link and we have not visited the link
-        {
-			q->queue[q->position] = j; // add to end of queue
-            q->prev[j] = node; //note from which node we linked this node
-			q->visited[j] = 1; //mark it as visited
-            ++q->position; //move up the end of queue marker
-			return (1);
-        }
-        ++j; 
-    }
-	return (0);
-}
 
 int find_flow(t_queue *q, int **map, int node, int prev_flow)
 {
@@ -30,8 +12,8 @@ int find_flow(t_queue *q, int **map, int node, int prev_flow)
 
     j = 0;
 //	if (prev_flow == 0)
-	//	if (find_neg_flow(q, map, node) == 1)
-	//		return (0);
+//		if (find_neg_flow(q, map, node) == 1)
+//			return (0);
     while (j < q->length)
     {
         if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
