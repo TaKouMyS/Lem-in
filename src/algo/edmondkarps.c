@@ -24,14 +24,34 @@ int find_neg_flow(t_queue *q, int **map, int node)
 	return (0);
 }
 
+int print_flow(t_queue *q, t_farm *f)
+{
+	int i; 
+	int j;
+
+	i = 0;
+	
+	while (i < q->length)
+	{
+		j = 0;
+		while (j < q->length)
+		{	
+			ft_printf("flow from %s to %s = %d\n", f->id_table[i]->name, f->id_table[j]->name, q->flow[i][j]);
+			++j;
+		}
+		++i;
+	}
+return (0);
+}
+
 int find_flow(t_queue *q, int **map, int node, int prev_flow)
 {
     int j;
 
     j = 0;
-	if (prev_flow == 0)
-		if (find_neg_flow(q, map, node) == 1)
-			return (0);
+//	if (prev_flow == 0)
+//		if (find_neg_flow(q, map, node) == 1)
+//			return (0);
     while (j < q->length)
     {
         if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
@@ -56,11 +76,13 @@ void save_flow(t_queue *q, t_farm *f)
 		s = q->prev[p];
         if (q->flow[p][s] == 0) //if there's no flow mark forward/reverse flow as 1/-1
         { 
+			ft_printf("flow %s %s to 1 / -1\n", f->id_table[p]->name, f->id_table[s]->name);
 			q->flow[p][s] = -1;
 			q->flow[s][p] = 1;
 		}                              	
         else if (q->flow[p][s] == -1 || q->flow[p][s] == 1) //if there is flow, neutralise to zero
         { 
+			ft_printf("flow %s %s to 0\n", f->id_table[p]->name, f->id_table[s]->name);
 			q->flow[p][s] = 0;
 			q->flow[s][p] = 0;
 		}
@@ -100,6 +122,7 @@ int edmondskarp(t_queue *q, t_farm *f, int ***paths)
 	i = 0;
 	while (optimise_flow(f, q) == 0)
 			save_flow(q, f);
+	//print_flow(q, f);
 	reset_queue(q, f->start->id, f->end->id);
 	if ((max = count_paths(q, f)) <= 0)
 		return (-1);

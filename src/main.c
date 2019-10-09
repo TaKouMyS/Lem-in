@@ -45,12 +45,7 @@ int	main(void)
 		return (-1);
 	}
 	write_input(f);
-<<<<<<< HEAD
 	ft_putchar('\n');
-=======
-	putchar('\n');
-
->>>>>>> 15e7781a1d8588b19042ab4438ef9a6e5e215eba
 	solve(f, f->room_nb, f->start->id, f->end->id);
 	ft_free_lemin(f, r);
 //	ft_putstr("No errors!\n");
