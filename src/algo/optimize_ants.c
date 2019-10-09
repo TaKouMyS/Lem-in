@@ -75,6 +75,7 @@ int		*divide_ants(t_farm *f, int **paths)
 
 	i = 0;
 	total = 0;
+	//printf("%lu\n max = %d", sizeof(int) * f->max_paths, f->max_paths);
 	if (!(ant_division = (int *)malloc(sizeof(int) * f->max_paths)))
 		return (NULL);
     if ((steps = get_path_lengths(f, paths, &total)) == NULL)

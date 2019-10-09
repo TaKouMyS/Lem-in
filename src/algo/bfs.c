@@ -7,7 +7,8 @@ int find_neighbours(t_queue *q, int **map, int node)
 {
     int j;
 
-    j = 0;                                                                                                                                               
+    j = 0;
+                                                                                                                                                
     while (j < q->length)
     {
         if (j != node && map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] == 1) //if there is a link and we have not visited the link

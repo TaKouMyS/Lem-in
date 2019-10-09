@@ -29,9 +29,9 @@ int find_flow(t_queue *q, int **map, int node, int prev_flow)
     int j;
 
     j = 0;
-	if (prev_flow == 0)
-		if (find_neg_flow(q, map, node) == 1)
-			return (0);
+//	if (prev_flow == 0)
+	//	if (find_neg_flow(q, map, node) == 1)
+	//		return (0);
     while (j < q->length)
     {
         if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
@@ -82,6 +82,7 @@ int optimise_flow(t_farm *f, t_queue *q)
     {
 
         node = q->queue[i]; //sets node to the next node in the queue
+	//	ft_printf("end = %d node = %d\n", f->end->id, node);
 		if (i != 0)
 			prev_flow = q->flow[q->prev[node]][node];
 	//	printf("flow from %d to %d = %d\n", q->prev[node], node, prev_flow);
@@ -98,8 +99,9 @@ int edmondskarp(t_queue *q, t_farm *f, int ***paths)
 	int i;
 
 	i = 0;
+//	printf(" I AM HEREEEEE\n\n");
 	while (optimise_flow(f, q) == 0)
-			save_flow(q, f);
+		save_flow(q, f);
 	reset_queue(q, f->start->id, f->end->id);
 	if ((max = count_paths(q, f)) <= 0)
 		return (-1);

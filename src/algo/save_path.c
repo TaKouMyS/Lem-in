@@ -12,7 +12,7 @@ void mark_path(t_farm *f, t_queue *q, int i)
     while (path != f->start->id) 
     {
         q->visited[path] = i;
-  //      printf("%s ", f->id_table[path]->name);
+    //    printf("%s ", f->id_table[path]->name);
         path = q->prev[path];
 
     }
@@ -24,6 +24,7 @@ void mark_path(t_farm *f, t_queue *q, int i)
             q->visited[j] = 0;
         ++j;
     }
+ //   ft_putchar('\n');
 }
 
 int count_paths(t_queue *q, t_farm *f)
@@ -36,6 +37,7 @@ int count_paths(t_queue *q, t_farm *f)
     longest_path = 0;
 	while (bfs(f, q) == 0)
     {
+      //  printf("Do we  get hhereee?");
         if (keep_path(q, f, &longest_path, i - 2) == 0)
             break;
         mark_path(f, q, i);

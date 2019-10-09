@@ -13,7 +13,7 @@
 NAME = lem-in
 SHELL = /bin/sh
 CC = clang
-CFLAGS += -g3
+CFLAGS += -g -fsanitize=address
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing
