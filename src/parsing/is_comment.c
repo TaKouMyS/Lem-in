@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_comment.c                                    :+:      :+:    :+:   */
+/*   is_comment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:01:30 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/05 00:02:30 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/09 15:41:52 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char		*is_comment(t_farm *f, int ret, char *line)
 			if ((ft_strcmp(line, "##start") == 0) \
 			|| (ft_strcmp(line, "##end") == 0))
 				raise_flag(f, line);
+		ft_memdel((void*)&line);
 		ret = gnl_store(0, &line, f, GET_ROOMS);
 	}
 	return (line);

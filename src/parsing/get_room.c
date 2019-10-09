@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/05 03:20:36 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/09 17:47:56 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int			get_room(t_room *r, t_farm *f)
 
 	id = 0;
 	ret = gnl_store(0, &line, f, GET_ROOMS);
-	while (ret > 0 && line && ft_strchr(line, '-') == NULL)
+	while (ret > 0 && line && ((ft_strchr(line, '-') == NULL) || line[0] == '#'))
 	{
 		if (line && line[0] == '#')
 			line = is_comment(f, ret, line);
@@ -145,5 +145,6 @@ int			get_room(t_room *r, t_farm *f)
 		ft_memdel((void*)&line);
 		ret = gnl_store(0, &line, f, GET_ROOMS);
 	}
+	ft_memdel((void*)&line);
 	return ((ret > 0) ? 0 : -1);
 }

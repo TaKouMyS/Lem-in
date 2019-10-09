@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/04 04:58:45 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/09 16:26:56 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ int		free_links(char *line, char **rooms, int ret)
 	ft_memdel((void*)&rooms[1]);
 	ft_memdel((void*)&line);
 	return (ret);
+}
+
+void	ft_free_input(t_input *input, t_input *start)
+{
+	t_input *tmp;
+	input = start;
+	while (input->line)
+	{
+		tmp = input;
+		ft_memdel((void*)&input->line);
+		input = input->next;
+		ft_memdel((void*)&tmp);
+	}
+	ft_memdel((void*)&input);
 }
 
 /*
@@ -51,6 +65,7 @@ void	ft_free_lemin(t_farm *f, t_room *r)
 	ft_memdel((void*)&f->id_table);
 	ft_memdel((void*)&f->links[i]);
 	ft_memdel((void*)&f->links);
+	ft_free_input(f->input, f->input_start);
 	ft_memdel((void*)&f);
 }
 
