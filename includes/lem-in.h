@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 20:04:20 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 21:51:30 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct			s_farm
 
 int						get_input(t_farm *f, t_room *r);
 int						get_room(t_room *r, t_farm *f);
-t_room					*new_room(t_room *r);
+t_room					*new_room(t_farm *f, t_room *r, char *line, int id);
 void					ft_free_lemin(t_farm *f, t_room *r);
 int						free_links(char *line, char **rooms, int ret);
 int						error_free_line(char *line);
@@ -91,5 +91,6 @@ int						*divide_ants(t_farm *f, int **paths);
 
 // DEBUG TO BE remove
 void	ft_print_list_debug(t_farm *f);
+void	debug_print_room_links(t_farm *f);
 //
 #endif

@@ -6,12 +6,12 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 02:07:42 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 21:53:02 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
 #include "libft.h"
+#include "lem-in.h"
 
 /*
 ** room_check_coo :
@@ -44,7 +44,7 @@ static int	room_check_coo(char *line)
 ** If line is a comment, sends it for checks.
 */
 
-static char		*room_check_syntax(char *line)
+static char	*room_check_syntax(char *line)
 {
 	int		sp;
 	int		i;
@@ -68,38 +68,6 @@ static char		*room_check_syntax(char *line)
 }
 
 /*
-** init_room :
-** Get the room's name, write it in the room's node and assigns a unic id to
-** the room (first is 0, second is 1, etc...).
-*/
-
-static int	init_room(t_farm *f, t_room *r, char *line, int id)
-{
-	int		name_size;
-
-	name_size = 0;
-	while (line[name_size] != ' ')
-		name_size++;
-	if (!(r->name = ft_strndup(line, name_size)))
-		return (-1);
-	r->id = id;
-	r->empty = -1;
-	if (f->flags & START && f->start == NULL)
-	{
-		f->start = r;
-		f->flags &= ~END;
-		f->flags &= ~START;
-	}
-	else if (f->flags & END && f->end == NULL)
-	{
-		f->end = r;
-		f->flags &= ~START;
-		f->flags &= ~END;
-	}
-	return (0);
-}
-
-/*
 ** ==================== check_comment ====================
 ** Receives a string starting with '#' if not ##start or ##end, just return (0).
 ** If command start or end, checks if we already have a start or end.
@@ -107,7 +75,7 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 
 static int	check_comment(t_farm *f, char *line)
 {
-	if (ft_strcmp(line, "##start") == 0) 
+	if (ft_strcmp(line, "##start") == 0)
 	{
 		if (f->start != NULL)
 			return (-1);
@@ -117,7 +85,7 @@ static int	check_comment(t_farm *f, char *line)
 			f->flags &= ~END;
 		}
 	}
-	else if (ft_strcmp(line, "##end") == 0) 
+	else if (ft_strcmp(line, "##end") == 0)
 	{
 		if (f->end != NULL)
 			return (-1);
@@ -126,6 +94,25 @@ static int	check_comment(t_farm *f, char *line)
 			f->flags |= END;
 			f->flags &= ~START;
 		}
+	}
+	return (0);
+}
+
+static int	dash_comment(char *line, int mode)
+{
+	if (mode == 0)
+	{
+		if ((ft_strchr(line, '-') == NULL) || line[0] == '#')
+			return (0);
+		else
+			return (-1);
+	}
+	else if (mode == 1)
+	{
+		if ((ft_strchr(line, '-') != NULL && line[0] != '#'))
+			return (0);
+		else
+			return (-1);
 	}
 	return (0);
 }
@@ -143,7 +130,7 @@ int			get_room(t_room *r, t_farm *f)
 
 	id = 0;
 	ret = gnl_store(0, &line, f, GET_ROOMS);
-	while (ret > 0 && line && ((ft_strchr(line, '-') == NULL) || line[0] == '#'))
+	while (ret > 0 && line && dash_comment(line, 0) != -1)
 	{
 		if (line && line[0] == '#')
 		{
@@ -152,12 +139,12 @@ int			get_room(t_room *r, t_farm *f)
 		}
 		else if (line && ft_strchr(line, '-') == NULL)
 			if ((!(line) || (line = room_check_syntax(line)) == NULL) 	\
-			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
+			|| (r = new_room(f, r, line, id++)) == NULL)
 				return (error_free_line(line));
 		ft_memdel((void*)&line);
 		ret = gnl_store(0, &line, f, GET_ROOMS);
-		if (line && (ft_strchr(line, '-') != NULL && line[0] != '#') && ((f->line = line)))
-				return (0);
+		if (line && dash_comment(line, 1) != -1 && ((f->line = line)))
+			return (0);
 	}
 	ft_memdel((void*)&line);
 	return ((ret > 0) ? 0 : -1);

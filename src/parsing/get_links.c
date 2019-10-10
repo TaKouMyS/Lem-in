@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 20:17:22 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 21:47:38 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	init_links(t_farm *f, char **room)
 	int	i;
 
 	i = 0;
+	room[0] = NULL;
 	room[1] = NULL;
-	room[2] = NULL;
 	if (!(f->links = ft_memalloc(sizeof(int*) * (f->room_nb + 1))))
 		return (-1);
 	while (i < f->room_nb + 1)
@@ -58,7 +58,6 @@ static int	room_exist(t_farm *f, char *room, t_room **ids, int mode)
 	i = 0;
 	while (i < f->room_nb)
 	{
-		
 		if (ft_strcmp(room, f->id_table[i++]->name) == 0)
 		{
 			ids[mode] = f->id_table[i - 1];
@@ -116,13 +115,13 @@ int			get_links(t_farm *f)
 	while (ret > 0)
 	{
 		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL)	\
-			|| (room_exist(f, room[0], ids, 0) != 1)						\
-			|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
-			|| (room_exist(f, room[1], ids, 1) != 1))
-			{
+		|| (room_exist(f, room[0], ids, 0) != 1)						\
+		|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
+		|| (room_exist(f, room[1], ids, 1) != 1))
+		{
 			ft_printf("get_links");
 			return (free_links(line, room, -1));
-			}
+		}
 		save_links(f, ids);
 		free_links(line, room, 0);
 		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);

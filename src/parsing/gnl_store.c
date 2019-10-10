@@ -6,14 +6,14 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 00:12:16 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/09 17:31:16 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 21:57:54 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "lem-in.h"
 
-static int  is_com_start_end(char *line)
+static int	is_com_start_end(char *line)
 {
 	if (ft_strcmp(line, "##start") == 0)
 		return (-1);
@@ -22,11 +22,11 @@ static int  is_com_start_end(char *line)
 	return (0);
 }
 
-static int store(t_farm *f, char *line, int ret)
+static int	store(t_farm *f, char *line, int ret)
 {
 	t_input *new;
 	t_input *tmp;
-	
+
 	tmp = f->input;
 	if (ret > 0)
 	{
@@ -39,10 +39,8 @@ static int store(t_farm *f, char *line, int ret)
 	return (0);
 }
 
-static int  read_from_ants_links(t_farm *f, char **line,int ret, int fd)
+static int	read_from_ants_links(t_farm *f, char **line, int ret, int fd)
 {
-	// if (is_com_start_end(line[0]) == -1)
-	// 	ret = -1;
 	while (ret > 0 && line[0] && line[0][0] == '#')
 	{
 		if (is_com_start_end(line[0]) == -1 || store(f, line[0], ret) == -1)
@@ -51,11 +49,10 @@ static int  read_from_ants_links(t_farm *f, char **line,int ret, int fd)
 		if (ret != -1)
 			ret = get_next_line(fd, &line[0]);
 	}
-	// ft_memdel((void*)&line);
 	return (ret);
 }
 
-int gnl_store(int fd, char **line, t_farm *f, int origin)
+int			gnl_store(int fd, char **line, t_farm *f, int origin)
 {
 	int ret;
 
