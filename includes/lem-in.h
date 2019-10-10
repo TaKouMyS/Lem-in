@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
@@ -73,15 +74,14 @@ int 					gnl_store(int fd, char **line, t_farm *f, int origin);
 int     				solve(t_farm *f, int length, int start);
 int 					bfs(t_farm *f, t_queue *q);
 int 					max_flow(t_queue *q, t_farm *f);
-int 					count_steps(t_queue *q, int start, int end);
+size_t					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
-int 					edmondskarp(t_queue *q, t_farm *f, int ***paths);
+int						edmondskarp(t_queue *q, t_farm *f, t_list **path_list);
 int     				send_ants(t_farm *f, int **paths, int max_paths, int ants);
 int 					optimise_flow(t_farm *f, t_queue *q);
 void 					save_flow(t_queue *q, t_farm *f);
 void 					clear_queue(t_queue *q);
-int 					**save_paths(t_queue *q, t_farm *f, int max);
-int 					count_paths(t_queue *q, t_farm *f);
+t_list 					*save_paths(t_queue *q, t_farm *f);
 int 					initialise_queue(t_queue *q, int length, int start);
 void 					print_map(int **map, int length);
 void 					reset_queue(t_queue *q, int start, int end);
@@ -89,4 +89,5 @@ int 					set_to_n(int **set, int length, int n);
 int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
 int						*divide_ants(t_farm *f, int **paths);
 void					free_queue(t_queue *q);
+void					print_paths(t_list *paths, t_farm *f);
 #endif

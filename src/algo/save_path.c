@@ -56,38 +56,38 @@ int count_paths(t_queue *q, t_farm *f)
     return (i - 2);
 }
 
-int **save_paths(t_queue *q, t_farm *f, int max)
+t_list *save_paths(t_queue *q, t_farm *f)
 {
-	int **paths;
-	int i;
-	int j;
+	int *path;
+    t_list *new;
 
-	i = 0;
-	if (!(paths = ft_memalloc(sizeof(int *) * max)))
-		return (NULL);
-	while (i < max)
-	{
-		j = 0;
-		if (bfs(f, q) == -1)
-			return (0);
-		if (!(paths[i] = rev_path(f, q)))
-			return (NULL);
-		mark_path(f, q, i + 2);
-		++i;
-	}
-	return (paths);
+ //   new->content = NULL;
+   // new->content_size = 0;
+	if (bfs(f, q) == -1)
+		return (new);
+	if (!(path = rev_path(f, q)))
+			return (new);
+    new->content = path;
+    printf("end= %d\n", f->end->id);
+ //   printf("entry here HERE?\n");
+   // printf("STEPS %zu\n", count_steps(q, f->start->id, f->end->id));
+    count_steps(q, f->start->id, f->end->id);
+	return (new);
 }
 
-int count_steps(t_queue *q, int start, int end)
+size_t count_steps(t_queue *q, int start, int end)
 {
     int steps;
 
     steps = 0;
+    printf("doI get hereeee? end =%d start =%d\n\n", end, start);
     while (end != start)
     {
+        ft_printf("end = %d next = %d step = %zu\n", end, q->prev[end], steps);
         end = q->prev[end];
 		++steps;
     }
+  //  printf("steps = %zu", steps);
     return (steps);
 }
 
@@ -99,6 +99,7 @@ int *rev_path(t_farm *f, t_queue *q)
     int pos;
 
     pos = f->end->id;
+   // printf("entry?");
     steps = count_steps(q, f->start->id, f->end->id); //count how many moves we made
     i = 0;
     if (!(rev_path = malloc((sizeof(int)) * (steps + 1))))

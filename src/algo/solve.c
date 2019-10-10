@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
+#include "lem-in.h"
 #include <stdio.h>
 
 //we won't need this later I think, it's just for debugging. 
@@ -38,22 +37,26 @@ void	print_map(int **map, int length)
 }
 
 //same for debugging
-void	print_paths(int **paths, t_farm *f, int max_paths)
+void	print_paths(t_list *paths, t_farm *f)
 {
+	t_list *tracker;
 	int i;
-	int j;
+	size_t j;
 
 	i = 0;
-	while (i < max_paths)
+	tracker = paths;
+	while (i < f->max_paths)
 	{
 		j = 0;
-		while (paths[i][j] != f->end->id)
+	//	printf("%zu\n", tracker->content_size);
+		while(j < tracker->content_size)
 		{
-			printf("%s ", f->id_table[paths[i][j]]->name);
+		//	ft_printf("here! j = %d\n", j);
+		//	ft_printf("%d ", ((int *)tracker->content+ j));
 			++j;
 		}
-		printf("%s ", f->id_table[paths[i][j]]->name);
-		putchar('\n');
+		ft_putchar('\n');
+		tracker = tracker->next;
 		++i;
 	}
 }
@@ -62,20 +65,15 @@ int		solve(t_farm *f, int length, int start)
 {
 	t_queue q;
 	int		**paths;
+	t_list *path_list;
 
 	if (initialise_queue(&q, length, start) < 0)
-<<<<<<< HEAD
-        return (-1);
-    f->max_paths = edmondskarp(&q, f, &paths);
-//	printf("f->max, %d\n", f->max_paths);
-	print_paths(paths, f, f->max_paths);
-=======
 	{
 		ft_printf("MALLOC ERROR\n");
 		free_queue(&q);
 		return (-1);
 	}
-	f->max_paths = edmondskarp(&q, f, &paths);
+	f->max_paths = edmondskarp(&q, f, &path_list);
 	if (f->max_paths == -1)
 	{
 		ft_printf("NO PATH FOUND\n");
@@ -83,8 +81,7 @@ int		solve(t_farm *f, int length, int start)
 		return (-1);
 	}
 //	printf("f->max = %d\n", f->max_paths);
-//	print_paths(paths, f, f->max_paths);
->>>>>>> fcahill
-	send_ants(f, paths, f->max_paths, f->ant_nb);
+//	print_paths(path_list, f);
+//	send_ants(f, paths, f->max_paths, f->ant_nb);
 	return (0);
 }

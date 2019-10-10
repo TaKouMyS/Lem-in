@@ -38,16 +38,17 @@ int		find_neighbours(t_queue *q, t_room *r, int prev_flow)
 
 	j = 0;
 
-	if (prev_flow == 0)
-		if (find_neg_flow(q, r) == 1)
-			return (0);   
+//	if (prev_flow == 0)
+//		if (find_neg_flow(q, r) == 1)
+//			return (0);   
 	while (j < r->links_nb)
 	{
 		if (q->visited[r->links[j]] == 0 //if there is a link and we have not visited the link
-			&& q->flow[r->id][r->links[j]] == 1)
+			&& q->flow[r->id][r->links[j]] != 0)
 		{
 			q->queue[q->position] = r->links[j]; // add to end of queue
 			q->prev[r->links[j]] = r->id; //note from which node we linked this node
+			printf("prev of %d is %d\n", r->links[j], q->prev[r->links[j]]);
 			q->visited[r->links[j]] = 1; //mark it as visited
 			++q->position; //move up the end of queue marker
 		}
@@ -68,6 +69,7 @@ int		bfs(t_farm *f, t_queue *q)
 	while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
 	{
 		node = q->queue[i]; //sets node to the next node in the queue
+		printf("node = %d\n",node);
 		if (i > 0)
 			prev_flow = q->flow[q->prev[node]][node];
 		find_neighbours(q, f->id_table[node], prev_flow);

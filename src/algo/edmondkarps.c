@@ -12,52 +12,14 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
+#include "lem-in.h"
 
 
 
-<<<<<<< HEAD
-int print_flow(t_queue *q, t_farm *f)
-{
-	int i; 
-	int j;
-
-	i = 0;
-	
-	while (i < q->length)
-	{
-		j = 0;
-		while (j < q->length)
-		{	
-			ft_printf("flow from %s to %s = %d\n", f->id_table[i]->name, f->id_table[j]->name, q->flow[i][j]);
-			++j;
-		}
-		++i;
-	}
-return (0);
-}
-
-int find_flow(t_queue *q, int **map, int node, int prev_flow)
-=======
 int		find_flow(t_queue *q, t_room *r, int prev_flow)
->>>>>>> fcahill
 {
 	int		j;
 
-<<<<<<< HEAD
-    j = 0;
-//	if (prev_flow == 0)
-//		if (find_neg_flow(q, map, node) == 1)
-//			return (0);
-    while (j < q->length)
-    {
-        if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
-        {
-			q->queue[q->position] = j; // add to end of queue
-            q->prev[j] = node; //note from which node we linked this node
-			q->visited[j] = 1; //mark it as visited
-=======
 	j = 0;
 
                                                                                                                                    
@@ -70,7 +32,6 @@ int		find_flow(t_queue *q, t_room *r, int prev_flow)
 			q->queue[q->position] = r->links[j]; // add to end of queue
             q->prev[r->links[j]] = r->id; //note from which node we linked this node
 			q->visited[r->links[j]] = 1; //mark it as visited
->>>>>>> fcahill
             ++q->position; //move up the end of queue marker
         }
         ++j;
@@ -89,13 +50,13 @@ void	save_flow(t_queue *q, t_farm *f)
 	//	printf("s = %d\n", s);
         if (q->flow[p][s] == 0) //if there's no flow mark forward/reverse flow as 1/-1
         { 
-			ft_printf("flow %s %s to 1 / -1\n", f->id_table[p]->name, f->id_table[s]->name);
+	//		ft_printf("flow %s %s to 1 / -1\n", f->id_table[p]->name, f->id_table[s]->name);
 			q->flow[p][s] = -1;
 			q->flow[s][p] = 1;
 		}                              	
         else if (q->flow[p][s] == -1 || q->flow[p][s] == 1) //if there is flow, neutralise to zero
         { 
-			ft_printf("flow %s %s to 0\n", f->id_table[p]->name, f->id_table[s]->name);
+//			ft_printf("flow %s %s to 0\n", f->id_table[p]->name, f->id_table[s]->name);
 			q->flow[p][s] = 0;
 			q->flow[s][p] = 0;
 		}
@@ -145,25 +106,27 @@ int		printflow(t_queue *q, t_farm *f)
 	return (0);
 }
 
-int		edmondskarp(t_queue *q, t_farm *f, int ***paths)
+int		edmondskarp(t_queue *q, t_farm *f, t_list **path_list)
 {
 	int		max;
 	int		i;
 
+	*path_list = ft_lstnew(NULL, 0);
 	i = 0;
-	max = 0;
+	f->max_paths = 0;
 	while (optimise_flow(f, q) == 0)
-<<<<<<< HEAD
-			save_flow(q, f);
-	//print_flow(q, f);
-=======
-		save_flow(q, f);
+	{
+		printf("Here enid =%d\n", f->end->id);
+		save_flow(q, f);;
+		ft_lstadd(path_list, save_paths(q, f));
+		++f->max_paths;
+	}
+	printf("max= %d", f->max_paths);
 	//printflow(q, f);
->>>>>>> fcahill
-	reset_queue(q, f->start->id, f->end->id);
-	if ((max = count_paths(q, f)) <= 0)
-		return (-1);
-	clear_queue(q);
-	*paths = save_paths(q, f, max);
-	return (max);
+//	reset_queue(q, f->start->id, f->end->id);
+//	if ((max = count_paths(q, f)) <= 0)
+//		return (-1);
+//	clear_queue(q);
+//	*paths = save_paths(q, f, max);
+	return (f->max_paths);
 }
