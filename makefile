@@ -6,7 +6,7 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/10 01:57:14 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/10 20:03:09 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/solve.c 				\
 		$(ALGDIR)/keep_path.c 			\
 		$(ALGDIR)/send_ants.c 			\
-		$(ALGDIR)/optimize_ants.c 	
+		$(ALGDIR)/optimize_ants.c 		\
+		$(SRCDIR)/debug.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
