@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 02:40:01 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 20:04:20 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,8 @@ void 					reset_queue(t_queue *q, int start, int end);
 int 					set_to_n(int **set, int length, int n);
 int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
 int						*divide_ants(t_farm *f, int **paths);
+
+// DEBUG TO BE remove
+void	ft_print_list_debug(t_farm *f);
+//
 #endif
