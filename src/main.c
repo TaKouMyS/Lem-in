@@ -52,7 +52,7 @@ int	main(void)
 		printf("id %d = %s\n",i, f->id_table[i]->name);
 		++i;
 	}
-	solve(f, f->room_nb, f->start->id, f->end->id);
+//	solve(f, f->room_nb, f->start->id, f->end->id);
 	ft_free_lemin(f, r);
 //	ft_putstr("No errors!\n");
 	return (0);

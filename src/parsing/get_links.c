@@ -128,6 +128,7 @@ int			get_links(t_farm *f)
 	}
 	
 	// links printing ; debug
+	
 	ft_printf("links :\n");
 	int j = 0;
 	int i = 0;

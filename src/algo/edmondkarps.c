@@ -1,20 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   edmondkarps.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/10 17:31:20 by fcahill           #+#    #+#             */
+/*   Updated: 2019/10/10 17:31:21 by fcahill          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "../../includes/lem-in.h"
 #include "../../libft/includes/libft.h"
 
-int find_flow(t_queue *q, int **map, int node)
+int		find_flow(t_queue *q, int **map, int node)
 {
-    int j;
+	int		j;
 
-    j = 0;                                                                                                                                                    
-    while (j < q->length)
-    {
-	//	printf("parent = %d j = %d, connections = %d, visited = %d, flow = %d\n", node, j, map[node][j], q->visited[j], q->flow[node][j]);
-        if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
-        {
-	//		printf("parent = %d, neighbour = %d\n", node, j);
+	j = 0;                                                                                                                                                    
+	while (j < q->length)
+	{
+		//printf("parent = %d j = %d, connections = %d, visited = %d, flow = %d\n", node, j, map[node][j], q->visited[j], q->flow[node][j]);
+		if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
+		{
+			//printf("parent = %d, neighbour = %d\n", node, j);
 			q->queue[q->position] = j; // add to end of queue
             q->prev[j] = node; //note from which node we linked this node
 			q->visited[j] = 1; //mark it as visited
@@ -25,10 +36,10 @@ int find_flow(t_queue *q, int **map, int node)
     return (0);
 }
 
-void save_flow(t_queue *q, t_farm *f)
+void	save_flow(t_queue *q, t_farm *f)
 {
-	int p;
-	int s;
+	int		p;
+	int		s;
 	p = f->end->id;
 	while (p != f->start->id)
 	{
@@ -47,10 +58,10 @@ void save_flow(t_queue *q, t_farm *f)
 	}
 }
 
-int optimise_flow(t_farm *f, t_queue *q)
+int		optimise_flow(t_farm *f, t_queue *q)
 {
-    int i;
-    int node;
+    int		i;
+    int		node;
 
     i = -1;
 	clear_queue(q);
@@ -67,10 +78,10 @@ int optimise_flow(t_farm *f, t_queue *q)
     return (0);
 }
 
-int printflow(t_queue *q, t_farm *f)
+int		printflow(t_queue *q, t_farm *f)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (i < q->length)
@@ -78,27 +89,28 @@ int printflow(t_queue *q, t_farm *f)
 		j = 0;
 		while (j < q->length)
 		{
-	//		ft_printf("flow from %d to %d = %d\n", i, j, q->flow[i][j]);
+			//ft_printf("flow from %d to %d = %d\n", i, j, q->flow[i][j]);
 			++j;
 		}
 		++i;
 	}
 	return (0);
 }
-int edmondskarp(t_queue *q, t_farm *f, int ***paths)
+
+int		edmondskarp(t_queue *q, t_farm *f, int ***paths)
 {
-	int max;
-	int i;
+	int		max;
+	int		i;
 
 	i = 0;
 	max = 0;
 	while (optimise_flow(f, q) == 0)
-			save_flow(q, f);
-//	printflow(q, f);
-//	reset_queue(q, f->start->id, f->end->id);
-//	if ((max = count_paths(q, f)) <= 0)
-//		return (-1);
-//	clear_queue(q);
-//	*paths = save_paths(q, f, max);
+		save_flow(q, f);
+	//printflow(q, f);
+	reset_queue(q, f->start->id, f->end->id);
+	if ((max = count_paths(q, f)) <= 0)
+		return (-1);
+	clear_queue(q);
+	*paths = save_paths(q, f, max);
 	return (max);
 }
