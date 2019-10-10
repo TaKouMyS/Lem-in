@@ -15,22 +15,7 @@
 #include "../../includes/lem-in.h"
 #include "../../libft/includes/libft.h"
 
-int		find_neg_flow(t_queue *q, t_room *r)
-{
-	int i;
 
-	i = 0;
-	if (q->visited[r->links[i]] == 0 && q->flow[r->id][r->links[i]] == -1) //if there is a link and we have not visited the link
-		{
-			//printf("parent = %d, neighbour = %d\n", node, j);
-			q->queue[q->position] = r->links[i]; // add to end of queue
-            q->prev[r->links[i]] = r->id; //note from which node we linked this node
-			q->visited[r->links[i]] = 1; //mark it as visited
-            ++q->position; //move up the end of queue marker
-			return (1);
-        }
-	return (0);
-}
 
 int		find_flow(t_queue *q, t_room *r, int prev_flow)
 {
@@ -38,9 +23,7 @@ int		find_flow(t_queue *q, t_room *r, int prev_flow)
 
 	j = 0;
 
-	//if (prev_flow == 0)
-	//	if (find_neg_flow(q, r) == 1)
-	//		return (0);                                                                                                                                      
+                                                                                                                                   
 	while (j < r->links_nb)
 	{
 		//printf("parent = %d j = %d, connections = %d, visited = %d, flow = %d\n", node, j, map[node][j], q->visited[j], q->flow[node][j]);
