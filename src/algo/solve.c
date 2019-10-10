@@ -58,8 +58,8 @@ int     solve(t_farm *f, int length, int start, int end)
 	//	ft_printf("ERROR\n");
 		return (0);
 	}
-//	printf("f->max, %d\n", f->max_paths);
-//	print_paths(paths, f, f->max_paths);
-	send_ants(f, paths, f->max_paths, f->ant_nb);
+	printf("f->max = %d\n", f->max_paths);
+	print_paths(paths, f, f->max_paths);
+//	send_ants(f, paths, f->max_paths, f->ant_nb);
     return (0);
 }

@@ -126,19 +126,31 @@ int			get_links(t_farm *f)
 		free_links(line, room, 0);
 		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	}
-	return ((ret >= 0) ? 0 : -1);
+	
 	// links printing ; debug
-/*	ft_printf("links :\n");
+	ft_printf("links :\n");
 	int j = 0;
 	int i = 0;
 	printf("room nb = %d\n", f->room_nb);
-	while (i < f->room_nb + 1)
+
+	while (i < f->room_nb)
 	{
-		if (i < f->room_nb)
-			while (j < f->room_nb)
-				ft_putnbr(f->links[i][j++]);
-		i++;
+		ft_printf("%d ", i);
+		++i;
+	}
+	ft_printf("\n................\n");
+	i = 0;
+	while (i < f->room_nb)
+	{
 		j = 0;
-		ft_printf("\n");
-	}*/
+		while (j < f->room_nb)
+		{
+			ft_printf("%d ", f->links[i][j]);
+			++j;
+		}
+		ft_putchar('\n');
+		++i;
+	}
+
+	return ((ret >= 0) ? 0 : -1);
 }
