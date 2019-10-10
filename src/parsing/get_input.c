@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/08 23:41:36 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 03:25:48 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	get_quantity_ants(t_farm *f)
 
 	i = 0;
 	line = NULL;
-	if ((ret = gnl_store(0, &line, f, GET_ANTS_LINKS) >= 0) && line)
+ 	if ((ret = gnl_store(0, &line, f, GET_ANTS_LINKS) >= 0) && line)
 	{
 		while (line[i] != '\0')
 		{
@@ -97,6 +97,36 @@ static int	get_quantity_ants(t_farm *f)
 	return (0);
 }
 
+
+int			create_link_list(t_farm *f)
+{
+	int		i;
+	int		j;
+	int		k;
+	t_room*	room;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	room = f->id_table[i];
+	while (i < f->room_nb)
+	{
+		if (!(f->id_table[i]->links = ft_memalloc(sizeof(int) * (f->id_table[i]->links_nb + 1))))
+			return (-1);
+		while (j < f->room_nb)
+		{
+			if (f->links[i][j] == 1)
+				f->id_table[i]->links[k++] = j;
+			j++;
+		}
+		k = 0;
+		j = 0;
+		i++;
+		room = f->id_table[i];
+	}
+	return (0);
+}
+
 /*
 ** get_input :
 ** Launch the functions that get and check input.
@@ -112,8 +142,8 @@ int			get_input(t_farm *f, t_room *r)
 	f->input_start = start;
 	ft_printf("%s\n", "get_input");
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
-		|| creates_table(r, f) != 0 || get_links(f) != 0)  \
-		// || is_start_end_linked(f) != 0)
+		|| creates_table(r, f) != 0 || get_links(f) != 0 \
+		|| create_link_list(f) != 0)
 			return (-1);
 	return (0);
 }

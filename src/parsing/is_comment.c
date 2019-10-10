@@ -6,58 +6,59 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:01:30 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/09 15:41:52 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 02:19:10 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
 
-/*
-** ==================== check_stack_cmd ====================
-** If ##start follows ##end or the other way arround, return error.
-*/
-
-// seem useless after reformfactor, le be here because we never know...
-
-// static int	check_stack_cmd(char *line, char *tmp)
-// {
-// 	if ((ft_strcmp(tmp, "##start") == 0 && ft_strcmp(line, "##end") == 0) \
-// 		|| (ft_strcmp(tmp, "##end") == 0 \
-// 		&& ft_strcmp(line, "##start") == 0))
-// 		return (-1);
-// 	return (0);
-// }
-
-/*
-** ==================== raise_flag ====================
-** If line equal ##start or ##end, raise mathcing flag.
-*/
-
-static void	raise_flag(t_farm *f, char *line)
+int		is_comment(t_farm *f, char *line)
 {
-	if (ft_strcmp(line, "##start") == 0)
-		f->flags |= START;
-	else if (ft_strcmp(line, "##end") == 0)
-		f->flags |= END;
-	return ;
+	if (ft_strcmp(line, "##start") == 0) 
+	{
+		if (f->start != NULL)
+			return (-1);
+		else
+		{
+			f->flags |= START;
+			f->flags &= ~END;
+		}
+	}
+	else if (ft_strcmp(line, "##end") == 0) 
+	{
+		if (f->end != NULL)
+			return (-1);
+		else
+		{
+			f->flags |= END;
+			f->flags &= ~START;
+		}
+	}
+	return (0);
 }
 
-/*
-** ==================== is_comment ====================
-** Receives a line which starts by #. As long as the next line starts by #
-*/
 
-char		*is_comment(t_farm *f, int ret, char *line)
+int			create_link_list(t_farm *f)
 {
-	while (ret > 0 && line && line[0] == '#')
+	int		i;
+	int		j;
+	int		k;
+	t_room*	room;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	room = f->id_table[i];
+	while (i < f->room_nb)
 	{
-		if (line && line[1] == '#')
-			if ((ft_strcmp(line, "##start") == 0) \
-			|| (ft_strcmp(line, "##end") == 0))
-				raise_flag(f, line);
-		ft_memdel((void*)&line);
-		ret = gnl_store(0, &line, f, GET_ROOMS);
+		if (!(room->links = ft_memalloc(sizeof(int) * (room->links_nb + 1))))
+			return (-1);
+		while (j < f->room_nb)
+		{
+			if (f->links[i][j] == 1)
+				room->links[k++] = j++;
+		}
 	}
-	return (line);
+	return (0);
 }

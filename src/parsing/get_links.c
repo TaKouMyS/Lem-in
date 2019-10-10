@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/09 16:04:04 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 02:00:43 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ static int	init_links(t_farm *f, char **room)
 static void	save_links(t_farm *f, t_room **ids)
 {
 	f->links[ids[0]->id][ids[1]->id] = 1;
+	ids[0]->links_nb++;
 	f->links[ids[1]->id][ids[0]->id] = 1;
+	ids[1]->links_nb++;
 }
 
 /*
@@ -102,14 +104,13 @@ int			get_links(t_farm *f)
 {
 	int		ret;
 	char	*line;
-	char	*room[3]; //changed from 2 to 3 stack buffer overflow
+	char	*room[2];
 	t_room	*ids[2];
 
 	if (init_links(f, room) == -1)
 		return (-1);
-	ret = 1;
-	if (f->line)
-			line = f->line;
+	if (f->line && (ret = 1))
+		line = f->line;
 	else
 		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	while (ret > 0)

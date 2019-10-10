@@ -6,7 +6,7 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/08 22:50:17 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/10 01:57:14 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(SRCDIR)/ft_free.c				\
 		$(PARSDIR)/get_input.c			\
 		$(PARSDIR)/get_room.c			\
-		$(PARSDIR)/is_comment.c		\
 		$(PARSDIR)/new_room.c			\
 		$(PARSDIR)/get_links.c			\
 		$(PARSDIR)/gnl_store.c			\
