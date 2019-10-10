@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/10 17:29:51 by fcahill           #+#    #+#             */
+/*   Updated: 2019/10/10 17:29:56 by fcahill          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/lem-in.h"
 #include "../../libft/includes/libft.h"
 #include <stdio.h>
 
 //we won't need this later I think, it's just for debugging. 
-void print_map(int **map, int length)
+void	print_map(int **map, int length)
 {
 	int i;
 	int j;
@@ -24,8 +36,9 @@ void print_map(int **map, int length)
 	}
 	printf("...........................\n");
 }
+
 //same for debugging
-void print_paths(int **paths, t_farm *f, int max_paths)
+void	print_paths(int **paths, t_farm *f, int max_paths)
 {
 	int i;
 	int j;
@@ -45,16 +58,33 @@ void print_paths(int **paths, t_farm *f, int max_paths)
 	}
 }
 
-int     solve(t_farm *f, int length, int start, int end)
+int		solve(t_farm *f, int length, int start)
 {
-    t_queue q;
-    int		**paths;
+	t_queue q;
+	int		**paths;
 
 	if (initialise_queue(&q, length, start) < 0)
+<<<<<<< HEAD
         return (-1);
     f->max_paths = edmondskarp(&q, f, &paths);
 //	printf("f->max, %d\n", f->max_paths);
 	print_paths(paths, f, f->max_paths);
+=======
+	{
+		ft_printf("MALLOC ERROR\n");
+		free_queue(&q);
+		return (-1);
+	}
+	f->max_paths = edmondskarp(&q, f, &paths);
+	if (f->max_paths == -1)
+	{
+		ft_printf("NO PATH FOUND\n");
+		free_queue(&q);
+		return (-1);
+	}
+//	printf("f->max = %d\n", f->max_paths);
+//	print_paths(paths, f, f->max_paths);
+>>>>>>> fcahill
 	send_ants(f, paths, f->max_paths, f->ant_nb);
-    return (0);
+	return (0);
 }

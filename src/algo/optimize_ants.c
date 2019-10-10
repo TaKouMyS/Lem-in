@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   optimize_ants.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/10 17:31:47 by fcahill           #+#    #+#             */
+/*   Updated: 2019/10/10 17:31:48 by fcahill          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "../../includes/lem-in.h"
 #include "../../libft/includes/libft.h"
 #include <stdio.h>
@@ -75,6 +88,7 @@ int		*divide_ants(t_farm *f, int **paths)
 
 	i = 0;
 	total = 0;
+	//printf("%lu\n max = %d", sizeof(int) * f->max_paths, f->max_paths);
 	if (!(ant_division = (int *)malloc(sizeof(int) * f->max_paths)))
 		return (NULL);
     if ((steps = get_path_lengths(f, paths, &total)) == NULL)
