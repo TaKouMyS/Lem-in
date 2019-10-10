@@ -15,20 +15,41 @@
 #include "../../includes/lem-in.h"
 #include "../../libft/includes/libft.h"
 
-int		find_flow(t_queue *q, int **map, int node)
+int		find_neg_flow(t_queue *q, t_room *r)
+{
+	int i;
+
+	i = 0;
+	if (q->visited[r->links[i]] == 0 && q->flow[r->id][r->links[i]] == -1) //if there is a link and we have not visited the link
+		{
+			//printf("parent = %d, neighbour = %d\n", node, j);
+			q->queue[q->position] = r->links[i]; // add to end of queue
+            q->prev[r->links[i]] = r->id; //note from which node we linked this node
+			q->visited[r->links[i]] = 1; //mark it as visited
+            ++q->position; //move up the end of queue marker
+			return (1);
+        }
+	return (0);
+}
+
+int		find_flow(t_queue *q, t_room *r, int prev_flow)
 {
 	int		j;
 
-	j = 0;                                                                                                                                                    
-	while (j < q->length)
+	j = 0;
+
+	//if (prev_flow == 0)
+	//	if (find_neg_flow(q, r) == 1)
+	//		return (0);                                                                                                                                      
+	while (j < r->links_nb)
 	{
 		//printf("parent = %d j = %d, connections = %d, visited = %d, flow = %d\n", node, j, map[node][j], q->visited[j], q->flow[node][j]);
-		if (map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] != 1) //if there is a link and we have not visited the link
+		if (q->visited[r->links[j]] == 0 && q->flow[r->id][r->links[j]] != 1) //if there is a link and we have not visited the link
 		{
 			//printf("parent = %d, neighbour = %d\n", node, j);
-			q->queue[q->position] = j; // add to end of queue
-            q->prev[j] = node; //note from which node we linked this node
-			q->visited[j] = 1; //mark it as visited
+			q->queue[q->position] = r->links[j]; // add to end of queue
+            q->prev[r->links[j]] = r->id; //note from which node we linked this node
+			q->visited[r->links[j]] = 1; //mark it as visited
             ++q->position; //move up the end of queue marker
         }
         ++j;
@@ -44,6 +65,7 @@ void	save_flow(t_queue *q, t_farm *f)
 	while (p != f->start->id)
 	{
 		s = q->prev[p];
+	//	printf("s = %d\n", s);
         if (q->flow[p][s] == 0) //if there's no flow mark forward/reverse flow as 1/-1
         { 
 			q->flow[p][s] = -1;
@@ -62,16 +84,19 @@ int		optimise_flow(t_farm *f, t_queue *q)
 {
     int		i;
     int		node;
-
+	int		prev_flow;
     i = -1;
 	clear_queue(q);
 	reset_queue(q, f->start->id, f->end->id);
-//	printf("here");
+	prev_flow = 0;
     while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
     {
         node = q->queue[i]; //sets node to the next node in the queue
-	//	printf("node = %d\n", node);
-		find_flow(q, f->links, node);
+		if (i > 0)
+			prev_flow = q->flow[q->prev[node]][node];
+	//	printf("prev_flow = %d\n", prev_flow);
+		find_flow(q, f->id_table[node], prev_flow);
+	//	printf("node= %d\n", node);
     }
     if (q->visited[f->end->id] == 0) //if while path finding we did not reach the end, we failed
 	    return(-1);

@@ -30,6 +30,10 @@ int		initialise_queue(t_queue *q, int length, int start)
 
 	i = 0;
 	q->length = length;
+	q->queue = NULL;
+	q->prev= NULL;
+	q->flow = NULL;
+	q->visited = NULL;
 	if (!(q->queue = ft_memalloc(sizeof(int) * length)))
 		return (-1);
 	if (!(q->prev = ft_memalloc(sizeof(int) * length)))
@@ -68,12 +72,12 @@ void	clear_queue(t_queue *q)
 
 void	free_queue(t_queue *q)
 {
-	if (q->flow)
+	if (q->flow != NULL)
 		free(q->flow);
-	if (q->prev)
+	if (q->prev != NULL)
 		free(q->prev);
-	if (q->queue)
+	if (q->queue != NULL)
 		free(q->queue);
-	if (q->visited)
-		free(q->queue);
+	if (q->visited != NULL)
+		free(q->visited);
 }

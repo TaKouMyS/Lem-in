@@ -26,7 +26,6 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(SRCDIR)/ft_free.c				\
 		$(PARSDIR)/get_input.c			\
 		$(PARSDIR)/get_room.c			\
-		$(PARSDIR)/is_comment.c		\
 		$(PARSDIR)/new_room.c			\
 		$(PARSDIR)/get_links.c			\
 		$(PARSDIR)/gnl_store.c			\
