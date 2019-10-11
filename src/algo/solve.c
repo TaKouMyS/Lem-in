@@ -45,17 +45,15 @@ void	print_paths(t_list *paths, t_farm *f)
 
 	i = 0;
 	tracker = paths;
-	while (i < f->max_paths)
+	while (tracker->content != NULL)
 	{
 		j = 0;
-	//	printf("%zu\n", tracker->content_size);
-		while(j < tracker->content_size)
+		while(((int *)tracker->content)[j] != f->end->id)
 		{
-		//	ft_printf("here! j = %d\n", j);
-		//	ft_printf("%d ", ((int *)tracker->content+ j));
+			ft_printf("%d ", ((int *)tracker->content)[j]);
 			++j;
 		}
-		ft_putchar('\n');
+		ft_printf("%d\n", ((int *)tracker->content)[j]);
 		tracker = tracker->next;
 		++i;
 	}
@@ -80,8 +78,9 @@ int		solve(t_farm *f, int length, int start)
 		free_queue(&q);
 		return (-1);
 	}
+//	verify_paths(f, &q, path_list);
 //	printf("f->max = %d\n", f->max_paths);
-//	print_paths(path_list, f);
+	print_paths(path_list, f);
 //	send_ants(f, paths, f->max_paths, f->ant_nb);
 	return (0);
 }

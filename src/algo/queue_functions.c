@@ -65,7 +65,7 @@ void	reset_queue(t_queue *q, int start, int end)
 
 void	clear_queue(t_queue *q)
 {
-	set_to_n(&q->visited, q->length, 0);
+//	set_to_n(&q->visited, q->length, 0);
 	set_to_n(&q->prev, q->length, -1);
 	set_to_n(&q->queue, q->length, -1);
 }

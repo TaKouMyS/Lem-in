@@ -1,0 +1,1188 @@
+40
+##start
+start 1 1
+a3 2 2
+a2 3 3
+a1 4 4
+a0 5 5
+b3 6 6
+b2 7 7
+b1 8 8
+b0 9 9
+c7 10 10
+c6 11 11
+c5 12 12
+c4 13 13
+d5 14 14
+d4 15 15
+d3 16 16
+d2 17 17
+e4 18 18
+e3 19 19
+e2 20 20
+e1 21 21
+##end
+end 22 22
+start-a3
+a3-a2
+a2-a1
+a1-a0
+a0-end
+b3-a3
+b2-b3
+b1-b2
+b1-b0
+b0-end
+start-c7
+c7-c6
+c6-c5
+c5-c4
+c4-b3
+d5-start
+d4-d5
+d3-d4
+d2-d3
+d2-a1
+e4-start
+e3-e4
+e2-e3
+e1-e2
+e1-a0
+
+flow end a0 to 1 / -1
+flow a0 a1 to 1 / -1
+flow a1 a2 to 1 / -1
+flow a2 a3 to 1 / -1
+flow a3 start to 1 / -1
+flow from start to start = 0
+flow from start to a3 = 1
+flow from start to a2 = 0
+flow from start to a1 = 0
+flow from start to a0 = 0
+flow from start to b3 = 0
+flow from start to b2 = 0
+flow from start to b1 = 0
+flow from start to b0 = 0
+flow from start to c7 = 0
+flow from start to c6 = 0
+flow from start to c5 = 0
+flow from start to c4 = 0
+flow from start to d5 = 0
+flow from start to d4 = 0
+flow from start to d3 = 0
+flow from start to d2 = 0
+flow from start to e4 = 0
+flow from start to e3 = 0
+flow from start to e2 = 0
+flow from start to e1 = 0
+flow from start to end = 0
+flow from a3 to start = -1
+flow from a3 to a3 = 0
+flow from a3 to a2 = 1
+flow from a3 to a1 = 0
+flow from a3 to a0 = 0
+flow from a3 to b3 = 0
+flow from a3 to b2 = 0
+flow from a3 to b1 = 0
+flow from a3 to b0 = 0
+flow from a3 to c7 = 0
+flow from a3 to c6 = 0
+flow from a3 to c5 = 0
+flow from a3 to c4 = 0
+flow from a3 to d5 = 0
+flow from a3 to d4 = 0
+flow from a3 to d3 = 0
+flow from a3 to d2 = 0
+flow from a3 to e4 = 0
+flow from a3 to e3 = 0
+flow from a3 to e2 = 0
+flow from a3 to e1 = 0
+flow from a3 to end = 0
+flow from a2 to start = 0
+flow from a2 to a3 = -1
+flow from a2 to a2 = 0
+flow from a2 to a1 = 1
+flow from a2 to a0 = 0
+flow from a2 to b3 = 0
+flow from a2 to b2 = 0
+flow from a2 to b1 = 0
+flow from a2 to b0 = 0
+flow from a2 to c7 = 0
+flow from a2 to c6 = 0
+flow from a2 to c5 = 0
+flow from a2 to c4 = 0
+flow from a2 to d5 = 0
+flow from a2 to d4 = 0
+flow from a2 to d3 = 0
+flow from a2 to d2 = 0
+flow from a2 to e4 = 0
+flow from a2 to e3 = 0
+flow from a2 to e2 = 0
+flow from a2 to e1 = 0
+flow from a2 to end = 0
+flow from a1 to start = 0
+flow from a1 to a3 = 0
+flow from a1 to a2 = -1
+flow from a1 to a1 = 0
+flow from a1 to a0 = 1
+flow from a1 to b3 = 0
+flow from a1 to b2 = 0
+flow from a1 to b1 = 0
+flow from a1 to b0 = 0
+flow from a1 to c7 = 0
+flow from a1 to c6 = 0
+flow from a1 to c5 = 0
+flow from a1 to c4 = 0
+flow from a1 to d5 = 0
+flow from a1 to d4 = 0
+flow from a1 to d3 = 0
+flow from a1 to d2 = 0
+flow from a1 to e4 = 0
+flow from a1 to e3 = 0
+flow from a1 to e2 = 0
+flow from a1 to e1 = 0
+flow from a1 to end = 0
+flow from a0 to start = 0
+flow from a0 to a3 = 0
+flow from a0 to a2 = 0
+flow from a0 to a1 = -1
+flow from a0 to a0 = 0
+flow from a0 to b3 = 0
+flow from a0 to b2 = 0
+flow from a0 to b1 = 0
+flow from a0 to b0 = 0
+flow from a0 to c7 = 0
+flow from a0 to c6 = 0
+flow from a0 to c5 = 0
+flow from a0 to c4 = 0
+flow from a0 to d5 = 0
+flow from a0 to d4 = 0
+flow from a0 to d3 = 0
+flow from a0 to d2 = 0
+flow from a0 to e4 = 0
+flow from a0 to e3 = 0
+flow from a0 to e2 = 0
+flow from a0 to e1 = 0
+flow from a0 to end = 1
+flow from b3 to start = 0
+flow from b3 to a3 = 0
+flow from b3 to a2 = 0
+flow from b3 to a1 = 0
+flow from b3 to a0 = 0
+flow from b3 to b3 = 0
+flow from b3 to b2 = 0
+flow from b3 to b1 = 0
+flow from b3 to b0 = 0
+flow from b3 to c7 = 0
+flow from b3 to c6 = 0
+flow from b3 to c5 = 0
+flow from b3 to c4 = 0
+flow from b3 to d5 = 0
+flow from b3 to d4 = 0
+flow from b3 to d3 = 0
+flow from b3 to d2 = 0
+flow from b3 to e4 = 0
+flow from b3 to e3 = 0
+flow from b3 to e2 = 0
+flow from b3 to e1 = 0
+flow from b3 to end = 0
+flow from b2 to start = 0
+flow from b2 to a3 = 0
+flow from b2 to a2 = 0
+flow from b2 to a1 = 0
+flow from b2 to a0 = 0
+flow from b2 to b3 = 0
+flow from b2 to b2 = 0
+flow from b2 to b1 = 0
+flow from b2 to b0 = 0
+flow from b2 to c7 = 0
+flow from b2 to c6 = 0
+flow from b2 to c5 = 0
+flow from b2 to c4 = 0
+flow from b2 to d5 = 0
+flow from b2 to d4 = 0
+flow from b2 to d3 = 0
+flow from b2 to d2 = 0
+flow from b2 to e4 = 0
+flow from b2 to e3 = 0
+flow from b2 to e2 = 0
+flow from b2 to e1 = 0
+flow from b2 to end = 0
+flow from b1 to start = 0
+flow from b1 to a3 = 0
+flow from b1 to a2 = 0
+flow from b1 to a1 = 0
+flow from b1 to a0 = 0
+flow from b1 to b3 = 0
+flow from b1 to b2 = 0
+flow from b1 to b1 = 0
+flow from b1 to b0 = 0
+flow from b1 to c7 = 0
+flow from b1 to c6 = 0
+flow from b1 to c5 = 0
+flow from b1 to c4 = 0
+flow from b1 to d5 = 0
+flow from b1 to d4 = 0
+flow from b1 to d3 = 0
+flow from b1 to d2 = 0
+flow from b1 to e4 = 0
+flow from b1 to e3 = 0
+flow from b1 to e2 = 0
+flow from b1 to e1 = 0
+flow from b1 to end = 0
+flow from b0 to start = 0
+flow from b0 to a3 = 0
+flow from b0 to a2 = 0
+flow from b0 to a1 = 0
+flow from b0 to a0 = 0
+flow from b0 to b3 = 0
+flow from b0 to b2 = 0
+flow from b0 to b1 = 0
+flow from b0 to b0 = 0
+flow from b0 to c7 = 0
+flow from b0 to c6 = 0
+flow from b0 to c5 = 0
+flow from b0 to c4 = 0
+flow from b0 to d5 = 0
+flow from b0 to d4 = 0
+flow from b0 to d3 = 0
+flow from b0 to d2 = 0
+flow from b0 to e4 = 0
+flow from b0 to e3 = 0
+flow from b0 to e2 = 0
+flow from b0 to e1 = 0
+flow from b0 to end = 0
+flow from c7 to start = 0
+flow from c7 to a3 = 0
+flow from c7 to a2 = 0
+flow from c7 to a1 = 0
+flow from c7 to a0 = 0
+flow from c7 to b3 = 0
+flow from c7 to b2 = 0
+flow from c7 to b1 = 0
+flow from c7 to b0 = 0
+flow from c7 to c7 = 0
+flow from c7 to c6 = 0
+flow from c7 to c5 = 0
+flow from c7 to c4 = 0
+flow from c7 to d5 = 0
+flow from c7 to d4 = 0
+flow from c7 to d3 = 0
+flow from c7 to d2 = 0
+flow from c7 to e4 = 0
+flow from c7 to e3 = 0
+flow from c7 to e2 = 0
+flow from c7 to e1 = 0
+flow from c7 to end = 0
+flow from c6 to start = 0
+flow from c6 to a3 = 0
+flow from c6 to a2 = 0
+flow from c6 to a1 = 0
+flow from c6 to a0 = 0
+flow from c6 to b3 = 0
+flow from c6 to b2 = 0
+flow from c6 to b1 = 0
+flow from c6 to b0 = 0
+flow from c6 to c7 = 0
+flow from c6 to c6 = 0
+flow from c6 to c5 = 0
+flow from c6 to c4 = 0
+flow from c6 to d5 = 0
+flow from c6 to d4 = 0
+flow from c6 to d3 = 0
+flow from c6 to d2 = 0
+flow from c6 to e4 = 0
+flow from c6 to e3 = 0
+flow from c6 to e2 = 0
+flow from c6 to e1 = 0
+flow from c6 to end = 0
+flow from c5 to start = 0
+flow from c5 to a3 = 0
+flow from c5 to a2 = 0
+flow from c5 to a1 = 0
+flow from c5 to a0 = 0
+flow from c5 to b3 = 0
+flow from c5 to b2 = 0
+flow from c5 to b1 = 0
+flow from c5 to b0 = 0
+flow from c5 to c7 = 0
+flow from c5 to c6 = 0
+flow from c5 to c5 = 0
+flow from c5 to c4 = 0
+flow from c5 to d5 = 0
+flow from c5 to d4 = 0
+flow from c5 to d3 = 0
+flow from c5 to d2 = 0
+flow from c5 to e4 = 0
+flow from c5 to e3 = 0
+flow from c5 to e2 = 0
+flow from c5 to e1 = 0
+flow from c5 to end = 0
+flow from c4 to start = 0
+flow from c4 to a3 = 0
+flow from c4 to a2 = 0
+flow from c4 to a1 = 0
+flow from c4 to a0 = 0
+flow from c4 to b3 = 0
+flow from c4 to b2 = 0
+flow from c4 to b1 = 0
+flow from c4 to b0 = 0
+flow from c4 to c7 = 0
+flow from c4 to c6 = 0
+flow from c4 to c5 = 0
+flow from c4 to c4 = 0
+flow from c4 to d5 = 0
+flow from c4 to d4 = 0
+flow from c4 to d3 = 0
+flow from c4 to d2 = 0
+flow from c4 to e4 = 0
+flow from c4 to e3 = 0
+flow from c4 to e2 = 0
+flow from c4 to e1 = 0
+flow from c4 to end = 0
+flow from d5 to start = 0
+flow from d5 to a3 = 0
+flow from d5 to a2 = 0
+flow from d5 to a1 = 0
+flow from d5 to a0 = 0
+flow from d5 to b3 = 0
+flow from d5 to b2 = 0
+flow from d5 to b1 = 0
+flow from d5 to b0 = 0
+flow from d5 to c7 = 0
+flow from d5 to c6 = 0
+flow from d5 to c5 = 0
+flow from d5 to c4 = 0
+flow from d5 to d5 = 0
+flow from d5 to d4 = 0
+flow from d5 to d3 = 0
+flow from d5 to d2 = 0
+flow from d5 to e4 = 0
+flow from d5 to e3 = 0
+flow from d5 to e2 = 0
+flow from d5 to e1 = 0
+flow from d5 to end = 0
+flow from d4 to start = 0
+flow from d4 to a3 = 0
+flow from d4 to a2 = 0
+flow from d4 to a1 = 0
+flow from d4 to a0 = 0
+flow from d4 to b3 = 0
+flow from d4 to b2 = 0
+flow from d4 to b1 = 0
+flow from d4 to b0 = 0
+flow from d4 to c7 = 0
+flow from d4 to c6 = 0
+flow from d4 to c5 = 0
+flow from d4 to c4 = 0
+flow from d4 to d5 = 0
+flow from d4 to d4 = 0
+flow from d4 to d3 = 0
+flow from d4 to d2 = 0
+flow from d4 to e4 = 0
+flow from d4 to e3 = 0
+flow from d4 to e2 = 0
+flow from d4 to e1 = 0
+flow from d4 to end = 0
+flow from d3 to start = 0
+flow from d3 to a3 = 0
+flow from d3 to a2 = 0
+flow from d3 to a1 = 0
+flow from d3 to a0 = 0
+flow from d3 to b3 = 0
+flow from d3 to b2 = 0
+flow from d3 to b1 = 0
+flow from d3 to b0 = 0
+flow from d3 to c7 = 0
+flow from d3 to c6 = 0
+flow from d3 to c5 = 0
+flow from d3 to c4 = 0
+flow from d3 to d5 = 0
+flow from d3 to d4 = 0
+flow from d3 to d3 = 0
+flow from d3 to d2 = 0
+flow from d3 to e4 = 0
+flow from d3 to e3 = 0
+flow from d3 to e2 = 0
+flow from d3 to e1 = 0
+flow from d3 to end = 0
+flow from d2 to start = 0
+flow from d2 to a3 = 0
+flow from d2 to a2 = 0
+flow from d2 to a1 = 0
+flow from d2 to a0 = 0
+flow from d2 to b3 = 0
+flow from d2 to b2 = 0
+flow from d2 to b1 = 0
+flow from d2 to b0 = 0
+flow from d2 to c7 = 0
+flow from d2 to c6 = 0
+flow from d2 to c5 = 0
+flow from d2 to c4 = 0
+flow from d2 to d5 = 0
+flow from d2 to d4 = 0
+flow from d2 to d3 = 0
+flow from d2 to d2 = 0
+flow from d2 to e4 = 0
+flow from d2 to e3 = 0
+flow from d2 to e2 = 0
+flow from d2 to e1 = 0
+flow from d2 to end = 0
+flow from e4 to start = 0
+flow from e4 to a3 = 0
+flow from e4 to a2 = 0
+flow from e4 to a1 = 0
+flow from e4 to a0 = 0
+flow from e4 to b3 = 0
+flow from e4 to b2 = 0
+flow from e4 to b1 = 0
+flow from e4 to b0 = 0
+flow from e4 to c7 = 0
+flow from e4 to c6 = 0
+flow from e4 to c5 = 0
+flow from e4 to c4 = 0
+flow from e4 to d5 = 0
+flow from e4 to d4 = 0
+flow from e4 to d3 = 0
+flow from e4 to d2 = 0
+flow from e4 to e4 = 0
+flow from e4 to e3 = 0
+flow from e4 to e2 = 0
+flow from e4 to e1 = 0
+flow from e4 to end = 0
+flow from e3 to start = 0
+flow from e3 to a3 = 0
+flow from e3 to a2 = 0
+flow from e3 to a1 = 0
+flow from e3 to a0 = 0
+flow from e3 to b3 = 0
+flow from e3 to b2 = 0
+flow from e3 to b1 = 0
+flow from e3 to b0 = 0
+flow from e3 to c7 = 0
+flow from e3 to c6 = 0
+flow from e3 to c5 = 0
+flow from e3 to c4 = 0
+flow from e3 to d5 = 0
+flow from e3 to d4 = 0
+flow from e3 to d3 = 0
+flow from e3 to d2 = 0
+flow from e3 to e4 = 0
+flow from e3 to e3 = 0
+flow from e3 to e2 = 0
+flow from e3 to e1 = 0
+flow from e3 to end = 0
+flow from e2 to start = 0
+flow from e2 to a3 = 0
+flow from e2 to a2 = 0
+flow from e2 to a1 = 0
+flow from e2 to a0 = 0
+flow from e2 to b3 = 0
+flow from e2 to b2 = 0
+flow from e2 to b1 = 0
+flow from e2 to b0 = 0
+flow from e2 to c7 = 0
+flow from e2 to c6 = 0
+flow from e2 to c5 = 0
+flow from e2 to c4 = 0
+flow from e2 to d5 = 0
+flow from e2 to d4 = 0
+flow from e2 to d3 = 0
+flow from e2 to d2 = 0
+flow from e2 to e4 = 0
+flow from e2 to e3 = 0
+flow from e2 to e2 = 0
+flow from e2 to e1 = 0
+flow from e2 to end = 0
+flow from e1 to start = 0
+flow from e1 to a3 = 0
+flow from e1 to a2 = 0
+flow from e1 to a1 = 0
+flow from e1 to a0 = 0
+flow from e1 to b3 = 0
+flow from e1 to b2 = 0
+flow from e1 to b1 = 0
+flow from e1 to b0 = 0
+flow from e1 to c7 = 0
+flow from e1 to c6 = 0
+flow from e1 to c5 = 0
+flow from e1 to c4 = 0
+flow from e1 to d5 = 0
+flow from e1 to d4 = 0
+flow from e1 to d3 = 0
+flow from e1 to d2 = 0
+flow from e1 to e4 = 0
+flow from e1 to e3 = 0
+flow from e1 to e2 = 0
+flow from e1 to e1 = 0
+flow from e1 to end = 0
+flow from end to start = 0
+flow from end to a3 = 0
+flow from end to a2 = 0
+flow from end to a1 = 0
+flow from end to a0 = -1
+flow from end to b3 = 0
+flow from end to b2 = 0
+flow from end to b1 = 0
+flow from end to b0 = 0
+flow from end to c7 = 0
+flow from end to c6 = 0
+flow from end to c5 = 0
+flow from end to c4 = 0
+flow from end to d5 = 0
+flow from end to d4 = 0
+flow from end to d3 = 0
+flow from end to d2 = 0
+flow from end to e4 = 0
+flow from end to e3 = 0
+flow from end to e2 = 0
+flow from end to e1 = 0
+flow from end to end = 0
+
+flow end b0 to 1 / -1
+flow b0 b1 to 1 / -1
+flow b1 b2 to 1 / -1
+flow b2 b3 to 1 / -1
+flow b3 c4 to 1 / -1
+flow c4 c5 to 1 / -1
+flow c5 c6 to 1 / -1
+flow c6 c7 to 1 / -1
+flow c7 start to 1 / -1
+flow from start to start = 0
+flow from start to a3 = 1
+flow from start to a2 = 0
+flow from start to a1 = 0
+flow from start to a0 = 0
+flow from start to b3 = 0
+flow from start to b2 = 0
+flow from start to b1 = 0
+flow from start to b0 = 0
+flow from start to c7 = 1
+flow from start to c6 = 0
+flow from start to c5 = 0
+flow from start to c4 = 0
+flow from start to d5 = 0
+flow from start to d4 = 0
+flow from start to d3 = 0
+flow from start to d2 = 0
+flow from start to e4 = 0
+flow from start to e3 = 0
+flow from start to e2 = 0
+flow from start to e1 = 0
+flow from start to end = 0
+flow from a3 to start = -1
+flow from a3 to a3 = 0
+flow from a3 to a2 = 1
+flow from a3 to a1 = 0
+flow from a3 to a0 = 0
+flow from a3 to b3 = 0
+flow from a3 to b2 = 0
+flow from a3 to b1 = 0
+flow from a3 to b0 = 0
+flow from a3 to c7 = 0
+flow from a3 to c6 = 0
+flow from a3 to c5 = 0
+flow from a3 to c4 = 0
+flow from a3 to d5 = 0
+flow from a3 to d4 = 0
+flow from a3 to d3 = 0
+flow from a3 to d2 = 0
+flow from a3 to e4 = 0
+flow from a3 to e3 = 0
+flow from a3 to e2 = 0
+flow from a3 to e1 = 0
+flow from a3 to end = 0
+flow from a2 to start = 0
+flow from a2 to a3 = -1
+flow from a2 to a2 = 0
+flow from a2 to a1 = 1
+flow from a2 to a0 = 0
+flow from a2 to b3 = 0
+flow from a2 to b2 = 0
+flow from a2 to b1 = 0
+flow from a2 to b0 = 0
+flow from a2 to c7 = 0
+flow from a2 to c6 = 0
+flow from a2 to c5 = 0
+flow from a2 to c4 = 0
+flow from a2 to d5 = 0
+flow from a2 to d4 = 0
+flow from a2 to d3 = 0
+flow from a2 to d2 = 0
+flow from a2 to e4 = 0
+flow from a2 to e3 = 0
+flow from a2 to e2 = 0
+flow from a2 to e1 = 0
+flow from a2 to end = 0
+flow from a1 to start = 0
+flow from a1 to a3 = 0
+flow from a1 to a2 = -1
+flow from a1 to a1 = 0
+flow from a1 to a0 = 1
+flow from a1 to b3 = 0
+flow from a1 to b2 = 0
+flow from a1 to b1 = 0
+flow from a1 to b0 = 0
+flow from a1 to c7 = 0
+flow from a1 to c6 = 0
+flow from a1 to c5 = 0
+flow from a1 to c4 = 0
+flow from a1 to d5 = 0
+flow from a1 to d4 = 0
+flow from a1 to d3 = 0
+flow from a1 to d2 = 0
+flow from a1 to e4 = 0
+flow from a1 to e3 = 0
+flow from a1 to e2 = 0
+flow from a1 to e1 = 0
+flow from a1 to end = 0
+flow from a0 to start = 0
+flow from a0 to a3 = 0
+flow from a0 to a2 = 0
+flow from a0 to a1 = -1
+flow from a0 to a0 = 0
+flow from a0 to b3 = 0
+flow from a0 to b2 = 0
+flow from a0 to b1 = 0
+flow from a0 to b0 = 0
+flow from a0 to c7 = 0
+flow from a0 to c6 = 0
+flow from a0 to c5 = 0
+flow from a0 to c4 = 0
+flow from a0 to d5 = 0
+flow from a0 to d4 = 0
+flow from a0 to d3 = 0
+flow from a0 to d2 = 0
+flow from a0 to e4 = 0
+flow from a0 to e3 = 0
+flow from a0 to e2 = 0
+flow from a0 to e1 = 0
+flow from a0 to end = 1
+flow from b3 to start = 0
+flow from b3 to a3 = 0
+flow from b3 to a2 = 0
+flow from b3 to a1 = 0
+flow from b3 to a0 = 0
+flow from b3 to b3 = 0
+flow from b3 to b2 = 1
+flow from b3 to b1 = 0
+flow from b3 to b0 = 0
+flow from b3 to c7 = 0
+flow from b3 to c6 = 0
+flow from b3 to c5 = 0
+flow from b3 to c4 = -1
+flow from b3 to d5 = 0
+flow from b3 to d4 = 0
+flow from b3 to d3 = 0
+flow from b3 to d2 = 0
+flow from b3 to e4 = 0
+flow from b3 to e3 = 0
+flow from b3 to e2 = 0
+flow from b3 to e1 = 0
+flow from b3 to end = 0
+flow from b2 to start = 0
+flow from b2 to a3 = 0
+flow from b2 to a2 = 0
+flow from b2 to a1 = 0
+flow from b2 to a0 = 0
+flow from b2 to b3 = -1
+flow from b2 to b2 = 0
+flow from b2 to b1 = 1
+flow from b2 to b0 = 0
+flow from b2 to c7 = 0
+flow from b2 to c6 = 0
+flow from b2 to c5 = 0
+flow from b2 to c4 = 0
+flow from b2 to d5 = 0
+flow from b2 to d4 = 0
+flow from b2 to d3 = 0
+flow from b2 to d2 = 0
+flow from b2 to e4 = 0
+flow from b2 to e3 = 0
+flow from b2 to e2 = 0
+flow from b2 to e1 = 0
+flow from b2 to end = 0
+flow from b1 to start = 0
+flow from b1 to a3 = 0
+flow from b1 to a2 = 0
+flow from b1 to a1 = 0
+flow from b1 to a0 = 0
+flow from b1 to b3 = 0
+flow from b1 to b2 = -1
+flow from b1 to b1 = 0
+flow from b1 to b0 = 1
+flow from b1 to c7 = 0
+flow from b1 to c6 = 0
+flow from b1 to c5 = 0
+flow from b1 to c4 = 0
+flow from b1 to d5 = 0
+flow from b1 to d4 = 0
+flow from b1 to d3 = 0
+flow from b1 to d2 = 0
+flow from b1 to e4 = 0
+flow from b1 to e3 = 0
+flow from b1 to e2 = 0
+flow from b1 to e1 = 0
+flow from b1 to end = 0
+flow from b0 to start = 0
+flow from b0 to a3 = 0
+flow from b0 to a2 = 0
+flow from b0 to a1 = 0
+flow from b0 to a0 = 0
+flow from b0 to b3 = 0
+flow from b0 to b2 = 0
+flow from b0 to b1 = -1
+flow from b0 to b0 = 0
+flow from b0 to c7 = 0
+flow from b0 to c6 = 0
+flow from b0 to c5 = 0
+flow from b0 to c4 = 0
+flow from b0 to d5 = 0
+flow from b0 to d4 = 0
+flow from b0 to d3 = 0
+flow from b0 to d2 = 0
+flow from b0 to e4 = 0
+flow from b0 to e3 = 0
+flow from b0 to e2 = 0
+flow from b0 to e1 = 0
+flow from b0 to end = 1
+flow from c7 to start = -1
+flow from c7 to a3 = 0
+flow from c7 to a2 = 0
+flow from c7 to a1 = 0
+flow from c7 to a0 = 0
+flow from c7 to b3 = 0
+flow from c7 to b2 = 0
+flow from c7 to b1 = 0
+flow from c7 to b0 = 0
+flow from c7 to c7 = 0
+flow from c7 to c6 = 1
+flow from c7 to c5 = 0
+flow from c7 to c4 = 0
+flow from c7 to d5 = 0
+flow from c7 to d4 = 0
+flow from c7 to d3 = 0
+flow from c7 to d2 = 0
+flow from c7 to e4 = 0
+flow from c7 to e3 = 0
+flow from c7 to e2 = 0
+flow from c7 to e1 = 0
+flow from c7 to end = 0
+flow from c6 to start = 0
+flow from c6 to a3 = 0
+flow from c6 to a2 = 0
+flow from c6 to a1 = 0
+flow from c6 to a0 = 0
+flow from c6 to b3 = 0
+flow from c6 to b2 = 0
+flow from c6 to b1 = 0
+flow from c6 to b0 = 0
+flow from c6 to c7 = -1
+flow from c6 to c6 = 0
+flow from c6 to c5 = 1
+flow from c6 to c4 = 0
+flow from c6 to d5 = 0
+flow from c6 to d4 = 0
+flow from c6 to d3 = 0
+flow from c6 to d2 = 0
+flow from c6 to e4 = 0
+flow from c6 to e3 = 0
+flow from c6 to e2 = 0
+flow from c6 to e1 = 0
+flow from c6 to end = 0
+flow from c5 to start = 0
+flow from c5 to a3 = 0
+flow from c5 to a2 = 0
+flow from c5 to a1 = 0
+flow from c5 to a0 = 0
+flow from c5 to b3 = 0
+flow from c5 to b2 = 0
+flow from c5 to b1 = 0
+flow from c5 to b0 = 0
+flow from c5 to c7 = 0
+flow from c5 to c6 = -1
+flow from c5 to c5 = 0
+flow from c5 to c4 = 1
+flow from c5 to d5 = 0
+flow from c5 to d4 = 0
+flow from c5 to d3 = 0
+flow from c5 to d2 = 0
+flow from c5 to e4 = 0
+flow from c5 to e3 = 0
+flow from c5 to e2 = 0
+flow from c5 to e1 = 0
+flow from c5 to end = 0
+flow from c4 to start = 0
+flow from c4 to a3 = 0
+flow from c4 to a2 = 0
+flow from c4 to a1 = 0
+flow from c4 to a0 = 0
+flow from c4 to b3 = 1
+flow from c4 to b2 = 0
+flow from c4 to b1 = 0
+flow from c4 to b0 = 0
+flow from c4 to c7 = 0
+flow from c4 to c6 = 0
+flow from c4 to c5 = -1
+flow from c4 to c4 = 0
+flow from c4 to d5 = 0
+flow from c4 to d4 = 0
+flow from c4 to d3 = 0
+flow from c4 to d2 = 0
+flow from c4 to e4 = 0
+flow from c4 to e3 = 0
+flow from c4 to e2 = 0
+flow from c4 to e1 = 0
+flow from c4 to end = 0
+flow from d5 to start = 0
+flow from d5 to a3 = 0
+flow from d5 to a2 = 0
+flow from d5 to a1 = 0
+flow from d5 to a0 = 0
+flow from d5 to b3 = 0
+flow from d5 to b2 = 0
+flow from d5 to b1 = 0
+flow from d5 to b0 = 0
+flow from d5 to c7 = 0
+flow from d5 to c6 = 0
+flow from d5 to c5 = 0
+flow from d5 to c4 = 0
+flow from d5 to d5 = 0
+flow from d5 to d4 = 0
+flow from d5 to d3 = 0
+flow from d5 to d2 = 0
+flow from d5 to e4 = 0
+flow from d5 to e3 = 0
+flow from d5 to e2 = 0
+flow from d5 to e1 = 0
+flow from d5 to end = 0
+flow from d4 to start = 0
+flow from d4 to a3 = 0
+flow from d4 to a2 = 0
+flow from d4 to a1 = 0
+flow from d4 to a0 = 0
+flow from d4 to b3 = 0
+flow from d4 to b2 = 0
+flow from d4 to b1 = 0
+flow from d4 to b0 = 0
+flow from d4 to c7 = 0
+flow from d4 to c6 = 0
+flow from d4 to c5 = 0
+flow from d4 to c4 = 0
+flow from d4 to d5 = 0
+flow from d4 to d4 = 0
+flow from d4 to d3 = 0
+flow from d4 to d2 = 0
+flow from d4 to e4 = 0
+flow from d4 to e3 = 0
+flow from d4 to e2 = 0
+flow from d4 to e1 = 0
+flow from d4 to end = 0
+flow from d3 to start = 0
+flow from d3 to a3 = 0
+flow from d3 to a2 = 0
+flow from d3 to a1 = 0
+flow from d3 to a0 = 0
+flow from d3 to b3 = 0
+flow from d3 to b2 = 0
+flow from d3 to b1 = 0
+flow from d3 to b0 = 0
+flow from d3 to c7 = 0
+flow from d3 to c6 = 0
+flow from d3 to c5 = 0
+flow from d3 to c4 = 0
+flow from d3 to d5 = 0
+flow from d3 to d4 = 0
+flow from d3 to d3 = 0
+flow from d3 to d2 = 0
+flow from d3 to e4 = 0
+flow from d3 to e3 = 0
+flow from d3 to e2 = 0
+flow from d3 to e1 = 0
+flow from d3 to end = 0
+flow from d2 to start = 0
+flow from d2 to a3 = 0
+flow from d2 to a2 = 0
+flow from d2 to a1 = 0
+flow from d2 to a0 = 0
+flow from d2 to b3 = 0
+flow from d2 to b2 = 0
+flow from d2 to b1 = 0
+flow from d2 to b0 = 0
+flow from d2 to c7 = 0
+flow from d2 to c6 = 0
+flow from d2 to c5 = 0
+flow from d2 to c4 = 0
+flow from d2 to d5 = 0
+flow from d2 to d4 = 0
+flow from d2 to d3 = 0
+flow from d2 to d2 = 0
+flow from d2 to e4 = 0
+flow from d2 to e3 = 0
+flow from d2 to e2 = 0
+flow from d2 to e1 = 0
+flow from d2 to end = 0
+flow from e4 to start = 0
+flow from e4 to a3 = 0
+flow from e4 to a2 = 0
+flow from e4 to a1 = 0
+flow from e4 to a0 = 0
+flow from e4 to b3 = 0
+flow from e4 to b2 = 0
+flow from e4 to b1 = 0
+flow from e4 to b0 = 0
+flow from e4 to c7 = 0
+flow from e4 to c6 = 0
+flow from e4 to c5 = 0
+flow from e4 to c4 = 0
+flow from e4 to d5 = 0
+flow from e4 to d4 = 0
+flow from e4 to d3 = 0
+flow from e4 to d2 = 0
+flow from e4 to e4 = 0
+flow from e4 to e3 = 0
+flow from e4 to e2 = 0
+flow from e4 to e1 = 0
+flow from e4 to end = 0
+flow from e3 to start = 0
+flow from e3 to a3 = 0
+flow from e3 to a2 = 0
+flow from e3 to a1 = 0
+flow from e3 to a0 = 0
+flow from e3 to b3 = 0
+flow from e3 to b2 = 0
+flow from e3 to b1 = 0
+flow from e3 to b0 = 0
+flow from e3 to c7 = 0
+flow from e3 to c6 = 0
+flow from e3 to c5 = 0
+flow from e3 to c4 = 0
+flow from e3 to d5 = 0
+flow from e3 to d4 = 0
+flow from e3 to d3 = 0
+flow from e3 to d2 = 0
+flow from e3 to e4 = 0
+flow from e3 to e3 = 0
+flow from e3 to e2 = 0
+flow from e3 to e1 = 0
+flow from e3 to end = 0
+flow from e2 to start = 0
+flow from e2 to a3 = 0
+flow from e2 to a2 = 0
+flow from e2 to a1 = 0
+flow from e2 to a0 = 0
+flow from e2 to b3 = 0
+flow from e2 to b2 = 0
+flow from e2 to b1 = 0
+flow from e2 to b0 = 0
+flow from e2 to c7 = 0
+flow from e2 to c6 = 0
+flow from e2 to c5 = 0
+flow from e2 to c4 = 0
+flow from e2 to d5 = 0
+flow from e2 to d4 = 0
+flow from e2 to d3 = 0
+flow from e2 to d2 = 0
+flow from e2 to e4 = 0
+flow from e2 to e3 = 0
+flow from e2 to e2 = 0
+flow from e2 to e1 = 0
+flow from e2 to end = 0
+flow from e1 to start = 0
+flow from e1 to a3 = 0
+flow from e1 to a2 = 0
+flow from e1 to a1 = 0
+flow from e1 to a0 = 0
+flow from e1 to b3 = 0
+flow from e1 to b2 = 0
+flow from e1 to b1 = 0
+flow from e1 to b0 = 0
+flow from e1 to c7 = 0
+flow from e1 to c6 = 0
+flow from e1 to c5 = 0
+flow from e1 to c4 = 0
+flow from e1 to d5 = 0
+flow from e1 to d4 = 0
+flow from e1 to d3 = 0
+flow from e1 to d2 = 0
+flow from e1 to e4 = 0
+flow from e1 to e3 = 0
+flow from e1 to e2 = 0
+flow from e1 to e1 = 0
+flow from e1 to end = 0
+flow from end to start = 0
+flow from end to a3 = 0
+flow from end to a2 = 0
+flow from end to a1 = 0
+flow from end to a0 = -1
+flow from end to b3 = 0
+flow from end to b2 = 0
+flow from end to b1 = 0
+flow from end to b0 = -1
+flow from end to c7 = 0
+flow from end to c6 = 0
+flow from end to c5 = 0
+flow from end to c4 = 0
+flow from end to d5 = 0
+flow from end to d4 = 0
+flow from end to d3 = 0
+flow from end to d2 = 0
+flow from end to e4 = 0
+flow from end to e3 = 0
+flow from end to e2 = 0
+flow from end to e1 = 0
+flow from end to end = 0
+
+trying 1, visited = 0 flow = 0
+trying 9, visited = 0 flow = 0
+trying 13, visited = 0 flow = 0
+trying 17, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 2, visited = 0 flow = 0
+trying 5, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 10, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 14, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 18, visited = 0 flow = 0
+trying 1, visited = 1 flow = 0
+trying 3, visited = 0 flow = 0
+trying 1, visited = 1 flow = 0
+trying 6, visited = 0 flow = 0
+trying 12, visited = 0 flow = 0
+trying 9, visited = 1 flow = 0
+trying 11, visited = 0 flow = 0
+trying 13, visited = 1 flow = 0
+trying 15, visited = 0 flow = 0
+trying 17, visited = 1 flow = 0
+trying 19, visited = 0 flow = 0
+trying 2, visited = 1 flow = 0
+trying 4, visited = 0 flow = 0
+trying 16, visited = 0 flow = 0
+trying 5, visited = 1 flow = 0
+trying 7, visited = 0 flow = 0
+trying 5, visited = 1 flow = 0
+trying 11, visited = 1 flow = 0
+trying 10, visited = 1 flow = 0
+trying 12, visited = 1 flow = 0
+trying 14, visited = 1 flow = 0
+trying 16, visited = 1 flow = 0
+trying 18, visited = 1 flow = 0
+trying 20, visited = 0 flow = 0
+trying 3, visited = 1 flow = 0
+trying 20, visited = 1 flow = 0
+trying 21, visited = 0 flow = 0
+s = 4
+s = 3
+s = 2
+s = 1
+s = 0
+
+
+..............
+trying 1, visited = 0 flow = 1
+trying 9, visited = 0 flow = 0
+trying 13, visited = 0 flow = 0
+trying 17, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 10, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 14, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 18, visited = 0 flow = 0
+trying 9, visited = 1 flow = 0
+trying 11, visited = 0 flow = 0
+trying 13, visited = 1 flow = 0
+trying 15, visited = 0 flow = 0
+trying 17, visited = 1 flow = 0
+trying 19, visited = 0 flow = 0
+trying 10, visited = 1 flow = 0
+trying 12, visited = 0 flow = 0
+trying 14, visited = 1 flow = 0
+trying 16, visited = 0 flow = 0
+trying 18, visited = 1 flow = 0
+trying 20, visited = 0 flow = 0
+trying 5, visited = 0 flow = 0
+trying 11, visited = 1 flow = 0
+trying 3, visited = 0 flow = 0
+trying 15, visited = 1 flow = 0
+trying 4, visited = 0 flow = 0
+trying 19, visited = 1 flow = 0
+trying 1, visited = 0 flow = 0
+trying 6, visited = 0 flow = 0
+trying 12, visited = 1 flow = 0
+trying 2, visited = 0 flow = -1
+trying 4, visited = 1 flow = 1
+trying 16, visited = 1 flow = 0
+trying 3, visited = 1 flow = -1
+trying 20, visited = 1 flow = 0
+trying 21, visited = 0 flow = 1
+trying 0, visited = 1 flow = -1
+trying 2, visited = 1 flow = 1
+trying 5, visited = 1 flow = 0
+trying 5, visited = 1 flow = 0
+trying 7, visited = 0 flow = 0
+trying 1, visited = 1 flow = -1
+trying 3, visited = 1 flow = 1
+trying 6, visited = 1 flow = 0
+trying 8, visited = 0 flow = 0
+trying 7, visited = 1 flow = 0
+trying 21, visited = 0 flow = 0
+s = 8
+s = 7
+s = 6
+s = 5
+s = 12
+s = 11
+s = 10
+s = 9
+s = 0
+
+
+..............
+trying 1, visited = 0 flow = 1
+trying 9, visited = 0 flow = 1
+trying 13, visited = 0 flow = 0
+trying 17, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 14, visited = 0 flow = 0
+trying 0, visited = 1 flow = 0
+trying 18, visited = 0 flow = 0
+trying 13, visited = 1 flow = 0
+trying 15, visited = 0 flow = 0
+trying 17, visited = 1 flow = 0
+trying 19, visited = 0 flow = 0
+trying 14, visited = 1 flow = 0
+trying 16, visited = 0 flow = 0
+trying 18, visited = 1 flow = 0
+trying 20, visited = 0 flow = 0
+trying 3, visited = 0 flow = 0
+trying 15, visited = 1 flow = 0
+trying 4, visited = 0 flow = 0
+trying 19, visited = 1 flow = 0
+trying 2, visited = 0 flow = -1
+trying 4, visited = 1 flow = 1
+trying 16, visited = 1 flow = 0
+trying 3, visited = 1 flow = -1
+trying 20, visited = 1 flow = 0
+trying 21, visited = 0 flow = 1
+trying 1, visited = 0 flow = -1
+trying 3, visited = 1 flow = 1
+trying 0, visited = 1 flow = -1
+trying 2, visited = 1 flow = 1
+trying 5, visited = 0 flow = 0
+trying 1, visited = 1 flow = 0
+trying 6, visited = 0 flow = 1
+trying 12, visited = 0 flow = -1
+trying 5, visited = 1 flow = 1
+trying 11, visited = 0 flow = -1
+trying 10, visited = 0 flow = -1
+trying 12, visited = 1 fstart c7 c6 c5 c4 b3 b2 b1 b0 
+start a3 a2 a1 a0 
+start a3 a2 a1 a0 
+low = 1
+trying 9, visited = 0 flow = -1
+trying 11, visited = 1 flow = 1
+trying 0, visited = 1 flow = -1
+trying 10, visited = 1 flow = 1

@@ -15,7 +15,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-void mark_path(t_farm *f, t_queue *q, int i)
+void mark_path(t_farm *f, t_queue *q)
 {
     int path;
     int j;
@@ -24,7 +24,7 @@ void mark_path(t_farm *f, t_queue *q, int i)
     path = q->prev[f->end->id];
     while (path != f->start->id) 
     {
-        q->visited[path] = i;
+        q->visited[path] = 2;
         path = q->prev[path];
 
     }
@@ -50,29 +50,45 @@ int count_paths(t_queue *q, t_farm *f)
     {
         if ((keep_path(q, f, &longest_path, i - 2)) == 0)
             break;
-        mark_path(f, q, i);
+        mark_path(f, q);
 		++i;
     }
     return (i - 2);
 }
 
-t_list *save_paths(t_queue *q, t_farm *f)
+t_list **save_paths(t_queue *q, t_farm *f, t_list **path_list)
 {
 	int *path;
+    size_t steps;
     t_list *new;
+    int i;
 
- //   new->content = NULL;
-   // new->content_size = 0;
-	if (bfs(f, q) == -1)
-		return (new);
-	if (!(path = rev_path(f, q)))
-			return (new);
-    new->content = path;
-    printf("end= %d\n", f->end->id);
- //   printf("entry here HERE?\n");
-   // printf("STEPS %zu\n", count_steps(q, f->start->id, f->end->id));
-    count_steps(q, f->start->id, f->end->id);
-	return (new);
+    i = 0;
+//  new->content_size = 0;
+    
+    set_to_n(&q->visited, q->length, 0);
+    reset_queue(q, f->start->id, f->end->id);
+    while (bfs(f, q) == 0)
+	{
+        printf("bfs");
+	    if (!(path = rev_path(f, q)))
+		    return (path_list);
+        steps = count_steps(q, f->start->id, f->end->id);
+        mark_path(f, q);
+        while (i < q->length)
+        {
+            printf("%d ", q->visited[i]);
+            ++i;
+        }
+        putchar('\n');
+        new = ft_lstnew(path, sizeof(int) * steps + 1);
+        ft_lstadd(path_list, new);
+        ++f->max_paths;
+        printf("max = %d\n", f->max_paths);
+    }
+ //  putchar('\n');
+  //  clear_queue(q);
+	return (path_list);
 }
 
 size_t count_steps(t_queue *q, int start, int end)
@@ -80,14 +96,12 @@ size_t count_steps(t_queue *q, int start, int end)
     int steps;
 
     steps = 0;
-    printf("doI get hereeee? end =%d start =%d\n\n", end, start);
     while (end != start)
     {
-        ft_printf("end = %d next = %d step = %zu\n", end, q->prev[end], steps);
+     //   printf("end = %d next = %d step = %zu\n", end, q->prev[end], steps);
         end = q->prev[end];
 		++steps;
     }
-  //  printf("steps = %zu", steps);
     return (steps);
 }
 
@@ -98,6 +112,7 @@ int *rev_path(t_farm *f, t_queue *q)
     int i;
     int pos;
 
+;
     pos = f->end->id;
    // printf("entry?");
     steps = count_steps(q, f->start->id, f->end->id); //count how many moves we made
@@ -114,5 +129,24 @@ int *rev_path(t_farm *f, t_queue *q)
     return (rev_path);
 }
 
+void new_mark_paths(t_farm *f, t_queue *q, t_list *paths)
+{
+	t_list *tracker;
+	int i;
+	size_t j;
 
-  
+	i = 0;
+	tracker = paths;
+	while (tracker->content != NULL)
+	{
+		j = 0;
+		while(((int *)tracker->content)[j] != f->end->id)
+		{
+			ft_printf("%d ", ((int *)tracker->content)[j]);
+			++j;
+		}
+		ft_printf("%d\n", ((int *)tracker->content)[j]);
+		tracker = tracker->next;
+		++i;
+	}
+}
