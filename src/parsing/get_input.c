@@ -6,7 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2019/09/10 02:44:49 by amamy            ###   ########.fr       */
+=======
+/*   Updated: 2019/10/15 19:09:01 by amamy            ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +103,12 @@ static int	get_quantity_ants(t_farm *f)
 
 int			get_input(t_farm *f, t_room *r)
 {
+	t_input	*start;
+
+	if (!(start = ft_memalloc(sizeof(t_input))))
+		return (-1);
+	f->input = start;
+	f->input_start = start;
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0 \
 		|| is_start_end_linked(f) != 0)

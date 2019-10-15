@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+from usage import usage
 
 def check_args(args, option):
 	for arg in args:
@@ -23,7 +24,7 @@ def check_graph_size(farm, settings):
 	return settings
 
 def basic_settings(settings, args, farm):
-	if check_args(args, "-dark_settings") == True or check_args(args, "-dark_settings") == False:
+	if check_args(args, "-dark_theme") == True or check_args(args, "-dark_theme") == False:
 		settings = check_graph_size(farm, settings)
 		settings["steps_between_nodes"] = 15
 		settings["repeat"] = False
@@ -33,8 +34,9 @@ def basic_settings(settings, args, farm):
 		settings["background_color"] = "#15202b"
 		settings["node_color"] = "#282828"
 		settings["ant_colors_list"] = ['#15B6B6', '#15B6B6', '#1515B6', '#B615B6', '#6615B6', '#15B6B6', '#15B6B6', '#1515B6', '#B615B6', '#6615B6', '#6615B6']
+		settings["labels"] = None
 
-	if check_args(args, "-blue_settings") == True:
+	if check_args(args, "-blue_theme") == True:
 		settings = check_graph_size(farm, settings)		
 		settings["steps_between_nodes"] = 15
 		settings["window_size"] = None
@@ -45,6 +47,7 @@ def basic_settings(settings, args, farm):
 		settings["background_color"] = "#013FC1"
 		settings["node_color"] = "#AAD1ED"
 		settings["ant_colors_list"] = ['#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6']
+		settings["labels"] = None
 	return settings
 
 def color_background(settings, args):
@@ -91,7 +94,7 @@ def color_nodes(settings, args):
 
 def color_links(settings, args):
 	if check_args(args, "-red_links") == True:
-		settings["link_color"] = "#B61515"
+		settings["link_c   olor"] = "#B61515"
 	elif check_args(args, "-orange_links") == True:
 		settings["link_color"] = "#B66615"
 	elif check_args(args, "-yellow_links") == True:
@@ -164,12 +167,27 @@ def set_window_size(settings, args):
 			x = (int)(line[0])
 			y = (int)(line[1])
 		except Exception:
-			print "default size taken, please choose a size between 0 and 20"
+			print ("default size taken, please choose a size between 0 and 20")
 			return settings
 		if (x >= 0 and x <= 20 and y >= 0 and y <= 20):
 			settings["window_size"] = (x, y)
-		print settings["window_size"]
+		print (settings["window_size"])
 	return settings
+
+#To be check
+# def set_nodes_names(settings, args, farm):
+# 	if check_args(args, "-nodes_name") == True:
+# 		settings["labels"] = dict([(farm.start, 'START'), (farm.end, 'END')])
+# 	else:
+# 		settings["labels"] = None
+
+def print_usage(args):
+	if check_args(args, "-help") == True:
+		usage()
+
+def print_farm(args, farm):
+	if check_args(args, "-farm") == True:
+		print ("{} - ants:\t{}\n{} - start:\t{}\n{} - end:\t{}\n\n{} - rooms: \n{}\n\n{} - pos: \n{}\n\n{} - links \n{}\n\n{} - moves \n{}".format(type(farm.ants), farm.ants, type(farm.start), farm.start, type(farm.end), farm.end, type(farm.nodes), farm.nodes, type(farm.pos), farm.pos, type(farm.links), farm.links, type(farm.moves), farm.moves))
 
 def create_settings(args, farm):
 	settings = {}
@@ -182,4 +200,7 @@ def create_settings(args, farm):
 	settings = set_repeat(settings, args)
 	settings = set_size(settings, args)
 	settings = set_window_size(settings, args)
+	# settings = set_nodes_names(settings, args, farm)
+	print_usage(args)
+	print_farm(args, farm)
 	return settings

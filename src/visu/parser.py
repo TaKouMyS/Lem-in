@@ -22,7 +22,7 @@ def regex_compile():
 	"""pre compile all regex we need to parse map"""
 
 	reg_dict = {}
-	reg_dict["is_error"] = re.compile(r"^ERROR$")
+	reg_dict["is_error"] = re.compile(r"ERROR")
 	reg_dict["is_ant_nb"] = re.compile(r"^\d+$")
 	reg_dict["is_comment"] = re.compile(r"^#")
 	reg_dict["is_start"] = re.compile(r"^#{2}(start)")
@@ -70,6 +70,6 @@ def parser():
 		elif (reg_dict["is_link"].search(line)):
 			get_link(farm, line)
 		elif (reg_dict["is_error"].search(line)):
-			print "ERROR"
+			print ("ERROR")
 			quit()
 	return (farm)

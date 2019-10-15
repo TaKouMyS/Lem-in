@@ -6,12 +6,25 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/08 02:04:33 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/16 00:19:47 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
+#include <stdio.h>
+
+static void	write_input(t_farm *f)
+{
+	f->input = f->input_start;
+	while (f->input->line)
+	{
+		ft_putstr(f->input->line);
+		ft_putstr("\n");
+		f->input = f->input->next;
+	}
+	putchar('\n');
+}
 
 int	main(void)
 {
@@ -31,9 +44,8 @@ int	main(void)
 		ft_free_lemin(f, r);
 		return (-1);
 	}
-	ft_printf("start room's name :%s\n id : %d\n", f->start->name, f->start->id);
-	ft_printf("end room's name :%s\n id : %d\n", f->end->name, f->end->id);
+	write_input(f);
+	solve(f, f->room_nb, f->start->id);
 	ft_free_lemin(f, r);
-	ft_putstr("No errors!\n");
 	return (0);
 }

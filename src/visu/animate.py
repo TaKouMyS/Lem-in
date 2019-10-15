@@ -5,16 +5,22 @@ import networkx as nx
 from class_ant import Ant
 from set_paths_colors import set_paths_colors
 from draw import draw_node, draw_nodes, draw_ant
+from usage import usage
+from create_settings import check_args
 
 def make_squad(data, settings, s_b_n):
 	ant_list = []
-	for nb in range(1, (int(data['farm'].ants) + 1)):
-		ant = Ant(nb)
-		ant.set_node_path(data['farm'])
-		ant.set_location(data['pos'], data['farm'])
-		ant.set_journey(data['pos'], s_b_n, data['farm'])
-		ant.color = settings['ant_colors_list'][nb % 11]
-		ant_list.append(ant)
+	try : 
+		for nb in range(1, (int(data['farm'].ants) + 1)):
+			ant = Ant(nb)
+			ant.set_node_path(data['farm'])
+			ant.set_location(data['pos'], data['farm'])
+			ant.set_journey(data['pos'], s_b_n, data['farm'])
+			ant.color = settings['ant_colors_list'][nb % 11]
+			ant_list.append(ant)
+	except : 
+		usage()
+		quit()
 	return (ant_list)
 
 def action(frame, data, fig, ant_squad, settings):
@@ -36,10 +42,11 @@ def action(frame, data, fig, ant_squad, settings):
 	nx.draw_networkx_labels(
 		data['g'],
 		data['pos'],
-		font_size=8,
-		labels=dict([(data['farm'].start, 'START'), (data['farm'].end, 'END')]),
-		font_family='sans-serif',
-		font_color=settings['text_color'])
+		font_size = 8,
+		# labels = settings['labels'],
+		labels = dict([(data['farm'].start, 'START'), (data['farm'].end, 'END')]),
+		font_family = 'sans-serif',
+		font_color = settings['text_color'])
 	
 	# set the background color
 	fig.set_facecolor(settings['background_color'])
