@@ -1,309 +1,0 @@
-Script started on Wed Sep 11 23:07:20 2019
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/misc]1;..m-in/git/misc[0m[27m[24m[J[01;32m➜  [36mmisc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hggenerator[?1l>[?2004l
-]2;generator]1;generatorzsh: command not found: generator
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/misc]1;..m-in/git/misc[0m[27m[24m[J[01;31m➜  [36mmisc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgenerator --big[?1l>[?2004l
-]2;generator --big]1;generatorzsh: command not found: generator
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/misc]1;..m-in/git/misc[0m[27m[24m[J[01;31m➜  [36mmisc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgenerator --big.generator --big[15D./generator --big[15D[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[?1l>[?2004l
-]2;./generator --big]1;./generatorzsh: permission denied: ./generator
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/misc]1;..m-in/git/misc[0m[27m[24m[J[01;31m➜  [36mmisc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./generator --big              .  ccd ..[?1l>[?2004l
-]2;cd ..]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git]1;..09-lem-in/git[0m[27m[24m[J[01;32m➜  [36mgit[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hccd src[1m/[0m[0m [?1l>[?2004l
-]2;cd src]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hlls[?1l>[?2004l
-]2;ls -G]1;lsft_free.c main.c    [1m[36mparsing[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hmmkdir isu   visu[?1l>[?2004l
-]2;mkdir visu]1;mkdir[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hccd visu[1m/[0m[0m [?1l>[?2004l
-]2;cd visu]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004httouch test.c[?1l>[?2004l
-]2;touch test.c]1;touch[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hlls[?1l>[?2004l
-]2;ls -G]1;lstest.c
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hggcc test.c[1m [0m[0m [?1l>[?2004l
-]2;gcc test.c]1;gccUndefined symbols for architecture x86_64:
-  "_SDL_CreateRenderer", referenced from:
-      _main in test-11a978.o
-  "_SDL_CreateWindow", referenced from:
-      _main in test-11a978.o
-  "_SDL_Delay", referenced from:
-      _main in test-11a978.o
-  "_SDL_DestroyRenderer", referenced from:
-      _main in test-11a978.o
-  "_SDL_DestroyWindow", referenced from:
-      _main in test-11a978.o
-  "_SDL_GetError", referenced from:
-      _main in test-11a978.o
-  "_SDL_Init", referenced from:
-      _main in test-11a978.o
-  "_SDL_Quit", referenced from:
-      _main in test-11a978.o
-  "_SDL_RenderClear", referenced from:
-      _main in test-11a978.o
-  "_SDL_RenderPresent", referenced from:
-      _main in test-11a978.o
-  "_SDL_SetRenderDrawColor", referenced from:
-      _main in test-11a978.o
-ld: symbol(s) not found for architecture x86_64
-clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gcc[1mtest.c:13:10: [0m[0;1;31mfatal error: [0m[1m'SDL.h' file not found[0m
-#include <SDL.h>
-[0;1;32m         ^~~~~~~
-[0m1 error generated.
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gccUndefined symbols for architecture x86_64:
-  "_SDL_CreateRenderer", referenced from:
-      _main in test-dce002.o
-  "_SDL_CreateWindow", referenced from:
-      _main in test-dce002.o
-  "_SDL_Delay", referenced from:
-      _main in test-dce002.o
-  "_SDL_DestroyRenderer", referenced from:
-      _main in test-dce002.o
-  "_SDL_DestroyWindow", referenced from:
-      _main in test-dce002.o
-  "_SDL_GetError", referenced from:
-      _main in test-dce002.o
-  "_SDL_Init", referenced from:
-      _main in test-dce002.o
-  "_SDL_Quit", referenced from:
-      _main in test-dce002.o
-  "_SDL_RenderClear", referenced from:
-      _main in test-dce002.o
-  "_SDL_RenderPresent", referenced from:
-      _main in test-dce002.o
-  "_SDL_SetRenderDrawColor", referenced from:
-      _main in test-dce002.o
-ld: symbol(s) not found for architecture x86_64
-clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gccUndefined symbols for architecture x86_64:
-  "_SDL_CreateRenderer", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_CreateWindow", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_Delay", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_DestroyRenderer", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_DestroyWindow", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_GetError", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_Init", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_Quit", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_RenderClear", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_RenderPresent", referenced from:
-      _main in test-a04a9a.o
-  "_SDL_SetRenderDrawColor", referenced from:
-      _main in test-a04a9a.o
-ld: symbol(s) not found for architecture x86_64
-clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hccd ..[?1l>[?2004l
-]2;cd ..]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hcd ..gcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gccclang: [0;1;31merror: [0mno such file or directory: 'test.c'[0m
-clang: [0;1;31merror: [0mno input files[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;31m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hccd visu[1m/[0m[0m [?1l>[?2004l
-]2;cd visu]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hcd visugcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gccUndefined symbols for architecture x86_64:
-  "_SDL_CreateRenderer", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_CreateWindow", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_Delay", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_DestroyRenderer", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_DestroyWindow", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_GetError", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_Init", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_Quit", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_RenderClear", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_RenderPresent", referenced from:
-      _main in test-1d18c2.o
-  "_SDL_SetRenderDrawColor", referenced from:
-      _main in test-1d18c2.o
-ld: symbol(s) not found for architecture x86_64
-clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hppwd[?1l>[?2004l
-]2;pwd]1;pwd/Users/amamy/Documents/project/09-lem-in/git/src/visu
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hpwdls gcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gcc[1mtest.c:13:10: [0m[0;1;31merror: [0m[1m'../../SDL2/SDL.h' file not found with <angled> include; use "quotes" instead[0m
-#include <../../SDL2/SDL.h>
-[0;1;32m         ^~~~~~~~~~~~~~~~~~
-[0m[0;32m         "../../SDL2/SDL.h"
-[0m1 error generated.
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc test.c[?1l>[?2004l
-]2;gcc test.c]1;gccUndefined symbols for architecture x86_64:
-  "_SDL_CreateRenderer", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_CreateWindow", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_Delay", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_DestroyRenderer", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_DestroyWindow", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_GetError", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_Init", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_Quit", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_RenderClear", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_RenderPresent", referenced from:
-      _main in test-99c2dd.o
-  "_SDL_SetRenderDrawColor", referenced from:
-      _main in test-99c2dd.o
-ld: symbol(s) not found for architecture x86_64
-clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc test.c[7m-[7mI[7m/[7mU[7ms[7me[7mrs/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2[27mtest.c[80D[27m-[27mI[27m/[27mU[27ms[27me[27mr[27ms[27m/[27ma[27mm[27ma[27mm[27my[27m/[27m.[27mb[27mr[27me[27mw[27m/[27mi[27mn[27mc[27ml[27mu[27md[27me[27m/[27mS[27mD[27mL[27m2[27m [27m-[27mD[27m_[27mT[27mH[27mR[27mE[27mA[27mD[27m_[27mS[27mA[27mF[27mE[27m [27m-[27mL[27m/[27mU[27ms[27me[27mr[27ms[27m/[27ma[27mm[27ma[27mm[27my[27m/[27m.[27mb[27mr[27me[27mw[27m/[27ml[27mi[27mb[27m [27m-[27ml[27mS[27mD[27mL[27m2[1C test.c[1C[1C[1C[1C[1C[1C[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../.  ../test.c[1m [0m[0m       a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.out[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.out[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.out[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.out[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1mtest.c:57:5: [0m[0;1;35mwarning: [0m[1mimplicit declaration of function 'ft_printf' is invalid in C99 [-Wimplicit-function-declaration][0m
-    ft_printf("%s\n", "trololo");    
-[0;1;32m    ^
-[0m1 warning generated.
-Undefined symbols for architecture x86_64:
-  "_ft_printf", referenced from:
-      _main in test-289288.o
-ld: symbol(s) not found for architecture x86_64
-clang: [0;1;31merror: [0mlinker command failed with exit code 1 (use -v to see invocation)[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.outtrololo
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004httouch test2.c[?1l>[?2004l
-]2;touch test2.c]1;touch[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004htouch test2.c[13D./a.out      gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c2.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h..a. ./a.outgenerator --big[15Da.out          [10Dgenerator --big[15Dscript         [9Dgenerator --big[15Da.out          [10D.      ./a.outgenerator --big[15Dscript         [9Dgenerator[9Dscript   generator[9Dscript   generator --big[15Da.out          [10D.       ./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test2.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1mtest2.c:40:1: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'bool'[0m
-bool is_running = true;
-[0;1;32m^
-[0m[1mtest2.c:42:8: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'is_running'[0m
-while (is_running) {
-[0;1;32m       ^
-[0m[1mtest2.c:45:13: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'is_running'[0m
-            is_running = false;
-[0;1;32m            ^
-[0m[1mtest2.c:45:26: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'false'[0m
-            is_running = false;
-[0;1;32m                         ^
-[0m[1mtest2.c:47:6: [0m[0;1;31merror: [0m[1mexpected '}'[0m
-    }
-[0;1;32m     ^
-[0m[1mtest2.c:42:20: [0m[0;1;30mnote: [0mto match this '{'[0m
-while (is_running) {
-[0;1;32m                   ^
-[0m[1mtest2.c:47:6: [0m[0;1;31merror: [0m[1mexpected '}'[0m
-    }
-[0;1;32m     ^
-[0m[1mtest2.c:16:34: [0m[0;1;30mnote: [0mto match this '{'[0m
-int main(int argc, char* argv[]) {
-[0;1;32m                                 ^
-[0m6 errors generated.
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test2.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1mtest2.c:40:1: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'bool'[0m
-bool is_running = true;
-[0;1;32m^
-[0m[1mtest2.c:42:8: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'is_running'[0m
-while (is_running) {
-[0;1;32m       ^
-[0m[1mtest2.c:45:13: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'is_running'[0m
-            is_running = false;
-[0;1;32m            ^
-[0m[1mtest2.c:45:26: [0m[0;1;31merror: [0m[1muse of undeclared identifier 'false'[0m
-            is_running = false;
-[0;1;32m                         ^
-[0m4 errors generated.
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test2.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.out^C[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.out       ./a.out       ./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test2.c.c [?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.outtrololo
-^C^C^C^C^C^C^C[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.outtrololo
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1mtest.c:24:5: [0m[0;1;31merror: [0m[1mvoid function 'ft_quit' should not return a value [-Wreturn-type][0m
-    return statut;
-[0;1;32m    ^      ~~~~~~
-[0m1 error generated.
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.outtrololo
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h../a.out[1m [0m[0m [?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84Dgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84Dgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1mtest.c:65:18: [0m[0;1;31merror: [0m[1mredefinition of 'rect'[0m
-        SDL_Rect rect = {100, 100, 100, 100};
-[0;1;32m                 ^
-[0m[1mtest.c:61:18: [0m[0;1;30mnote: [0mprevious definition is here[0m
-        SDL_Rect rect = {0, 0, 100, 100};
-[0;1;32m                 ^
-[0m1 error generated.
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c0[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gccclang: [0;1;31merror: [0mno such file or directory: 'test.c0'[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;31m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c0 [?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c0 [91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004h./a.outgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[?1l>[?2004l
-]2;gcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib]1;gcc[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hgcc -I/Users/amamy/.brew/include/SDL2 -D_THREAD_SAFE -L/Users/amamy/.brew/lib -lSDL2 test.c[91D./a.out                                                                                    [84D[?1l>[?2004l
-]2;./a.out]1;./a.out[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hggit  g  ccd ..[?1l>[?2004l
-]2;cd ..]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hlls[?1l>[?2004l
-]2;ls -G]1;lsft_free.c main.c    [1m[36mparsing[39;49m[0m   [1m[36mvisu[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hccp -r visu[1m/[0m[0m ../
-[0mREADME.md     [1;31mincludes[0m/     [1;31mlem-in.dSYM[0m/  [1;31mlibft[0m/        makefile      [1;31mmisc[0m/         [1;31msrc[0m/                                                                      
-[J[1;31mSDL2[0m/         [J[1;32mlem-in[0m*       [J[1;31mlib[0m/          [Jlog           [Jmaps          [J[1;31mobj[0m/          [J                                                                        [A[A[0m[27m[24m[19Ccp -r visu ../[K..[1m/[0m[0m/git[1m/[0m[0m    [?1l>[?2004l
-[J]2;cp -r visu ../../]1;cp[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hggit branch visu[?1l>[?2004l
-]2;git branch visu]1;git[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mdev[34m) [33m✗[00m [K[?1h=[?2004hggit checkout visu[1m [0m[0m [?1l>[?2004l
-]2;git checkout visu]1;gitM	libft
-M	makefile
-M	misc/lem-in_generator
-Switched to branch 'visu'
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004hlls[?1l>[?2004l
-]2;ls -G]1;lsft_free.c main.c    [1m[36mparsing[39;49m[0m   [1m[36mvisu[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src]1;..em-in/git/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004hccd visu[1m/[0m[0m [?1l>[?2004l
-]2;cd visu]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004hlls[?1l>[?2004l
-]2;ls -G]1;ls[31ma.out[39;49m[0m   test.c  test2.c
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004hggit add test
-[J[0mtest.c   [Jtest2.c[J[A[0m[27m[24m[21Cgit add test[K.c[1m [0m[0m test2.c[?1l>[?2004l
-[J]2;git add test.c test2.c]1;git[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004hggit commit -m ""t"r"i"e"s"[1C[?1l>[?2004l
-]2;git commit -m "tries"]1;git[visu 320587c] tries
- 2 files changed, 153 insertions(+)
- create mode 100644 src/visu/test.c
- create mode 100644 src/visu/test2.c
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004hggit push origin[1m [0m[0m visu[1m [0m[0m [?1l>[?2004l
-]2;git push origin visu]1;gitCounting objects: 6, done.
-Delta compression using up to 4 threads.
-Compressing objects:  16% (1/6)   Compressing objects:  33% (2/6)   Compressing objects:  50% (3/6)   Compressing objects:  66% (4/6)   Compressing objects:  83% (5/6)   Compressing objects: 100% (6/6)   Compressing objects: 100% (6/6), done.
-Writing objects:  16% (1/6)   Writing objects:  33% (2/6)   Writing objects:  50% (3/6)   Writing objects:  66% (4/6)   Writing objects:  83% (5/6)   Writing objects: 100% (6/6)   Writing objects: 100% (6/6), 1.86 KiB | 1.86 MiB/s, done.
-Total 6 (delta 3), reused 0 (delta 0)
-remote: Resolving deltas:   0% (0/3)[Kremote: Resolving deltas:  33% (1/3)[Kremote: Resolving deltas:  66% (2/3)[Kremote: Resolving deltas: 100% (3/3)[Kremote: Resolving deltas: 100% (3/3), completed with 2 local objects.[K
-remote: 
-remote: Create a pull request for 'visu' on GitHub by visiting:[K
-remote:      https://github.com/TaKouMyS/Lem-in/pull/new/visu[K
-remote: 
-To https://github.com/TaKouMyS/Lem-in.git
- * [new branch]      visu -> visu
-[1m[7m%[27m[1m[0m                                                                                                                                                                                  ]2;amamy@e1r9p18: ~/Documents/project/09-lem-in/git/src/visu]1;../git/src/visu[0m[27m[24m[J[01;32m➜  [36mvisu[00m [01;34mgit:([31mvisu[34m) [33m✗[00m [K[?1h=[?2004h
