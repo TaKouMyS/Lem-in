@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/10 00:27:48 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 20:30:19 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ int		free_links(char *line, char **rooms, int ret)
 	return (ret);
 }
 
+void	ft_free_input(t_input *input, t_input *start)
+{
+	t_input *tmp;
+	input = start;
+	while (input->line)
+	{
+		tmp = input;
+		ft_memdel((void*)&input->line);
+		input = input->next;
+		ft_memdel((void*)&tmp);
+	}
+	ft_memdel((void*)&input);
+}
+
 /*
 ** ft_free :
 ** free all stuff.
@@ -45,11 +59,20 @@ void	ft_free_lemin(t_farm *f, t_room *r)
 	{
 		tmp = r->next;
 		ft_memdel((void*)&r->name);
+		ft_memdel((void*)&r->links);
 		ft_memdel((void*)&r);
 		r = tmp;
 	}
 	ft_memdel((void*)&f->id_table);
 	ft_memdel((void*)&f->links[i]);
 	ft_memdel((void*)&f->links);
+	ft_free_input(f->input, f->input_start);
 	ft_memdel((void*)&f);
+}
+
+
+int		error_free_line(char *line)
+{
+	ft_memdel((void*)&line);
+	return (-1);
 }

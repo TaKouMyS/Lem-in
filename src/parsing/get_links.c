@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/10 02:46:02 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 21:47:38 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	init_links(t_farm *f, char **room)
 	int	i;
 
 	i = 0;
+	room[0] = NULL;
 	room[1] = NULL;
-	room[2] = NULL;
 	if (!(f->links = ft_memalloc(sizeof(int*) * (f->room_nb + 1))))
 		return (-1);
 	while (i < f->room_nb + 1)
@@ -41,7 +41,9 @@ static int	init_links(t_farm *f, char **room)
 static void	save_links(t_farm *f, t_room **ids)
 {
 	f->links[ids[0]->id][ids[1]->id] = 1;
+	ids[0]->links_nb++;
 	f->links[ids[1]->id][ids[0]->id] = 1;
+	ids[1]->links_nb++;
 }
 
 /*
@@ -106,34 +108,23 @@ int			get_links(t_farm *f)
 
 	if (init_links(f, room) == -1)
 		return (-1);
-	ret = 1;
-	if (f->line)
+	if (f->line && (ret = 1))
 		line = f->line;
 	else
-		ret = get_next_line(0, &line);
+		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	while (ret > 0)
 	{
-		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL) 	\
-			|| (room_exist(f, room[0], ids, 0) != 1)					\
-			|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
-			|| (room_exist(f, room[1], ids, 1) != 1))
+		if ((!(line)) || ((room[0] = get_rooms_name(line, 1)) == NULL)	\
+		|| (room_exist(f, room[0], ids, 0) != 1)						\
+		|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
+		|| (room_exist(f, room[1], ids, 1) != 1))
+		{
+			ft_printf("get_links");
 			return (free_links(line, room, -1));
+		}
 		save_links(f, ids);
 		free_links(line, room, 0);
-		ret = get_next_line(0, &line);
+		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);
 	}
-	// links printing ; debug
-	ft_printf("links :\n");
-	int j = 0;
-	int i = 0;
-	while (i < f->room_nb + 1)
-	{
-		if (i < f->room_nb)
-			while (j < f->room_nb)
-				ft_putnbr(f->links[i][j++]);
-		i++;
-		j = 0;
-		ft_printf("\n");
-	}
-	return (0);
+	return ((ret >= 0) ? 0 : -1);
 }

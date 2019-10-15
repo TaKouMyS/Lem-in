@@ -6,38 +6,12 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/10 02:44:49 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 21:55:38 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem-in.h"
 #include "libft.h"
-
-/*
-** ==================== is_start_end_linked ====================
-** When input is done, check if startand end have links, if not, return error.
-*/
-
-static int	is_start_end_linked(t_farm *f)
-{
-	int	i;
-	int	start;
-	int	end;
-
-	i = 0;
-	start = 0;
-	end = 0;
-	while (i < f->room_nb)
-	{
-		if (f->links[f->start->id][i] == 1)
-			start = 1;
-		if (f->links[f->end->id][i++] == 1)
-			end = 1;
-		if (start == 1 && end == 1)
-			return (0);
-	}
-	return (-1);
-}
 
 /*
 ** creates_table :
@@ -71,15 +45,17 @@ static int	get_quantity_ants(t_farm *f)
 {
 	int		i;
 	char	*line;
+	int		ret;
 
 	i = 0;
 	line = NULL;
-	if ((get_next_line(0, &line) > 0) && line)
+	if ((ret = gnl_store(0, &line, f, GET_ANTS_LINKS) >= 0) && line)
 	{
 		while (line[i] != '\0')
 		{
 			if (ft_isdigit(line[i++]) != 1)
 			{
+				ft_printf("ants\n");
 				ft_memdel((void*)&line);
 				return (-1);
 			}
@@ -92,6 +68,35 @@ static int	get_quantity_ants(t_farm *f)
 	return (0);
 }
 
+int			create_link_list(t_farm *f)
+{
+	int		i;
+	int		j;
+	int		k;
+	t_room	*room;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	room = f->id_table[i];
+	while (i < f->room_nb)
+	{
+		if (!(f->id_table[i]->links = ft_memalloc(sizeof(int) * \
+		(f->id_table[i]->links_nb + 1))))
+			return (-1);
+		while (j < f->room_nb)
+		{
+			if (f->links[i][j] == 1)
+				f->id_table[i]->links[k++] = j;
+			j++;
+		}
+		k = 0;
+		j = 0;
+		room = f->id_table[++i];
+	}
+	return (0);
+}
+
 /*
 ** get_input :
 ** Launch the functions that get and check input.
@@ -99,9 +104,16 @@ static int	get_quantity_ants(t_farm *f)
 
 int			get_input(t_farm *f, t_room *r)
 {
+	t_input	*start;
+
+	if (!(start = ft_memalloc(sizeof(t_input))))
+		return (-1);
+	f->input = start;
+	f->input_start = start;
+	ft_printf("%s\n", "get_input");
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0 \
-		|| is_start_end_linked(f) != 0)
-		return (-1);
+		|| create_link_list(f) != 0)
+			return (-1);
 	return (0);
 }
