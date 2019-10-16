@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/16 00:19:47 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/16 15:45:01 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int	main(void)
 		ft_free_lemin(f, r);
 		return (-1);
 	}
+
 	if (get_input(f, r) == -1)
 	{
-		ft_printf("ERROR\n");
+		ft_printf("INPUT ERROR\n");
 		ft_free_lemin(f, r);
 		return (-1);
 	}

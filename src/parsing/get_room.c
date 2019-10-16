@@ -6,27 +6,12 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/09/08 02:18:28 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/10 22:09:48 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
 #include "libft.h"
-
-/*
-** ==================== check_start_end ====================
-** If the line passed equals ##start or ##end and we've already has some,
-** return an error.
-*/
-
-static int	check_start_end(char *line, t_farm *f)
-{
-	if (ft_strcmp(line, "##start") == 0 && f->flags & START)
-		return (-1);
-	if (ft_strcmp(line, "##end") == 0 && f->flags & END)
-		return (-1);
-	return (0);
-}
+#include "lem-in.h"
 
 /*
 ** room_check_coo :
@@ -59,12 +44,11 @@ static int	room_check_coo(char *line)
 ** If line is a comment, sends it for checks.
 */
 
-char		*room_check_syntax(char *line, t_farm *f)
+static char	*room_check_syntax(char *line)
 {
 	int		sp;
 	int		i;
 	char	*tmp;
-	char	*next_line;
 
 	i = 0;
 	sp = 0;
@@ -80,34 +64,62 @@ char		*room_check_syntax(char *line, t_farm *f)
 			return (NULL);
 		}
 	}
-	else
-		if (get_next_line(0, &next_line) <= 0 \
-			|| ((line = check_comment(line, next_line, f)) == NULL))
-			return (NULL);
 	return (line);
 }
 
 /*
-** init_room :
-** Get the room's name, write it in the room's node and assigns a unic id to
-** the room (first is 0, second is 1, etc...).
+** ==================== check_comment ====================
+** Receives a string starting with '#' if not ##start or ##end, just return (0).
+** If command start or end, checks if we already have a start or end.
 */
 
-static int	init_room(t_farm *f, t_room *r, char *line, int id)
+static int	check_comment(t_farm *f, char *line)
 {
-	int		name_size;
+	if (ft_strcmp(line, "##start") == 0)
+	{
+		if (f->start != NULL)
+			return (-1);
+		else
+		{
+			f->flags |= START;
+			f->flags &= ~END;
+		}
+	}
+	else if (ft_strcmp(line, "##end") == 0)
+	{
+		if (f->end != NULL)
+			return (-1);
+		else
+		{
+			f->flags |= END;
+			f->flags &= ~START;
+		}
+	}
+	return (0);
+}
 
-	name_size = 0;
-	while (line[name_size] != ' ')
-		name_size++;
-	if (!(r->name = ft_strndup(line, name_size)))
-		return (-1);
-	r->id = id;
-	ft_printf("room : %s	id : %d\n", r->name, id);
-	if (f->start == NULL && (f->flags & START))
-		f->start = r;
-	if (f->end == NULL && (f->flags & END))
-		f->end = r;
+/*
+** ==================== dash_comment ====================
+** mode 0 : if the given line is NOT a link or is a comment return (0)
+** mode 1 : if the given line not a link and is NOT a comment return (0)
+*/
+
+static int	dash_comment(char *line, int mode)
+{
+	if (mode == 0)
+	{
+		if ((ft_strchr(line, '-') == NULL) || line[0] == '#')
+			return (0);
+		else
+			return (-1);
+	}
+	else if (mode == 1)
+	{
+		if ((ft_strchr(line, '-') != NULL && line[0] != '#'))
+			return (0);
+		else
+			return (-1);
+	}
 	return (0);
 }
 
@@ -123,24 +135,23 @@ int			get_room(t_room *r, t_farm *f)
 	int		id;
 
 	id = 0;
-	ret = get_next_line(0, &line);
-	while (ret > 0 && line && ft_strchr(line, '-') == NULL)
+	ret = gnl_store(0, &line, f, GET_ROOMS);
+	while (ret > 0 && line && dash_comment(line, 0) != -1)
 	{
-		if ((!(line) || check_start_end(line, f) != 0 			\
-			|| (line = room_check_syntax(line, f)) == NULL) 	\
-			|| (r = new_room(r)) == NULL || init_room(f, r, line, id++) != 0)
+		if (line && line[0] == '#')
 		{
-			ft_memdel((void*)&line);
-			return (-1);
+			if (check_comment(f, line) == -1)
+				return (error_free_line(line));
 		}
+		else if (line && ft_strchr(line, '-') == NULL)
+			if ((!(line) || (line = room_check_syntax(line)) == NULL) 	\
+			|| (r = new_room(f, r, line, id++)) == NULL)
+				return (error_free_line(line));
 		ft_memdel((void*)&line);
-		ret = get_next_line(0, &line);
+		ret = gnl_store(0, &line, f, GET_ROOMS);
+		if (line && dash_comment(line, 1) != -1 && ((f->line = line)))
+			return (0);
 	}
-	if (line && ft_strchr(line, '-') != NULL)
-		f->line = line;
-	else
-		ft_memdel((void*)&line);
-	if (ret <= 0)
-		return (-1);
-	return (0);
+	ft_memdel((void*)&line);
+	return ((ret > 0) ? 0 : -1);
 }

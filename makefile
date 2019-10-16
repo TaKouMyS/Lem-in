@@ -3,20 +3,21 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amamy <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/05/28 18:16:53 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/10 21:40:46 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SHELL = /bin/sh
 CC = clang
-CFLAGS += -Wall -Werror -Wextra -g
+CFLAGS += -Wall -Wextra -Werror -g3 -fsanitize=address
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing
+ALGDIR = $(SRCDIR)/algo
 LIBDIR	= libft
 INCLUDES = includes
 HEAD	= $(INCLUDES)/lem-in.h
@@ -25,9 +26,18 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(SRCDIR)/ft_free.c				\
 		$(PARSDIR)/get_input.c			\
 		$(PARSDIR)/get_room.c			\
-		$(PARSDIR)/check_comment.c		\
 		$(PARSDIR)/new_room.c			\
-		$(PARSDIR)/get_links.c
+		$(PARSDIR)/get_links.c			\
+		$(PARSDIR)/gnl_store.c			\
+		$(ALGDIR)/bfs.c					\
+		$(ALGDIR)/edmondkarps.c 		\
+		$(ALGDIR)/queue_functions.c 	\
+		$(ALGDIR)/save_path.c 			\
+		$(ALGDIR)/solve.c 				\
+		$(ALGDIR)/keep_path.c 			\
+		$(ALGDIR)/send_ants.c 			\
+		$(ALGDIR)/optimize_ants.c 		\
+		$(SRCDIR)/debug.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
@@ -49,6 +59,7 @@ all: $(NAME)
 	@echo " |_|\___|_| |_| |_|          |_|_| |_| "
 	@echo "                                       "
 	@echo "                                       "
+	@echo "---------------------------------------"
 
 $(NAME): $(LIB) $(OBJ)
 	@$(PRINT) "Compilation OK! "
@@ -64,10 +75,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@$(CC) -c $(CFLAGS) $(ALLFLAGS) $@ $<
 	@$(PRINT) "$(_CYAN)$<\n$(_END)"
 
-
 $(OBJDIR) :
-	@mkdir  $@ $@/parsing
-
+	@mkdir  $@ $@/parsing $@/algo
+	
 $(OBJ) : | $(OBJDIR)
 
 clean:
