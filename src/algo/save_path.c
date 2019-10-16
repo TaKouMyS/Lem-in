@@ -70,7 +70,8 @@ t_list **save_paths(t_queue *q, t_farm *f, t_list **path_list)
     reset_queue(q, f->start->id, f->end->id);
     while (bfs(f, q) == 0)
 	{
-        printf("bfs");
+   //   printf("bfs");
+   i = 0;
 	    if (!(path = rev_path(f, q)))
 		    return (path_list);
         steps = count_steps(q, f->start->id, f->end->id);
@@ -81,13 +82,13 @@ t_list **save_paths(t_queue *q, t_farm *f, t_list **path_list)
             ++i;
         }
         putchar('\n');
-        new = ft_lstnew(path, sizeof(int) * steps + 1);
+        new = ft_lstnew(path, sizeof(int) * (steps + 1));
         ft_lstadd(path_list, new);
         ++f->max_paths;
-        printf("max = %d\n", f->max_paths);
+    //    printf("max = %d\n", f->max_paths);
     }
  //  putchar('\n');
-  //  clear_queue(q);
+    clear_queue(q);
 	return (path_list);
 }
 
@@ -126,6 +127,7 @@ int *rev_path(t_farm *f, t_queue *q)
         pos = q->prev[pos];
         ++i;
     }
+    putchar('\n');
     return (rev_path);
 }
 

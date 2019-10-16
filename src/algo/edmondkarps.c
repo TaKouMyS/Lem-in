@@ -65,6 +65,7 @@ void	save_flow(t_queue *q, t_farm *f)
 	while (p != f->start->id)
 	{
 		s = q->prev[p];
+	//	printf("s =%d \n", s);
         if (q->flow[p][s] == 0) //if there's no flow mark forward/reverse flow as 1/-1
         { 
 //			ft_printf("flow %s %s to 1 / -1\n", f->id_table[p]->name, f->id_table[s]->name);
@@ -87,7 +88,7 @@ int is_flow_saturated(t_farm *f, t_queue *q)
 	i = 0;
 	while (i < f->start->links_nb)
 	{
-	//	printf("flow %d to %d = %d\n", f->start->id, f->start->links[i], q->flow[f->start->id][f->start->links[i]]);
+		ft_printf("flow %d to %d = %d\n", f->start->id, f->start->links[i], q->flow[f->start->id][f->start->links[i]]);
 		if (q->flow[f->start->id][f->start->links[i]] == 0)
 			return (0);
 		++i;
@@ -112,6 +113,8 @@ int		optimise_flow(t_farm *f, t_queue *q)
 	//	printf("node = %d ", node);
 		find_flow(q, f->id_table[node], prev_flow);
     }
+	if (q->prev[f->end->id] == -1)
+		return (-1);
 	return (0);
 }
 
@@ -144,11 +147,10 @@ int		edmondskarp(t_queue *q, t_farm *f, t_list **path_list)
 	*path_list = ft_lstnew(NULL, 0);
 	i = 0;
 	f->max_paths = 0;
-	while (is_flow_saturated(f, q ) == 0)
+	while (optimise_flow(f, q) == 0)
 	{
-		optimise_flow(f, q);
-	//	printf("flow ");
-		save_flow(q, f);
+	//	if (optimise_flow(f, q) == 0);
+			save_flow(q, f);
 //		mark_path(f, q);
 	//	printflow(q, f);
 		save_paths(q, f, path_list);

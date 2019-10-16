@@ -25,6 +25,7 @@ static int find_last_ant(t_farm *f, int *path)
 	//find last full room i.e. last ant on path
 	while (f->id_table[path[j]]->empty == -1)
 		--j;
+	printf("j = %d\n", j);
 	return (j + 1);
 }
 
@@ -88,35 +89,36 @@ void move_ants_on_path(int moving_ants, t_farm *f, int *path, int *finished_ants
 	}
 }
 
-int		send_ants(t_farm *f, int **paths, int max_paths, int moving_ants)
+int		send_ants(t_farm *f, t_list *paths, int max_paths, int moving_ants)
 {
     int finished_ants;
     int i;
 	int *ant_division;
+	t_list *path;
 
     moving_ants = 0;
     finished_ants = 0;
     i = 0;
-	int j = 0;
 	ant_division = divide_ants(f, paths);
-	f->id_table[paths[0][0]]->empty = 0;
+	f->id_table[((int *)path->content)[0]]->empty = 0;
 //	printf("total ant s= %d\n", f->ant_nb); //to be deleted, for debugging
     while (finished_ants < f->ant_nb)
     {
 		i = 0;
+		path = paths;
 		//we cycle through our paths until all ants have finished paths
-		while (i < f->max_paths)
+		while(i < f->max_paths)
 		{
-			move_ants_on_path(moving_ants, f, paths[i], &finished_ants);
+			move_ants_on_path(moving_ants, f, ((int *)path->content), &finished_ants);
 			if (moving_ants < f->ant_nb && ant_division[i] >= 0) //if we have not yet sent all our ants
 				{
-					moving_ants = send_new_ant(f, paths[i], moving_ants, &finished_ants);
+					moving_ants = send_new_ant(f, ((int *)path->content), moving_ants, &finished_ants);
 					--ant_division[i];
 				}
 			++i;
+			path = path->next;
 		}
 	//	ft_putchar('\n');
-		++j;
 	}
 //	printf("lines = %d\n", j);
     return (0);
