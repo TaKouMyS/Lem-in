@@ -88,7 +88,7 @@ int is_flow_saturated(t_farm *f, t_queue *q)
 	i = 0;
 	while (i < f->start->links_nb)
 	{
-		ft_printf("flow %d to %d = %d\n", f->start->id, f->start->links[i], q->flow[f->start->id][f->start->links[i]]);
+	//	ft_printf("flow %d to %d = %d\n", f->start->id, f->start->links[i], q->flow[f->start->id][f->start->links[i]]);
 		if (q->flow[f->start->id][f->start->links[i]] == 0)
 			return (0);
 		++i;
@@ -143,17 +143,19 @@ int		edmondskarp(t_queue *q, t_farm *f, t_list **path_list)
 {
 	int		max;
 	int		i;
+	int		longest;
 
 	*path_list = ft_lstnew(NULL, 0);
 	i = 0;
 	f->max_paths = 0;
+	longest = 0;
 	while (optimise_flow(f, q) == 0)
 	{
 	//	if (optimise_flow(f, q) == 0);
-			save_flow(q, f);
+		save_flow(q, f);
 //		mark_path(f, q);
 	//	printflow(q, f);
-		save_paths(q, f, path_list);
+		save_paths(q, f, path_list, &longest);
 	//	printflow(q, f);
 
 	//	clear_queue(q);

@@ -23,9 +23,8 @@ static int find_last_ant(t_farm *f, int *path)
 	while (path[j] != f->end->id)
 		++j;
 	//find last full room i.e. last ant on path
-	while (f->id_table[path[j]]->empty == -1)
+	while (j != 0 && f->id_table[path[j]]->empty == -1)
 		--j;
-	printf("j = %d\n", j);
 	return (j + 1);
 }
 
@@ -34,7 +33,7 @@ static int reach_finish(int *path, t_farm *f, int j)
 	//If we've reached end of path return 1, else return 0. 
 	if (path[j] == f->end->id)
 	{
-	//	ft_printf(" L%d-%s", f->id_table[path[j - 1]]->empty, f->id_table[path[j]]->name);
+		ft_printf(" L%d-%s", f->id_table[path[j - 1]]->empty, f->id_table[path[j]]->name);
 		if (j >= 1)
 			f->id_table[path[j - 1]]->empty = -1;
 		return (1);
@@ -49,7 +48,7 @@ static void move_the_ant(int *path, t_farm *f, int j)
 	{
 		f->id_table[path[j]]->empty = f->id_table[path[j - 1]]->empty;
 		f->id_table[path[j - 1]]->empty = -1;
-	//	ft_printf(" L%d-%s", f->id_table[path[j]]->empty, f->id_table[path[j]]->name);
+		ft_printf(" L%d-%s", f->id_table[path[j]]->empty, f->id_table[path[j]]->name);
 	}
 }
 
@@ -65,7 +64,7 @@ int    send_new_ant(t_farm *f, int *path, int moving_ants, int *finished_ants)
         f->id_table[path[1]]->empty = moving_ants;
 		if (path[1] == f->end->id)
 			++finished_ants[0];
-	//	ft_printf(" L%d-%s", moving_ants, f->id_table[path[1]]->name);
+		ft_printf(" L%d-%s", moving_ants, f->id_table[path[1]]->name);
         	++i;
     }
     return (moving_ants);
@@ -95,12 +94,15 @@ int		send_ants(t_farm *f, t_list *paths, int max_paths, int moving_ants)
     int i;
 	int *ant_division;
 	t_list *path;
+	//delete for after debugging
+	int j = 0;
 
     moving_ants = 0;
     finished_ants = 0;
     i = 0;
 	ant_division = divide_ants(f, paths);
-	f->id_table[((int *)path->content)[0]]->empty = 0;
+//	printf("max = %d\n", f->max_paths);
+//	f->id_table[((int *)path->content)[0]]->empty = 0;
 //	printf("total ant s= %d\n", f->ant_nb); //to be deleted, for debugging
     while (finished_ants < f->ant_nb)
     {
@@ -118,7 +120,8 @@ int		send_ants(t_farm *f, t_list *paths, int max_paths, int moving_ants)
 			++i;
 			path = path->next;
 		}
-	//	ft_putchar('\n');
+		ft_putchar('\n');
+		++j;
 	}
 //	printf("lines = %d\n", j);
     return (0);
