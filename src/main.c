@@ -46,12 +46,12 @@ int	main(void)
 	}
 	write_input(f);
 	ft_putchar('\n');
-/*	int i = 0;
-	while (i < f->room_nb)
-	{
-		printf("id %d = %s\n",i, f->id_table[i]->name);
-		++i;
-	}*/
+	int i = 0;
+//	while (i < f->room_nb)
+//	{
+//		printf("id %d = %s\n",i, f->id_table[i]->name);
+//		++i;
+//	}
 	solve(f, f->room_nb, f->start->id);
 	ft_free_lemin(f, r);
 //	ft_putstr("No errors!\n");

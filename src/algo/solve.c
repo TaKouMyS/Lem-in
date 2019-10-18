@@ -53,10 +53,10 @@ void	print_paths(t_list *paths, t_farm *f)
 		{
 			while (((int *)tracker->content)[j] != f->end->id)
 			{
-				ft_printf("%d ", ((int *)tracker->content)[j]);
+				ft_printf("%s ", f->id_table[((int *)tracker->content)[j]]->name);
 				++j;
 			}
-			ft_printf("%d\n", ((int *)tracker->content)[j]);
+			ft_printf("%s\n", f->id_table[((int *)tracker->content)[j]]->name);
 		}
 		tracker = tracker->next;
 		++i;
@@ -83,6 +83,7 @@ int		solve(t_farm *f, int length, int start)
 		return (-1);
 	}
 	path_list = verify_paths(f, &q, path_list);
+//	print_paths(path_list, f);
 	send_ants(f, path_list, f->max_paths, f->ant_nb);
 	return (0);
 }

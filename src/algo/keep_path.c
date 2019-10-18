@@ -46,7 +46,7 @@ int keep_path(t_queue *q, t_farm *f, int *longest_path, int paths)
 	}   
 }
 
-int check_flow(t_list *path, int **flow, int end)
+int check_flow(t_list *path, t_queue *q, int end)
 {
     int i; 
 
@@ -54,8 +54,14 @@ int check_flow(t_list *path, int **flow, int end)
     while (((int *)path->content)[i] != end)
     {
    //     ft_printf("from %d to %d = %d\n", ((int *)path->content)[i], ((int *)path->content)[i + 1], flow[((int *)path->content)[i]][((int *)path->content)[i + 1]]);
-        if (flow[((int *)path->content)[i]][((int *)path->content)[i + 1]] == 0)
+        if (q->flow[((int *)path->content)[i]][((int *)path->content)[i + 1]] == 0)
                 return (0);
+        if (q->visited[((int *)path->content)[i]] == 1 && i != 0)
+        {
+            while (--i >= 0)
+                q->visited[((int *)path->content)[i]] = 0;
+            return (0);
+        }
         ++i;
     }
  //   printf("HEREEEE\n?");
@@ -111,11 +117,12 @@ t_list *verify_paths(t_farm *f, t_queue *q, t_list *path_list)
 	i = 0;
     prev->content = NULL;
     clear_queue(q);
+    set_to_n(&q->visited, q->length, 0);
     path_list = clean_path(path_list, f->max_paths);
 	path = path_list;
     while (path != NULL && path->content != NULL)
 	{
-      if (check_flow(path, q->flow, f->end->id) == 0 || duplicate_path(path, path_list, f->end->id) == 1)
+      if (check_flow(path, q, f->end->id) == 0 || duplicate_path(path, path_list, f->end->id) == 1)
         {
             if (prev->content != NULL)
             {

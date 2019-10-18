@@ -129,18 +129,20 @@ int			get_links(t_farm *f)
 	}
 
 	// links printing ; debug
-	/*ft_printf("links :\n");
+	/*
+	ft_printf("links :\n");
 	int j = 0;
 	int i = 0;
-	printf("room nb = %d\n", f->room_nb);
-	while (i < f->room_nb + 1)
+	while (i < f->room_nb)
 	{
-		if (i < f->room_nb)
-			while (j < f->room_nb)
-				ft_putnbr(f->links[i][j++]);
-		i++;
 		j = 0;
-		ft_printf("\n");
+		while (j < f->id_table[i]->links_nb)
+		{
+			printf("%s is linked to %s\n", f->id_table[i]->name, f->id_table[j]->name);
+			++j;
+		}
+		printf("\n\t\t__________\n");
+		++i;
 	}*/
 		return ((ret >= 0) ? 0 : -1);
 }
