@@ -37,9 +37,9 @@ void	print_map(int **map, int length)
 }
 
 //same for debugging
-void	print_paths(t_list *paths, t_farm *f)
+void	print_paths(t_path *paths, t_farm *f)
 {
-	t_list *tracker;
+	t_path *tracker;
 	int i;
 	size_t j;
 
@@ -49,14 +49,14 @@ void	print_paths(t_list *paths, t_farm *f)
 	while (i < f->max_paths)
 	{
 		j = 0;
-		if (tracker->content != NULL)
+		if (tracker->path != NULL)
 		{
-			while (((int *)tracker->content)[j] != f->end->id)
+			while (tracker->path[j] != f->end->id)
 			{
-				ft_printf("%s ", f->id_table[((int *)tracker->content)[j]]->name);
+				ft_printf("%s ", f->id_table[tracker->path[j]]->name);
 				++j;
 			}
-			ft_printf("%s\n", f->id_table[((int *)tracker->content)[j]]->name);
+			ft_printf("%s\n", f->id_table[tracker->path[j]]->name);
 		}
 		tracker = tracker->next;
 		++i;
@@ -67,7 +67,7 @@ int		solve(t_farm *f, int length, int start)
 {
 	t_queue q;
 	int		**paths;
-	t_list *path_list;
+	t_path *path_list;
 
 	if (initialise_queue(&q, length, start) < 0)
 	{

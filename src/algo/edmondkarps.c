@@ -139,13 +139,13 @@ int		printflow(t_queue *q, t_farm *f)
 	return (0);
 }
 
-int		edmondskarp(t_queue *q, t_farm *f, t_list **path_list)
+int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 {
 	int		max;
 	int		i;
 	int		longest;
 
-	*path_list = ft_lstnew(NULL, 0);
+	*path_list = ft_new_path(NULL, 0);
 	i = 0;
 	f->max_paths = 0;
 	longest = 0;

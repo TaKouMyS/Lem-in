@@ -33,7 +33,7 @@ static int reach_finish(int *path, t_farm *f, int j)
 	//If we've reached end of path return 1, else return 0. 
 	if (path[j] == f->end->id)
 	{
-		ft_printf(" L%d-%s", f->id_table[path[j - 1]]->empty, f->id_table[path[j]]->name);
+	//	ft_printf(" L%d-%s", f->id_table[path[j - 1]]->empty, f->id_table[path[j]]->name);
 		if (j >= 1)
 			f->id_table[path[j - 1]]->empty = -1;
 		return (1);
@@ -48,7 +48,7 @@ static void move_the_ant(int *path, t_farm *f, int j)
 	{
 		f->id_table[path[j]]->empty = f->id_table[path[j - 1]]->empty;
 		f->id_table[path[j - 1]]->empty = -1;
-		ft_printf(" L%d-%s", f->id_table[path[j]]->empty, f->id_table[path[j]]->name);
+//		ft_printf(" L%d-%s", f->id_table[path[j]]->empty, f->id_table[path[j]]->name);
 	}
 }
 
@@ -88,12 +88,12 @@ void move_ants_on_path(int moving_ants, t_farm *f, int *path, int *finished_ants
 	}
 }
 
-int		send_ants(t_farm *f, t_list *paths, int max_paths, int moving_ants)
+int		send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants)
 {
     int finished_ants;
     int i;
 	int *ant_division;
-	t_list *path;
+	t_path *path;
 	//delete for after debugging
 	int j = 0;
 
@@ -111,10 +111,10 @@ int		send_ants(t_farm *f, t_list *paths, int max_paths, int moving_ants)
 		//we cycle through our paths until all ants have finished paths
 		while(i < f->max_paths)
 		{
-			move_ants_on_path(moving_ants, f, ((int *)path->content), &finished_ants);
+			move_ants_on_path(moving_ants, f, path->path, &finished_ants);
 			if (moving_ants < f->ant_nb && ant_division[i] >= 0) //if we have not yet sent all our ants
 				{
-					moving_ants = send_new_ant(f, ((int *)path->content), moving_ants, &finished_ants);
+					moving_ants = send_new_ant(f, path->path, moving_ants, &finished_ants);
 					--ant_division[i];
 				}
 			++i;

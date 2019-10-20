@@ -15,16 +15,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-void	ft_lstaddend(t_list *alst, t_list *new)
-{
-    t_list *tracker;
-    tracker = alst;
-	if ((!alst) || (!new))
-		return ;
-	while (tracker->next != NULL)
-		tracker = tracker->next;
-	tracker->next = new;
-}
+
 
 void mark_path(t_farm *f, t_queue *q)
 {
@@ -67,11 +58,11 @@ int count_paths(t_queue *q, t_farm *f)
     return (i - 2);
 }
 
-t_list **save_paths(t_queue *q, t_farm *f, t_list **path_list, int *longest)
+t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list, int *longest)
 {
 	int *path;
     size_t steps;
-    t_list *new;
+    t_path *new;
     int i;
 
     i = 0;
@@ -87,11 +78,11 @@ t_list **save_paths(t_queue *q, t_farm *f, t_list **path_list, int *longest)
 		    return (path_list);
         steps = count_steps(q, f->start->id, f->end->id);
         mark_path(f, q);
-        new = ft_lstnew(path, sizeof(int) * (steps + 1));
+        new = ft_new_path(path, steps);
       //  if ((*path_list)->content == NULL)
         //    ft_lstadd(path_list, new);
        // else
-            ft_lstaddend(*path_list, new);
+        ft_add_path(*path_list, new);
         ++f->max_paths;
 //}
     //    printf("max = %d\n", f->max_paths);
@@ -137,26 +128,4 @@ int *rev_path(t_farm *f, t_queue *q)
         ++i;
     }
     return (rev_path);
-}
-
-void new_mark_paths(t_farm *f, t_queue *q, t_list *paths)
-{
-	t_list *tracker;
-	int i;
-	size_t j;
-
-	i = 0;
-	tracker = paths;
-	while (tracker->content != NULL)
-	{
-		j = 0;
-		while(((int *)tracker->content)[j] != f->end->id)
-		{
-			ft_printf("%d ", ((int *)tracker->content)[j]);
-			++j;
-		}
-		ft_printf("%d\n", ((int *)tracker->content)[j]);
-		tracker = tracker->next;
-		++i;
-	}
 }

@@ -62,11 +62,11 @@ static int *check_total_ants(int *ant_division, t_farm *f)
 }
 
 //Save the length of each path, and the total length of all paths.
-int     *get_path_lengths(t_farm *f, t_list *paths, int *total)
+int     *get_path_lengths(t_farm *f, t_path *paths, int *total)
 {
     int i;
     int *steps;
-	t_list *path;
+	t_path *path;
 
     i = 0;
 	path = paths;
@@ -74,7 +74,7 @@ int     *get_path_lengths(t_farm *f, t_list *paths, int *total)
         return (NULL);
     while (i < f->max_paths)
 	{
-		steps[i] = count_path(f->end->id, ((int *)path->content));
+		steps[i] = path->len;
 		total[0] = total[0] + steps[i];
 		++i;
 		path = path->next;
@@ -82,7 +82,7 @@ int     *get_path_lengths(t_farm *f, t_list *paths, int *total)
     return (steps);
 }
 
-int		*divide_ants(t_farm *f, t_list *paths)
+int		*divide_ants(t_farm *f, t_path *paths)
 {
 	int *ant_division;
 	int i;
