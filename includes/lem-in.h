@@ -24,6 +24,9 @@ typedef	struct	s_path
 {
 	int				*path;
 	int				len;
+	int				max;
+	int				*division;
+	int				longest;
 	struct s_path	*next;
 	struct s_path	*prev;
 }				t_path;
@@ -102,4 +105,6 @@ t_path 					*verify_paths(t_farm *f, t_queue *q, t_path *path_list);
 t_path					**save_paths(t_queue *q, t_farm *f, t_path **path_list, int *longest);
 t_path 					*ft_new_path(int *path, int len);
 void					ft_add_path(t_path *paths, t_path *new);
+int		find_neg_flow(t_queue *q, t_room *r);
+t_path *clean_path(t_path *path_list);
 #endif

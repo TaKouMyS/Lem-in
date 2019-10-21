@@ -38,8 +38,8 @@ int		find_flow(t_queue *q, t_room *r, int prev_flow)
 
 	j = 0;
 
-//	if (prev_flow == 0 && find_neg_flow(q, r) == 1)
-//		return (0);
+	if (prev_flow == 0 && find_neg_flow(q, r) == 1)
+		return (0);
 	while (j < r->links_nb)
 	{
 //	printf("\ttrying %d, visited = %d flow = %d\n", r->links[j], q->visited[r->links[j]], q->flow[r->id][r->links[j]]); //if there is a link and we have not visited the link
@@ -144,29 +144,29 @@ int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 	int		max;
 	int		i;
 	int		longest;
+	t_path	*new;
 
 	*path_list = ft_new_path(NULL, 0);
+	(*path_list)->longest = 0;
+	
 	i = 0;
 	f->max_paths = 0;
 	longest = 0;
 	while (optimise_flow(f, q) == 0)
 	{
-	//	if (optimise_flow(f, q) == 0);
+		new = ft_new_path(NULL, 0);
+		new->longest = 0;
+	//	printf("First longest old = %d, longest_new = %d\n", (*path_list)->longest, new->longest);
 		save_flow(q, f);
 //		mark_path(f, q);
 	//	printflow(q, f);
-		save_paths(q, f, path_list, &longest);
-	//	printflow(q, f);
+		save_paths(q, f, &new, &longest);
+//		printf("longest old = %d, longest_new = %d\n", (*path_list)->longest, new->longest);
+		if ((*path_list)->longest == 0 || (*path_list)->longest > new->longest)
+				*path_list = new;
+	//	printf("NOW longest old = %d, longest_new = %d\n", (*path_list)->longest, new->longest);
 
-	//	clear_queue(q);
-		//++f->max_paths;
 	}
-//	printf("max= %d", f->max_paths);
-	//printflow(q, f);
-//	reset_queue(q, f->start->id, f->end->id);
-//	if ((max = count_paths(q, f)) <= 0)
-//		return (-1);
-//	clear_queue(q);
-//	*paths = save_paths(q, f, max);
+
 	return (f->max_paths);
 }

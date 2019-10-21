@@ -23,14 +23,11 @@ int		find_neighbours(t_queue *q, t_room *r, int prev_flow)
 
 	j = 0;
 
-//	if (prev_flow == 0)
-//		if (find_neg_flow(q, r) == 1)
-//			return (0);   
 	while (j < r->links_nb)
 	{
 //		printf("\ttrying %d, visited = %d flow = %d\n", r->links[j], q->visited[r->links[j]], q->flow[r->id][r->links[j]]);
 		if (q->visited[r->links[j]] == 0 //if there is a link and we have not visited the link
-			&& q->flow[r->id][r->links[j]] != 0)
+			&& q->flow[r->id][r->links[j]] == 1)
 		{
 //			printf("\t\there, visiting %d\n", r->links[j]);
 			q->queue[q->position] = r->links[j]; // add to end of queue

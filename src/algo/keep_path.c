@@ -50,10 +50,8 @@ int check_flow(t_path *path, t_queue *q, int end)
     int i; 
 
     i = 0;
-    printf("here\n");
     while (path->path[i] != end)
     {
-        ft_printf("from %d to %d = %d\n", path->path[i], path->path[i + 1], q->flow[path->path[i]][path->path[i + 1]]);
         if (q->flow[path->path[i]][path->path[i + 1]] == 0)
                 return (0);
         if (q->visited[path->path[i]] == 1 && i != 0)
@@ -97,16 +95,17 @@ int duplicate_path(t_path *path, t_path *path_list, int end)
     return (0);
 }
 
-t_path *clean_path(t_path *path_list, int max)
+t_path *clean_path(t_path *path_list)
 {
-    if (max != 0)
-    {
-       while (path_list->path == NULL && path_list->next->path != NULL)
+   if (path_list->path == NULL && path_list->next->path != NULL)
 		{
+            path_list->next->max = path_list->max;
+            path_list->next->division = path_list->division;
+            path_list->next->longest = path_list->longest;
             path_list = path_list->next;
             path_list->prev = NULL;
         }
-    }
+    
 	return (path_list);
 }
 
@@ -120,9 +119,8 @@ t_path *verify_paths(t_farm *f, t_queue *q, t_path *path_list)
 	i = 0;
     clear_queue(q);
     set_to_n(&q->visited, q->length, 0);
-    path_list = clean_path(path_list, f->max_paths);
-	path = path_list;
-    while (path != NULL && path->path != NULL)
+//	path = path_list;
+ /*   while (path != NULL && path->path != NULL)
 	{
       if (check_flow(path, q, f->end->id) == 0 || duplicate_path(path, path_list, f->end->id) == 1)
         {
@@ -130,8 +128,8 @@ t_path *verify_paths(t_farm *f, t_queue *q, t_path *path_list)
             {
               path->prev->next = path->next;
               tmp = path->prev;
-               free(path->path);
-               free(path);
+           //    free(path->path);
+             //  free(path);
                path = tmp;
             }
             else
@@ -149,6 +147,6 @@ t_path *verify_paths(t_farm *f, t_queue *q, t_path *path_list)
 		++i;
         path = path->next;
         
-	}
+	}*/
     return (path_list);
 }

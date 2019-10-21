@@ -45,10 +45,12 @@ void	print_paths(t_path *paths, t_farm *f)
 
 	i = 0;
 	tracker = paths;
-//	printf("max = %d\n", f->max_paths);
-	while (i < f->max_paths)
+	//printf("max = %d\n", paths->max);
+	while (i < paths->max)
 	{
 		j = 0;
+		printf("steps = %d. ", tracker->len + paths->division[i] + 1);
+	//	printf("i = %d, division = %d\n", i, paths->division[i]);
 		if (tracker->path != NULL)
 		{
 			while (tracker->path[j] != f->end->id)
@@ -83,6 +85,7 @@ int		solve(t_farm *f, int length, int start)
 		return (-1);
 	}
 	path_list = verify_paths(f, &q, path_list);
+//	printf("\n___________________________________________________________________________\n\n");
 //	print_paths(path_list, f);
 	send_ants(f, path_list, f->max_paths, f->ant_nb);
 	return (0);

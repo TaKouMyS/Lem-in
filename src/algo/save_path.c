@@ -78,16 +78,20 @@ t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list, int *longest)
 		    return (path_list);
         steps = count_steps(q, f->start->id, f->end->id);
         mark_path(f, q);
-        new = ft_new_path(path, steps);
+        new = ft_new_path(path, steps + 1);
       //  if ((*path_list)->content == NULL)
         //    ft_lstadd(path_list, new);
        // else
         ft_add_path(*path_list, new);
+        ++i;
         ++f->max_paths;
 //}
     //    printf("max = %d\n", f->max_paths);
     }
- //  putchar('\n');
+    *path_list = clean_path(*path_list);
+    (*path_list)->max = i;
+    (*path_list)->division = divide_ants(f, *path_list);
+    //printf("max = %d, longest = %d\n", (*path_list)->max, (*path_list)->longest);
     clear_queue(q);
 	return (path_list);
 }
@@ -121,11 +125,15 @@ int *rev_path(t_farm *f, t_queue *q)
     if (!(rev_path = malloc((sizeof(int)) * (steps + 1))))
         return (NULL);
     rev_path[steps] = pos;
+//    printf("%s ", f->id_table[rev_path[steps]]->name);
     while (i <= steps) //save the path reversed as it is currently stored from end to start
     {
         rev_path[steps - i] = pos;
         pos = q->prev[pos];
+ //      printf("%s ", f->id_table[rev_path[steps - i]]->name);
         ++i;
+        
     }
+//    putchar('\n');
     return (rev_path);
 }

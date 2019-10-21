@@ -15,7 +15,7 @@ t_path *ft_new_path(int *path, int len)
 	{
 		if (!(new_element->path = malloc(sizeof(int) * (len + 1))))
 			return (NULL);
-		ft_memcpy(new_element->path, path, (len * sizeof(int)));
+		ft_memcpy(new_element->path, path, ((len + 1) * sizeof(int)));
 		new_element->len = len;
 	}
 	new_element->next = NULL;
