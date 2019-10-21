@@ -68,7 +68,6 @@ void	print_paths(t_path *paths, t_farm *f)
 int		solve(t_farm *f, int length, int start)
 {
 	t_queue q;
-	int		**paths;
 	t_path *path_list;
 
 	if (initialise_queue(&q, length, start) < 0)
@@ -77,16 +76,13 @@ int		solve(t_farm *f, int length, int start)
 		free_queue(&q);
 		return (-1);
 	}
-	f->max_paths = edmondskarp(&q, f, &path_list);
-	if (f->max_paths == -1)
+	if (edmondskarp(&q, f, &path_list) == -1)
 	{
 		ft_printf("NO PATH FOUND\n");
 		free_queue(&q);
 		return (-1);
 	}
-	path_list = verify_paths(f, &q, path_list);
-//	printf("\n___________________________________________________________________________\n\n");
-//	print_paths(path_list, f);
 	send_ants(f, path_list, f->max_paths, f->ant_nb);
+	free_path(path_list);
 	return (0);
 }

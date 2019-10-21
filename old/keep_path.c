@@ -95,19 +95,7 @@ int duplicate_path(t_path *path, t_path *path_list, int end)
     return (0);
 }
 
-t_path *clean_path(t_path *path_list)
-{
-   if (path_list->path == NULL && path_list->next->path != NULL)
-		{
-            path_list->next->max = path_list->max;
-            path_list->next->division = path_list->division;
-            path_list->next->longest = path_list->longest;
-            path_list = path_list->next;
-            path_list->prev = NULL;
-        }
-    
-	return (path_list);
-}
+
 
 t_path *verify_paths(t_farm *f, t_queue *q, t_path *path_list)
 {

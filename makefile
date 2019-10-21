@@ -34,7 +34,6 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/queue_functions.c 	\
 		$(ALGDIR)/save_path.c 			\
 		$(ALGDIR)/solve.c 				\
-		$(ALGDIR)/keep_path.c 			\
 		$(ALGDIR)/send_ants.c 			\
 		$(ALGDIR)/optimize_ants.c 		\
 		$(ALGDIR)/path_functions.c 

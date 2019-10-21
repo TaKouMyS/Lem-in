@@ -12,10 +12,6 @@
 
 
 #include "lem-in.h"
-#include "libft.h"
-#include <stdio.h>
-
-
 
 void mark_path(t_farm *f, t_queue *q)
 {
@@ -40,25 +36,13 @@ void mark_path(t_farm *f, t_queue *q)
     }
 }
 
-int count_paths(t_queue *q, t_farm *f)
+t_path **path_error(t_path **path)
 {
-    int i;
-    int longest_path;
-
-    i = 2;
-    int j = 0;
-    longest_path = 0;
-	while (bfs(f, q) == 0)
-    {
-        if ((keep_path(q, f, &longest_path, i - 2)) == 0)
-            break;
-        mark_path(f, q);
-		++i;
-    }
-    return (i - 2);
+    (*path)->len = -1;
+    return (path);
 }
 
-t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list, int *longest)
+t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list)
 {
 	int *path;
     size_t steps;
@@ -66,33 +50,20 @@ t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list, int *longest)
     int i;
 
     i = 0;
-    set_to_n(&q->visited, q->length, 0);
-    reset_queue(q, f->start->id, f->end->id);
+    //while there are paths to be found in this flow
     while (bfs(f, q) == 0)
 	{
-   //   printf("bfs");
-   //i = 0;
- //  if (keep_path(q, f, longest, f->max_paths + 1) == 1)
-//{
         if (!(path = rev_path(f, q)))
-		    return (path_list);
+            return (path_error(path_list)); //save path
         steps = count_steps(q, f->start->id, f->end->id);
-        mark_path(f, q);
-        new = ft_new_path(path, steps + 1);
-      //  if ((*path_list)->content == NULL)
-        //    ft_lstadd(path_list, new);
-       // else
-        ft_add_path(*path_list, new);
-        ++i;
-        ++f->max_paths;
-//}
-    //    printf("max = %d\n", f->max_paths);
+        mark_path(f, q); //mark it to avoid duplicating in the loop
+        if (!(new = ft_new_path(path, steps + 1))) //make t_path
+            return (path_error(path_list));
+      //  free(path);
+        ft_add_path(*path_list, new); //add to lst
+        ++i; //count how many paths found
     }
-    *path_list = clean_path(*path_list);
-    (*path_list)->max = i;
-    (*path_list)->division = divide_ants(f, *path_list);
-    //printf("max = %d, longest = %d\n", (*path_list)->max, (*path_list)->longest);
-    clear_queue(q);
+    path_list = set_path(path_list, i, f);
 	return (path_list);
 }
 
@@ -103,7 +74,6 @@ size_t count_steps(t_queue *q, int start, int end)
     steps = 0;
     while (end != start)
     {
-     //   printf("end = %d next = %d step = %zu\n", end, q->prev[end], steps);
         end = q->prev[end];
 		++steps;
     }
@@ -117,23 +87,17 @@ int *rev_path(t_farm *f, t_queue *q)
     int i;
     int pos;
 
-;
-    pos = f->end->id;
-   // printf("entry?");
-    steps = count_steps(q, f->start->id, f->end->id); //count how many moves we made
     i = 0;
+    pos = f->end->id;
+    steps = count_steps(q, f->start->id, f->end->id);
     if (!(rev_path = malloc((sizeof(int)) * (steps + 1))))
         return (NULL);
     rev_path[steps] = pos;
-//    printf("%s ", f->id_table[rev_path[steps]]->name);
     while (i <= steps) //save the path reversed as it is currently stored from end to start
     {
         rev_path[steps - i] = pos;
         pos = q->prev[pos];
- //      printf("%s ", f->id_table[rev_path[steps - i]]->name);
-        ++i;
-        
+        ++i;     
     }
-//    putchar('\n');
     return (rev_path);
 }

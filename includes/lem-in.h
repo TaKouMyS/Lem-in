@@ -28,7 +28,6 @@ typedef	struct	s_path
 	int				*division;
 	int				longest;
 	struct s_path	*next;
-	struct s_path	*prev;
 }				t_path;
 
 typedef struct			s_queue
@@ -101,10 +100,9 @@ int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
 int						*divide_ants(t_farm *f, t_path *paths);
 void					free_queue(t_queue *q);
 void					print_paths(t_path *paths, t_farm *f);
-t_path 					*verify_paths(t_farm *f, t_queue *q, t_path *path_list);
-t_path					**save_paths(t_queue *q, t_farm *f, t_path **path_list, int *longest);
+t_path					**save_paths(t_queue *q, t_farm *f, t_path **path_list);
 t_path 					*ft_new_path(int *path, int len);
 void					ft_add_path(t_path *paths, t_path *new);
-int		find_neg_flow(t_queue *q, t_room *r);
-t_path *clean_path(t_path *path_list);
+t_path 					**set_path(t_path **path_list, int i, t_farm *f);
+void 					free_path(t_path *path_list);
 #endif
