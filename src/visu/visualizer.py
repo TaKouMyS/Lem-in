@@ -1,15 +1,89 @@
 #!/usr/bin/python
 
 import matplotlib.pyplot as plt
+import matplotlib.animation as matAni
 import networkx as nx
 import sys
 
 from parser import parser 
-from animate import animate
 from create_settings import create_settings, check_args
+from class_ant import Ant
+from draw import draw_node, draw_nodes, draw_ant
+from events import *
+from set_paths_colors import set_paths_colors
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
+
+def on_click(event):
+	print("button: {}".format(event.button))
+def on_key(event):
+	global settings
+	global anim_running
+	if (event.key == "p"):
+		anim_running = play_pause(ani, anim_running)
+	elif (event.key == "z"):
+		up_node_size(settings)
+	elif (event.key == "x"):
+		down_node_size(settings)
+	elif (event.key == "c"):
+		up_ant_size(settings)
+	elif (event.key == "v"):
+		down_ant_size(settings)
+	elif (event.key == "d"):
+		switch_background_color(settings)
+	elif (event.key == "f"):
+		switch_node_color(settings)
+	elif (event.key == "g"):
+		switch_link_color(settings)
+	elif (event.key == "h"):
+		reset_settings(settings)
+
+def make_squad(data, settings, s_b_n):
+	ant_list = []
+	try : 
+		for nb in range(1, (int(data['farm'].ants) + 1)):
+			ant = Ant(nb)
+			ant.set_node_path(data['farm'])
+			ant.set_location(data['pos'], data['farm'])
+			ant.set_journey(data['pos'], s_b_n, data['farm'])
+			ant.color = settings['ant_colors_list'][nb % 11]
+			ant_list.append(ant)
+	except : 
+		usage()
+		quit()
+	return (ant_list)
+
+def action(frame, data, fig, ant_squad, settings):
+	
+	fig.clear()
+
+	id_key = fig.canvas.mpl_connect("key_press_event", on_key)
+	id_mouse = fig.canvas.mpl_connect("button_press_event", on_click)
+
+	nx.draw_networkx_edges(data['g'], data['pos'], edgelist = data['farm'].links, edge_color=settings['link_color'], width=2.0)
+	for i, path in enumerate(data['farm'].used_links):
+		nx.draw_networkx_edges(data['g'], data['pos'], edgelist = path, edge_color=settings['used'][i], width=2.0)
+	draw_nodes(data, settings, settings['node_size'])
+	
+	# draw all the ants:
+	for ant in ant_squad:
+		if frame < len(ant.journey):
+			draw_ant(ant.journey[frame], ant.color, settings)
+	
+	nx.draw_networkx_labels(
+		data['g'],
+		data['pos'],
+		font_size = 8,
+		labels = settings['labels'],
+		font_family = 'sans-serif',
+		font_color = settings['text_color'])
+	
+	# set the background color
+	fig.set_facecolor(settings['background_color'])
+
+	#   Hide axis
+	plt.axis('off')
 
 def check_is_big_map(args):
 	if check_args(args, "-f") == False:
@@ -34,5 +108,16 @@ args = sys.argv
 data = create_data()
 settings = create_settings(args, data['farm'])
 check_is_big_map(args)
-ani = animate(data, settings)
+ant_squad = make_squad(data, settings, settings['steps_between_nodes'])
+set_paths_colors(data['farm'], ant_squad)
+fig = plt.figure(figsize=(settings['window_size']))
+anim_running = True
+ani = matAni.FuncAnimation(
+	fig,
+	action,
+	frames = data['farm'].ants * settings['steps_between_nodes'],
+	fargs = (data, fig, ant_squad, settings),
+	interval=1,
+	repeat=settings['repeat'],
+	blit=0)
 plt.show()

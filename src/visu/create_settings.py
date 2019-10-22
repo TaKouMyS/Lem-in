@@ -34,7 +34,7 @@ def basic_settings(settings, args, farm):
 		settings["background_color"] = "#15202b"
 		settings["node_color"] = "#282828"
 		settings["ant_colors_list"] = ['#15B6B6', '#15B6B6', '#1515B6', '#B615B6', '#6615B6', '#15B6B6', '#15B6B6', '#1515B6', '#B615B6', '#6615B6', '#6615B6']
-		settings["labels"] = None
+		settings["labels"] = dict([(farm.start, 'START'), (farm.end, 'END')])
 
 	if check_args(args, "-blue_theme") == True:
 		settings = check_graph_size(farm, settings)		
@@ -47,7 +47,7 @@ def basic_settings(settings, args, farm):
 		settings["background_color"] = "#013FC1"
 		settings["node_color"] = "#AAD1ED"
 		settings["ant_colors_list"] = ['#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6']
-		settings["labels"] = None
+		settings["labels"] = dict([(data['farm'].start, 'START'), (data['farm'].end, 'END')])
 	return settings
 
 def color_background(settings, args):
@@ -174,12 +174,14 @@ def set_window_size(settings, args):
 		print (settings["window_size"])
 	return settings
 
-#To be check
-# def set_nodes_names(settings, args, farm):
-# 	if check_args(args, "-nodes_name") == True:
-# 		settings["labels"] = dict([(farm.start, 'START'), (farm.end, 'END')])
-# 	else:
-# 		settings["labels"] = None
+def set_nodes_names(settings, args, farm):
+	if check_args(args, "-nodes_name") == True:
+		settings["labels"] = {}
+		for room in farm.nodes:
+			settings["labels"][room] = room
+	else:
+		settings["labels"] = dict([(farm.start, 'START'), (farm.end, 'END')])
+	return (settings)
 
 def print_usage(args):
 	if check_args(args, "-help") == True:
@@ -200,7 +202,7 @@ def create_settings(args, farm):
 	settings = set_repeat(settings, args)
 	settings = set_size(settings, args)
 	settings = set_window_size(settings, args)
-	# settings = set_nodes_names(settings, args, farm)
+	settings = set_nodes_names(settings, args, farm)
 	print_usage(args)
 	print_farm(args, farm)
 	return settings
