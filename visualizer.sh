@@ -1,4 +1,4 @@
-##!/usr/bin/bash
+#!/bin/bash
 map="$1"
 args="${@:2}"
 if [ "$map" = "" ];
