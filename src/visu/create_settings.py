@@ -35,6 +35,7 @@ def basic_settings(settings, args, farm):
 		settings["node_color"] = "#282828"
 		settings["ant_colors_list"] = ['#15B6B6', '#15B6B6', '#1515B6', '#B615B6', '#6615B6', '#15B6B6', '#15B6B6', '#1515B6', '#B615B6', '#6615B6', '#6615B6']
 		settings["labels"] = dict([(farm.start, 'START'), (farm.end, 'END')])
+		settings["interval"] = 1
 
 	if check_args(args, "-blue_theme") == True:
 		settings = check_graph_size(farm, settings)		
@@ -48,6 +49,7 @@ def basic_settings(settings, args, farm):
 		settings["node_color"] = "#AAD1ED"
 		settings["ant_colors_list"] = ['#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6', '#1515B6']
 		settings["labels"] = dict([(data['farm'].start, 'START'), (data['farm'].end, 'END')])
+		settings["interval"] = 1
 	return settings
 
 def color_background(settings, args):

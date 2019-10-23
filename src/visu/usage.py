@@ -22,8 +22,19 @@ def usage():
 	print("\t{}{}make".format(bold, blue, end))
 	print("  {}{}{}Launch visualizer:{}".format(underline, bold, cyan, end))
 	print
-	print("\t{}{}./visualizer.sh [map_file] [-visu_argument_1] [-visu_argument_2] etc...{}".format(bold, blue, end))
+	print("\t{}{}./visualizer.sh [map_file] [-visu_option_1] [-visu_option_2] etc...{}".format(bold, blue, end))
 	print
+	print("  {}{}{}Visualizer keys:{}".format(underline, bold, cyan, end))
+	print
+	print("\t{}-p:{} Play / pause".format(green, end))
+	print("\t{}-z:{} Increases node's size".format(green, end))
+	print("\t{}-x:{} Decreases node's size".format(green, end))
+	print("\t{}-c:{} Increases ant's size".format(green, end))
+	print("\t{}-v:{} Decreases ant's size".format(green, end))
+	print("\t{}-d:{} Changes background's color".format(green, end))
+	print("\t{}-f:{} Changes node's color".format(green, end))
+	print("\t{}-g:{} Changes links's color".format(green, end))
+	print("\t{}-r:{} Reset settings".format(green, end))
 	print("  {}{}{}visu options:{}".format(underline, bold, cyan, end))
 	print
 	print("\t{}-farm:{} print the farm structure in terminal".format(green, end))
