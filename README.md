@@ -1,6 +1,5 @@
 ## Lem-in
-
-===
+---
 
 ## What is Lem-in?
 
@@ -12,15 +11,35 @@ We built a program which, given a farm description and a number of ant, will ret
 
 The most optimized answer will be the one with the less turns to move all ant.
 
-\---
+## Description
 
-Description
+### Input :
 
-===
+The software reads standard entry. 
+It is expecting the description of a farm, which must contains :
+* Ant's number (a number)
+* Rooms (syntax : [Name Y X] - where X and Y are coordonates)
+* Links (Syntax : [room(A)-room(B)])
+* Start command (to indicate the ant's spawnig room)
+* End command (to indicate the ant's goal)
+
+###### In addition :
+
+* Start and end are commands, they starts with **"##"**.
+* All lines starting with **"#"** are comments.
+* All lines starting with **"##"** are commands.
+* If the line is an unknown command, it will be ignored.
+
+![Input](./imgs/input_legend.png)
+
+
+
+### Algorythm :
+
 
 ## Visualizer :
 
-Thw visualizer has been coded in python 3 using two main libraries : 
+The visualizer has been coded in python 3 using two main libraries : 
 
 * matplotlib
 
@@ -30,7 +49,7 @@ Thw visualizer has been coded in python 3 using two main libraries :
 
 ###### GNU/Linux debian based :
 
-matplotlib and networkx require numpy and tkinter (tk) :
+Matplotlib and networkx require numpy and tkinter (tk) :
 
 ```
 sudo apt install python3 python3-matplotlib python3-networkx python3-numpy python3-tk
@@ -45,7 +64,7 @@ pip3 install matplotlib
 pip3 install networkx
 ```
 
-### Usage
+### Usage :
 
 To display all visu options and features :
 
@@ -58,3 +77,9 @@ To launch our lem-in and view it :
 ```
 ./visualizer.bash [-map_file] [-option_visu_1] [-option_visu_2] [etc..]
 ```
+
+### Examples :
+
+![Small farm](./imgs/little.png)
+
+![Big farm](./imgs/big.png)
