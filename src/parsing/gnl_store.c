@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 00:12:16 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 21:57:54 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/23 23:04:37 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	store(t_farm *f, char *line, int ret)
 {
 	t_input *new;
 	t_input *tmp;
-
 	tmp = f->input;
 	if (ret > 0)
 	{

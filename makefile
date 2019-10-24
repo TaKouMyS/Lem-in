@@ -6,14 +6,14 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/10 21:40:46 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/24 14:34:00 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SHELL = /bin/sh
-CC = clang
-CFLAGS += -Wall -Wextra -Werror -g3 -fsanitize=address
+CC = gcc
+CFLAGS += -g -fsanitize=address
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing
@@ -34,11 +34,10 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/queue_functions.c 	\
 		$(ALGDIR)/save_path.c 			\
 		$(ALGDIR)/solve.c 				\
-		$(ALGDIR)/keep_path.c 			\
 		$(ALGDIR)/send_ants.c 			\
 		$(ALGDIR)/optimize_ants.c 		\
+		$(ALGDIR)/path_functions.c 		\
 		$(SRCDIR)/debug.c
-
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
 LIB		= $(LIBDIR)/libft.a
