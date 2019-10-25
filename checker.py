@@ -43,7 +43,6 @@ class   Output_Checker() :
         lst_line = actions[nb_line]
         if (min(map(len, lst_line)) < 2) :
             self.error_message = "Wrong action format : line " + str(nb_line)
-            print(lst_line)
             return (1)
         uniques, counts = np.unique(lst_line[:, 0], return_counts=True)
         ants_error = [(key, value) for key, value in zip(uniques, counts)
@@ -102,7 +101,6 @@ class   Output_Checker() :
         for i in range(len(self.output)) :
             if self.output[i] == "" :
                 self.actions = self.output[i + 1 :]
-                print (self.actions)
                 self.raw_actions = self.output[i + 1 :]
                 self.map_output = self.output[:i - 1]
                 return (0)

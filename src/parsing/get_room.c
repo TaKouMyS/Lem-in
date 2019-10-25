@@ -78,6 +78,7 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 	int		name_size;
 
 	name_size = 0;
+	r->weight = 2147483647;
 	while (line[name_size] != ' ')
 		name_size++;
 	if (!(r->name = ft_strndup(line, name_size)))
