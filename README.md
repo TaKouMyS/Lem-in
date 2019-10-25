@@ -26,9 +26,13 @@ It is expecting the description of a farm, which must contains :
 ###### In addition :
 
 Start and end are commands, they starts with "##".
+
 All lines starting with "#" are comments.
+
 All lines starting with "##" are commands.
+
 If the line is an unknown command, it will be ignored.
+
 
 ![Input](./imgs/input_legend.png)
 
