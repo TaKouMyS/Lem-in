@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:32:23 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/23 23:14:53 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/25 22:34:57 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ int    send_new_ant(t_farm *f, int *path, int moving_ants, int *finished_ants)
     return (moving_ants);
 }
 
-void move_ants_on_path(int moving_ants, t_farm *f, int *path, int *finished_ants)
+static void move_ants_on_path(t_farm *f, int *path, int *finished_ants)
 {
-	int i; 
 	int j;
 
 	j = find_last_ant(f, path);
@@ -88,7 +87,7 @@ void move_ants_on_path(int moving_ants, t_farm *f, int *path, int *finished_ants
 	}
 }
 
-int		send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants)
+int		send_ants(t_farm *f, t_path *paths, int moving_ants)
 {
     int finished_ants;
     int i;
@@ -104,7 +103,7 @@ int		send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants)
 		//we cycle through our paths until all ants have finished paths
 		while(i < paths->max)
 		{
-			move_ants_on_path(moving_ants, f, path->path, &finished_ants);
+			move_ants_on_path(f, path->path, &finished_ants);
 			if (moving_ants < f->ant_nb && paths->division[i] >= 0) //if we have not yet sent all our ants
 				{
 					moving_ants = send_new_ant(f, path->path, moving_ants, &finished_ants);			

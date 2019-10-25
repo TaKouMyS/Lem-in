@@ -6,14 +6,14 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/24 14:34:00 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/25 22:28:48 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SHELL = /bin/sh
 CC = gcc
-CFLAGS += -g -fsanitize=address
+CFLAGS += -Wall -Wextra -Werror -g
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing

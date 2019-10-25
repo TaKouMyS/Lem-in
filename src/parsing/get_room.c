@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/23 23:10:36 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/25 22:08:07 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int			get_room(t_room *r, t_farm *f)
 {
 	char	*line;
 	int		ret;
-	int		id;
+	long	id;
 
 	id = 0;
 	ret = gnl_store(0, &line, f, GET_ROOMS);

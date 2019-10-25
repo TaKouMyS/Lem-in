@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/23 23:04:00 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/25 22:02:04 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ static int	creates_table(t_room *r, t_farm *f)
 ** Store this number in the farm's structure.
 */
 
+
+#include <stdio.h>
 static int	get_quantity_ants(t_farm *f)
 {
 	int		i;
 	char	*line;
 	int		ret;
+	long	tmp;
 
 	i = 0;
 	line = NULL;
@@ -54,13 +57,11 @@ static int	get_quantity_ants(t_farm *f)
 		while (line[i] != '\0')
 		{
 			if (ft_isdigit(line[i++]) != 1)
-			{
-				ft_printf("ants\n");
-				ft_memdel((void*)&line);
-				return (-1);
-			}
+				return (error_free_line(line));
 		}
-		f->ant_nb = ft_atoi(line);
+		if ((tmp = ft_atoi_long(line)) > __INT_MAX__)
+			return (error_free_line(line));
+		f->ant_nb = tmp;
 	}
 	else
 		return (-1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   optimize_ants.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:47 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/10 17:31:48 by fcahill          ###   ########.fr       */
+/*   Updated: 2019/10/25 22:38:32 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 #include "../../libft/includes/libft.h"
 #include <stdio.h>
 
-//count steps on saved path
-static int		count_path(int end, int *path)
-{
-	int i;
+// UNUSED? TO BE REMOVE
+// //count steps on saved path
+// static int		count_path(int end, int *path)
+// {
+// 	int i;
 
-	i = 0;
-	while (path[i] != end)
-		++i;
-	return (i);
-}
+// 	i = 0;
+// 	while (path[i] != end)
+// 		++i;
+// 	return (i);
+// }
 
 //calculate ants to send on each path
 static int *calculate_divide(int *ant_division, t_farm *f, int total, int *steps)

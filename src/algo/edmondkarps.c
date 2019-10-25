@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edmondkarps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:20 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/10 17:31:21 by fcahill          ###   ########.fr       */
+/*   Updated: 2019/10/25 22:31:14 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int		printflow(t_queue *q, t_farm *f)
 
 int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 {
-	int		max;
 	t_path	*new;
 
 	*path_list = ft_new_path(NULL, 0);

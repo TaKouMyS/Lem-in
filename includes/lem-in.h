@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/23 23:12:22 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/25 22:35:13 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct			s_farm
 
 int						get_input(t_farm *f, t_room *r);
 int						get_room(t_room *r, t_farm *f);
-t_room					*new_room(t_farm *f, t_room *r, char *line, int id);
+t_room					*new_room(t_farm *f, t_room *r, char *line, long id);
 void					ft_free_lemin(t_farm *f, t_room *r);
 int						free_links(char *line, char **rooms, int ret);
 int						error_free_line(char *line);
@@ -87,7 +87,7 @@ int 					max_flow(t_queue *q, t_farm *f);
 size_t					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
 int						edmondskarp(t_queue *q, t_farm *f, t_path **path_list);
-int						send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants);
+int						send_ants(t_farm *f, t_path *paths, int moving_ants);
 int 					optimise_flow(t_farm *f, t_queue *q);
 void 					save_flow(t_queue *q, t_farm *f);
 void 					clear_queue(t_queue *q);
