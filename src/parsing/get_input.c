@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/25 22:02:04 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/26 00:01:15 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,38 @@ static int	creates_table(t_room *r, t_farm *f)
 	return (0);
 }
 
+static int	usage(char *line, int mode)
+{
+	ft_putstr("\n\nUsage :\nLem-in reads standard entry.\n\n");
+	ft_putstr("1 - First line is the ant's number.\n\n");
+	ft_putstr("2 - Then list rooms - syntax :\nname Y X\n");
+	ft_putstr("(Where Y and X are number meanings coordonates).\n");
+	ft_putstr("The programm needs to know the starting and ending rooms.\n");
+	ft_putstr("You can specify them with ##start and ##end commands.\n");
+	ft_putstr("Those commande are written on one line, ");
+	ft_putstr("the next line will be start or end.\n\n");
+	ft_putstr("3 - list of links - syntax :\n");
+	ft_putstr("Room1-Room2\n");
+	ft_putstr("(Means Room1 and Room2 are linked).\n\n");
+	ft_putstr("Example :\n\n");
+	ft_putstr("13\n");
+	ft_putstr("##start\nStarting_room 0 0\n##end\nEnding_room 1 1\n");
+	ft_putstr("Room1 2 2\nRoom2 3 3\nRoom3 4 4\n");
+	ft_putstr("Starting_room-Room1\n");
+	ft_putstr("Room1-Room2\n");
+	ft_putstr("Room2-Room3\n");
+	ft_putstr("Room3-Ending_room\n\n\n");
+	if (mode == 1)
+		ft_memdel((void*)&line);
+	return (-1);
+}
+
 /*
 ** get_quantity_ants :
 ** Read the first line on stdin and checks if it's a valid ant's number.
 ** Store this number in the farm's structure.
 */
 
-
-#include <stdio.h>
 static int	get_quantity_ants(t_farm *f)
 {
 	int		i;
@@ -57,14 +81,14 @@ static int	get_quantity_ants(t_farm *f)
 		while (line[i] != '\0')
 		{
 			if (ft_isdigit(line[i++]) != 1)
-				return (error_free_line(line));
+				return (usage(line, 1));
 		}
 		if ((tmp = ft_atoi_long(line)) > __INT_MAX__)
-			return (error_free_line(line));
+			return (usage(line, 1));
 		f->ant_nb = tmp;
 	}
 	else
-		return (-1);
+		return (usage(line, 0));
 	ft_memdel((void*)&line);
 	return (0);
 }
