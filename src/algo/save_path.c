@@ -50,6 +50,8 @@ t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list)
     int i;
 
     i = 0;
+
+    set_weights(f);
     //while there are paths to be found in this flow
     while (bfs(f, q) == 0)
 	{
@@ -95,6 +97,7 @@ int *rev_path(t_farm *f, t_queue *q)
     rev_path[steps] = pos;
     while (i <= steps) //save the path reversed as it is currently stored from end to start
     {
+     //   f->id_table[rev_path[steps-i]]->weight = steps - i;
         rev_path[steps - i] = pos;
         pos = q->prev[pos];
         ++i;     

@@ -106,4 +106,5 @@ t_path 					*ft_new_path(int *path, int len);
 void					ft_add_path(t_path *paths, t_path *new);
 t_path 					**set_path(t_path **path_list, int i, t_farm *f);
 void 					free_path(t_path *path_list);
+void	set_weights(t_farm *f);
 #endif

@@ -82,6 +82,7 @@ int		solve(t_farm *f, int length, int start)
 		free_queue(&q);
 		return (-1);
 	}
+//	print_paths(path_list, f);
 	send_ants(f, path_list, f->max_paths, f->ant_nb);
 	free_path(path_list);
 	return (0);
