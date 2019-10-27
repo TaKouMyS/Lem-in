@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:32:10 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/27 23:33:33 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 00:36:51 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list)
 	int i;
 
 	i = 0;
+	set_weights(f);
 	//while there are paths to be found in this flow
 	while (bfs(f, q) == 0)
 	{

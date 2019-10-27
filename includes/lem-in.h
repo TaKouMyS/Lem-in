@@ -49,6 +49,7 @@ typedef struct			s_room
 	struct s_room		*prev;
 	char				*name;
 	int					empty;
+	int					weight;
 }						t_room;
 
 typedef struct 			s_input
@@ -105,4 +106,5 @@ t_path 					*ft_new_path(int *path, int len);
 void					ft_add_path(t_path *paths, t_path *new);
 t_path 					**set_path(t_path **path_list, int i, t_farm *f);
 void 					free_path(t_path *path_list);
+void	set_weights(t_farm *f);
 #endif
