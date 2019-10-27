@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:18:03 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/10 17:18:05 by fcahill          ###   ########.fr       */
+/*   Updated: 2019/10/27 20:40:57 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ void	clear_queue(t_queue *q)
 
 void	free_queue(t_queue *q)
 {
+	int	i;
+
+	i = 0;
+	while (i < q->length)
+	{
+		ft_memdel((void*)&q->flow[i]);
+		++i;
+	}
 	if (q->flow != NULL)
 		free(q->flow);
 	if (q->prev != NULL)

@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:29:51 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/25 22:36:52 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/27 23:34:17 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int		solve(t_farm *f, int length, int start)
 	}
 	send_ants(f, path_list, f->ant_nb);
 	free_path(path_list);
+	free_queue(&q);
 	return (0);
 }

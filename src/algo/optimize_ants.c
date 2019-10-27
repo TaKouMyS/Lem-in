@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:47 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/25 22:38:32 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/26 13:39:16 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int     *get_path_lengths(t_farm *f, t_path *paths, int *total)
 
     i = 0;
 	path = paths;
-    if (!(steps = (int *)malloc(sizeof(int) * f->max_paths)))
+    if (!(steps = (int *)ft_memalloc(sizeof(int) * f->max_paths)))
         return (NULL);
     while (i < f->max_paths)
 	{
@@ -135,7 +135,7 @@ int		*divide_ants(t_farm *f, t_path *paths)
 	i = 0;
 	total = 0;
 	//printf("%lu\n max = %d", sizeof(int) * f->max_paths, f->max_paths);
-	if (!(ant_division = (int *)malloc(sizeof(int) * paths->max)))
+	if (!(ant_division = (int *)ft_memalloc(sizeof(int) * paths->max)))
 		return (NULL);
 	f->max_paths = paths->max;
     if ((steps = get_path_lengths(f, paths, &total)) == NULL)
@@ -143,5 +143,6 @@ int		*divide_ants(t_farm *f, t_path *paths)
 	ant_division = calculate_divide(ant_division, f, total, steps);
     ant_division = check_total_ants(ant_division, f, &paths);
 	paths->longest = get_longest(ant_division, steps, paths->max);
+	ft_memdel((void*)&steps);
 	return (ant_division);
 }

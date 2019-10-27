@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:20 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/25 22:31:14 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/27 23:48:58 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,14 @@ int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 		set_to_n(&q->visited, q->length, 0);
     	reset_queue(q, f->start->id, f->end->id);
 		save_paths(q, f, &new);
+		
 		if (new->len == -1) //malloc error
+		{
+			// useless free?
+			// free_path((*path_list));
+			// free_path((new));
 			return (-1);
+		}
 		if ((*path_list)->longest == 0 || (*path_list)->longest > new->longest)
 			{
 				free_path((*path_list));
