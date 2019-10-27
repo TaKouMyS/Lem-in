@@ -49,6 +49,7 @@ typedef struct			s_room
 	struct s_room		*prev;
 	char				*name;
 	int					empty;
+	int					weight;
 }						t_room;
 
 typedef struct 			s_input

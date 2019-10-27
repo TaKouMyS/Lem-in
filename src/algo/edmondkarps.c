@@ -20,7 +20,9 @@ int		find_neg_flow(t_queue *q, t_room *r)
 	int i;
 
 	i = 0;
-	if (q->visited[r->links[i]] != 1 && q->flow[r->id][r->links[i]] == -1) //if there is a link with negative flow we have not visited this iteration
+	while (i < r->links_nb)
+	{
+		if (q->visited[r->links[i]] != 1 && q->flow[r->id][r->links[i]] == -1) //if there is a link with negative flow we have not visited this iteration
 		{
 			q->queue[q->position] = r->links[i]; // add to end of queue
             q->prev[r->links[i]] = r->id; //note from which node we linked this node
@@ -28,6 +30,8 @@ int		find_neg_flow(t_queue *q, t_room *r)
             ++q->position; //move up the end of queue marker
 			return (1);
         }
+		++i;
+	}
 	return (0);
 }
 
