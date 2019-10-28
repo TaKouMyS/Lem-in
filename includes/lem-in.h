@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 00:41:25 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 23:10:30 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ size_t					count_steps(t_queue *q, int start, int end);
 int 					*rev_path(t_farm *f, t_queue *q);
 int						edmondskarp(t_queue *q, t_farm *f, t_path **path_list);
 int						send_ants(t_farm *f, t_path *paths, int moving_ants);
-int 					optimise_flow(t_farm *f, t_queue *q);
-void 					save_flow(t_queue *q, t_farm *f);
 void 					clear_queue(t_queue *q);
 void 					mark_path(t_farm *f, t_queue *q);
 int 					initialise_queue(t_queue *q, int length, int start);

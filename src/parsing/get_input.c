@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 02:18:12 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 00:06:00 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 
 static int	creates_table(t_room *r, t_farm *f)
 {
+	if (f->start == NULL || f->end == NULL)
+	{
+		ft_memdel((void*)&f->line);
+		return (-1);
+	}
 	while (r->next)
 		r = r->next;
 	f->room_nb = r->id + 1;
@@ -35,8 +40,9 @@ static int	creates_table(t_room *r, t_farm *f)
 	return (0);
 }
 
-static int	usage(char *line, int mode)
+static void	usage()
 {
+	ft_printf("INPUT ERROR\n");
 	ft_putstr("\n\nUsage :\nLem-in reads standard entry.\n\n");
 	ft_putstr("1 - First line is the ant's number.\n\n");
 	ft_putstr("2 - Then list rooms - syntax :\nname Y X\n");
@@ -55,10 +61,7 @@ static int	usage(char *line, int mode)
 	ft_putstr("Starting_room-Room1\n");
 	ft_putstr("Room1-Room2\n");
 	ft_putstr("Room2-Room3\n");
-	ft_putstr("Room3-Ending_room\n\n\n");
-	if (mode == 1)
-		ft_memdel((void*)&line);
-	return (-1);
+	ft_putstr("Room3-Ending_room\n\n");
 }
 
 /*
@@ -81,14 +84,17 @@ static int	get_quantity_ants(t_farm *f)
 		while (line[i] != '\0')
 		{
 			if (ft_isdigit(line[i++]) != 1)
-				return (usage(line, 1));
+			{
+				ft_memdel((void*)&line);
+				return (-1);
+			}
 		}
 		if ((tmp = ft_atoi_long(line)) > __INT_MAX__)
-			return (usage(line, 1));
+			return (-1);
 		f->ant_nb = tmp;
 	}
 	else
-		return (usage(line, 0));
+		return (-1);
 	ft_memdel((void*)&line);
 	return (0);
 }
@@ -136,6 +142,9 @@ int			get_input(t_farm *f, t_room *r)
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0 \
 		|| create_link_list(f) != 0)
+		{
+			usage();
 			return (-1);
+		}
 	return (0);
 }

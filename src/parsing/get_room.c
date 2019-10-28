@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 02:14:15 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 20:30:31 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int			get_room(t_room *r, t_farm *f)
 	long	id;
 
 	id = 0;
+	line = NULL;
 	ret = gnl_store(0, &line, f, GET_ROOMS);
 	while (ret > 0 && line && dash_comment(line, 0) != -1)
 	{
@@ -152,9 +153,7 @@ int			get_room(t_room *r, t_farm *f)
 		ft_memdel((void*)&line);
 		ret = gnl_store(0, &line, f, GET_ROOMS);
 		if (line && dash_comment(line, 1) != -1 && ((f->line = line)))
-		{
 			return (0);
-		}
 	}
  	ft_memdel((void*)&line);
 	return ((ret > 0) ? 0 : -1);

@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:20 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/27 23:48:58 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 23:46:59 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	compare_weights(t_room *next, t_room *current, t_queue *q, t_farm *f)
 	return (0);
 }
 
-int		find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
+static int		find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 {
 	int		j;
 
@@ -109,7 +109,7 @@ int		find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
     return (0);
 }
 
-void	save_flow(t_queue *q, t_farm *f)
+static void	save_flow(t_queue *q, t_farm *f)
 {
 	int		p;
 	int		s;
@@ -133,7 +133,7 @@ void	save_flow(t_queue *q, t_farm *f)
 	}
 }
 
-int		optimise_flow(t_farm *f, t_queue *q)
+static int		optimise_flow(t_farm *f, t_queue *q)
 {
     int		i;
     int		node;
@@ -186,14 +186,16 @@ void	set_weights(t_farm *f)
 	f->start->weight = 0;
 }
 
-int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
+int			edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 {
 	t_path	*new;
+	int		flag;
 
 	*path_list = ft_new_path(NULL, 0);
 	(*path_list)->longest = 0;
 	set_weights(f);
-	while (optimise_flow(f, q) == 0)
+	flag = 0;
+	while (optimise_flow(f, q) == 0 && (flag = 1))
 	{
 		new = ft_new_path(NULL, 0);
 		new->longest = 0;
@@ -201,14 +203,8 @@ int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 		set_to_n(&q->visited, q->length, 0);
     	reset_queue(q, f->start->id, f->end->id);
 		save_paths(q, f, &new);
-		
 		if (new->len == -1) //malloc error
-		{
-			// useless free?
-			// free_path((*path_list));
-			// free_path((new));
 			return (-1);
-		}
 		if ((*path_list)->longest == 0 || (*path_list)->longest > new->longest)
 			{
 				free_path((*path_list));
@@ -218,5 +214,5 @@ int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 			free_path(new);
 		clear_queue(q);
 	}
-	return (0);
+	return ((flag == 1) ? 0 : -1);
 }
