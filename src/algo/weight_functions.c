@@ -27,7 +27,7 @@ void	switch_flows(t_room *next, t_room *current, t_queue *q, t_farm *f)
 		
 }
 
-int		compare_weights(t_room *next, t_room *current, t_queue *q, t_farm *f)
+int		compare_weights(t_room *next, t_room *current, t_queue *q)
 {
 	int pos;
 
@@ -49,7 +49,7 @@ int		compare_weights(t_room *next, t_room *current, t_queue *q, t_farm *f)
 	return (0);
 }
 
-int		check_loops(t_room *next, t_room *current, t_queue *q, t_farm *f)
+int		check_loops(t_room *current, t_queue *q, t_farm *f)
 {
 	int i;
 	int visit[f->room_nb];
@@ -75,19 +75,19 @@ int		check_loops(t_room *next, t_room *current, t_queue *q, t_farm *f)
 
 int		check_weights(t_room *next, t_room *current, t_queue *q, t_farm *f)
 {
-	if (compare_weights(next, current, q ,f) == 0) 
+	if (compare_weights(next, current, q) == 0) 
 		return (0);
 	if (next == f->start)
 		return (0);
-	if (check_loops(next, current, q, f) == 0)
+	if (check_loops(current, q, f) == 0)
 	{
 	//	printf("LOOP\n");
 		return (0);
 	}
 		switch_flows(next, current, q, f);
-		if (compare_weights(f->id_table[q->prev[next->id]], next, q, f) == 1
+		if (compare_weights(f->id_table[q->prev[next->id]], next, q) == 1
 		&& f->id_table[q->prev[next->id]] != f->start
-		&& check_loops(f->id_table[q->prev[next->id]], next, q, f) == 1)
+		&& check_loops(next, q, f) == 1)
 		{
 			switch_flows(f->id_table[q->prev[next->id]], next, q, f);
 			q->prev[q->prev[next->id]] = next->id;

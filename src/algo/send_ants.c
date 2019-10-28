@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:32:23 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/29 00:21:30 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 00:32:50 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int		send_ants(t_farm *f, t_path *paths, int moving_ants)
 		//we cycle through our paths until all ants have finished paths
 		while(i < paths->max)
 		{
-			move_ants_on_path(moving_ants, f, path->path, &finished_ants);
+			move_ants_on_path(f, path->path, &finished_ants);
 			if (moving_ants < f->ant_nb && paths->division[i] > 0) //if we have not yet sent all our ants
 				{
 					moving_ants = send_new_ant(f, path->path, moving_ants, &finished_ants);			
