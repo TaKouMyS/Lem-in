@@ -25,8 +25,6 @@ static int	is_com_start_end(char *line)
 static int	store(t_farm *f, char *line, int ret)
 {
 	t_input *new;
-	t_input *tmp;
-	tmp = f->input;
 	if (ret > 0)
 	{
 		f->input->line = ft_strdup(line);

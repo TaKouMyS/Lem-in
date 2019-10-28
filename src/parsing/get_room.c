@@ -47,10 +47,8 @@ static int	room_check_coo(char *line)
 static char	*room_check_syntax(char *line)
 {
 	int		sp;
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	sp = 0;
 	tmp = line;
 	if (line[0] != '#')

@@ -98,12 +98,10 @@ int			create_link_list(t_farm *f)
 	int		i;
 	int		j;
 	int		k;
-	t_room	*room;
 
 	i = 0;
 	j = 0;
 	k = 0;
-	room = f->id_table[i];
 	while (i < f->room_nb)
 	{
 		if (!(f->id_table[i]->links = ft_memalloc(sizeof(int) * \
@@ -117,7 +115,6 @@ int			create_link_list(t_farm *f)
 		}
 		k = 0;
 		j = 0;
-		room = f->id_table[++i];
 	}
 	return (0);
 }
