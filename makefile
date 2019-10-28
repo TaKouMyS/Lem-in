@@ -36,6 +36,7 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/solve.c 				\
 		$(ALGDIR)/send_ants.c 			\
 		$(ALGDIR)/optimize_ants.c 		\
+		$(ALGDIR)/weight_functions.c 	\
 		$(ALGDIR)/path_functions.c 
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o

@@ -14,7 +14,6 @@
 #include <stdio.h>
 #include "lem-in.h"
 
-
 int		find_neg_flow(t_queue *q, t_room *r, t_farm *f)
 {
 	int i;
@@ -22,6 +21,8 @@ int		find_neg_flow(t_queue *q, t_room *r, t_farm *f)
 	i = 0;
 	while (i < r->links_nb)
 	{
+		if (f->id_table[r->links[i]]->weight != 2147483647)		
+			check_weights(f->id_table[r->links[i]], r, q, f);
 		if (q->visited[r->links[i]] != 1 && q->flow[r->id][r->links[i]] == -1) //if there is a link with negative flow we have not visited this iteration
 		{
 			q->queue[q->position] = r->links[i]; // add to end of queue
@@ -36,64 +37,21 @@ int		find_neg_flow(t_queue *q, t_room *r, t_farm *f)
 	}
 	return (0);
 }
-int	compare_weights(t_room *next, t_room *current, t_queue *q, t_farm *f)
-{
-
-	int pos;
-
-	if (q->flow[current->id][next->id] != 0)
-		pos = current->weight - 1;
-	else
-		pos = current->weight + 1;
-//		printf("\t\t%s poss = %d, (%s) mnow = %d \n", next->name, current->weight + 1, current->name, next->weight);
-	if (pos < next->weight && next->weight != 2147483647)
-	{
-		
-		next->weight = pos;
-		if (next !=  f->start)
-		{
-			q->flow[f->id_table[q->prev[next->id]]->id][next->id] = 0;
-			q->flow[next->id][f->id_table[q->prev[next->id]]->id] = 0;
-			if (q->flow[current->id][next->id] == -1)
-			{
-				q->flow[current->id][next->id] = 0;
-				q->flow[next->id][next->id] = 0;
-			}
-			else
-			{
-				{
-					q->flow[current->id][next->id] = 1;
-					q->flow[next->id][next->id] = -1;
-				}
-			}
-			compare_weights(f->id_table[q->prev[next->id]], next, q, f);
-			q->prev[next->id] = current->id;
-		}
-		return (1);
-	}
-	return (0);
-}
-
 int		find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 {
 	int		j;
 
 	j = 0;
-
-	//if we are coming from a flow of zero see if there's a negative flow available to us// if so add to queue and continue. If not we find other neighbousrs. 
-//	if (f->id_table[r->links[j]]->weight != 2147483647)		
-//			compare_weights(f->id_table[r->links[j]], r, q, f);
 	if (prev_flow == 0 && find_neg_flow(q, r, f) == 1)
 		return (0);
-		f->start->weight = 0;
 	while (j < r->links_nb)
 	{
+		if (f->id_table[r->links[j]]->weight != 2147483647)
+			check_weights(f->id_table[r->links[j]], r, q, f);
 
-//	printf("root = %s, visiting %s, flow = %d\n", r->name, f->id_table[r->links[j]]->name, q->flow[r->id][r->links[j]]);
 		if (q->visited[r->links[j]] != 1 //if there is a link and we have not visited the link
 			&& q->flow[r->id][r->links[j]] != 1)
-		{
-			
+		{	
 			q->queue[q->position] = r->links[j]; // add to end of queue
             q->prev[r->links[j]] = r->id; //note from which node we linked this node
 			q->visited[r->links[j]] = 1; //mark it as visited
@@ -102,8 +60,8 @@ int		find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 				f->id_table[r->links[j]]->weight = r->weight + 1;
 			else
 				f->id_table[r->links[j]]->weight = r->weight - 1;
-	//		printf("%s weight - %d prev = %s\n", f->id_table[r->links[j]]->name, f->id_table[r->links[j]]->weight, f->id_table[q->prev[r->links[j]]]->name);
         }
+
         ++j;
     }
     return (0);
@@ -145,57 +103,33 @@ int		optimise_flow(t_farm *f, t_queue *q)
 	f->start->weight = 0;
     while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
     {
+	//	printf("stuck here i = %d visit = %d queue =%d?\n", i, q->visited[f->end->id], q->queue[i]);
         node = q->queue[i]; //sets node to the next node in the queue
 		if (i > 0)
 			prev_flow = q->flow[q->prev[node]][node];
 		find_flow(q, f->id_table[node], prev_flow, f);
     }
+//	printf("\n\n");
 	if (q->prev[f->end->id] == -1)
 		return (-1);
 	return (0);
 }
-//debugging function to print flow chart. To be deleted later. 
-int		printflow(t_queue *q, t_farm *f)
-{
-	int		i;
-	int		j;
 
-	i = 0;
-	while (i < q->length)
-	{
-		j = 0;
-		while (j < q->length)
-		{
-			ft_printf("flow from %s to %s = %d\n", f->id_table[i]->name, f->id_table[j]->name, q->flow[i][j]);
-			++j;
-		}
-		++i;
-	}
-	ft_putchar('\n');
-			printf("\n..............\n");
-	return (0);
-}
 
-void	set_weights(t_farm *f)
-{
-	int i;
-
-	i = -1;
-	while (++i < f->room_nb)
-		f->id_table[i]->weight = 2147483647;
-	f->start->weight = 0;
-}
 
 int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 {
 	int		max;
 	t_path	*new;
+	int		flag;
 
+	flag = 0;
 	*path_list = ft_new_path(NULL, 0);
 	(*path_list)->longest = 0;
 	set_weights(f);
 	while (optimise_flow(f, q) == 0)
 	{
+		flag = 1;
 		new = ft_new_path(NULL, 0);
 		new->longest = 0;
 		save_flow(q, f);
@@ -213,5 +147,7 @@ int		edmondskarp(t_queue *q, t_farm *f, t_path **path_list)
 			free_path(new);
 		clear_queue(q);
 	}
+	if (flag == 0)
+		return (-1);
 	return (0);
 }
