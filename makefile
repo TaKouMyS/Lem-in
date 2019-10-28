@@ -12,7 +12,7 @@
 
 NAME = lem-in
 SHELL = /bin/sh
-CC = gcc
+CC = clang
 CFLAGS += -Wall -Wextra -Werror -g
 OBJDIR = obj
 SRCDIR = src

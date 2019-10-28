@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 02:13:51 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 02:18:12 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,10 @@ int			create_link_list(t_farm *f)
 	int		i;
 	int		j;
 	int		k;
-	t_room	*room;
 
 	i = 0;
 	j = 0;
 	k = 0;
-	room = f->id_table[i];
 	while (i < f->room_nb)
 	{
 		if (!(f->id_table[i]->links = ft_memalloc(sizeof(int) * \
