@@ -59,7 +59,7 @@ t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list)
             return (path_error(path_list)); //save path
         steps = count_steps(q, f->start->id, f->end->id);
         mark_path(f, q); //mark it to avoid duplicating in the loop
-        if (!(new = ft_new_path(path, steps + 1))) //make t_path
+        if (!(new = ft_new_path(path, steps))) //make t_path
             return (path_error(path_list));
       //  free(path);
         ft_add_path(*path_list, new); //add to lst

@@ -97,6 +97,7 @@ int		send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants)
     moving_ants = 0;
     finished_ants = 0;
     i = 0;
+	int j = 0;
     while (finished_ants < f->ant_nb)
     {
 		i = 0;
@@ -105,7 +106,7 @@ int		send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants)
 		while(i < paths->max)
 		{
 			move_ants_on_path(moving_ants, f, path->path, &finished_ants);
-			if (moving_ants < f->ant_nb && paths->division[i] >= 0) //if we have not yet sent all our ants
+			if (moving_ants < f->ant_nb && paths->division[i] > 0) //if we have not yet sent all our ants
 				{
 					moving_ants = send_new_ant(f, path->path, moving_ants, &finished_ants);			
 					--paths->division[i];
@@ -114,7 +115,9 @@ int		send_ants(t_farm *f, t_path *paths, int max_paths, int moving_ants)
 			path = path->next;
 		}
 		ft_putchar('\n');
+		++j;
 	}
+//	printf("%d lines\n", j);
     return (0);
 
 }
