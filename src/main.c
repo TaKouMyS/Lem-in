@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/23 23:05:38 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 02:14:51 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(void)
 {
 	t_farm	*f;
 	t_room	*r;
-
 	if (!(f = ft_memalloc(sizeof(t_farm))))
 		return (-1);
 	if (!(r = ft_memalloc(sizeof(t_room))))

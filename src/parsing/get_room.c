@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 00:54:08 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/28 02:14:15 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ static int	room_check_coo(char *line)
 static char	*room_check_syntax(char *line)
 {
 	int		sp;
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	sp = 0;
 	tmp = line;
 	if (line[0] != '#')
@@ -117,7 +115,10 @@ static int	dash_comment(char *line, int mode)
 	else if (mode == 1)
 	{
 		if ((ft_strchr(line, '-') != NULL && line[0] != '#'))
+		{
+
 			return (0);
+		}
 		else
 			return (-1);
 	}
@@ -151,8 +152,10 @@ int			get_room(t_room *r, t_farm *f)
 		ft_memdel((void*)&line);
 		ret = gnl_store(0, &line, f, GET_ROOMS);
 		if (line && dash_comment(line, 1) != -1 && ((f->line = line)))
+		{
 			return (0);
+		}
 	}
-	ft_memdel((void*)&line);
+ 	ft_memdel((void*)&line);
 	return ((ret > 0) ? 0 : -1);
 }

@@ -85,7 +85,7 @@ int		find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 //			compare_weights(f->id_table[r->links[j]], r, q, f);
 	if (prev_flow == 0 && find_neg_flow(q, r, f) == 1)
 		return (0);
-		f->start->weight = 0;
+	f->start->weight = 0;
 	while (j < r->links_nb)
 	{
 
