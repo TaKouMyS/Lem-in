@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:47 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/26 13:39:16 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 00:23:51 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ static int *check_total_ants(int *ant_division, t_farm *f, t_path **paths)
 	{
 	//	printf("i = %d divde = %d\n", i, ant_division[i]);
 		total = total + ant_division[i];
+	//	printf(" max%d\n", (*paths)->max);
+	//	printf("%d\n", ant_division[i]);
 		++i;
 		
 	}
@@ -120,8 +122,10 @@ int		get_longest(int *ant_division, int *steps, int max)
 	i = -1;
 	longest = 0;
 	while (++i < max)
-		if (longest < steps[i] + ant_division[i] + 1)
-			longest = steps[i] + ant_division[i] + 1;
+	{
+		if (longest < steps[i] + ant_division[i] - 1)
+			longest = steps[i] + ant_division[i] - 1;
+	}
 	return (longest);
 
 }
@@ -139,7 +143,8 @@ int		*divide_ants(t_farm *f, t_path *paths)
 	if ((steps = get_path_lengths(f, paths, &total)) == NULL)
 		return (NULL);
 	ant_division = calculate_divide(ant_division, f, total, steps);
-	ant_division = check_total_ants(ant_division, f, &paths);
+	paths->longest = get_longest(ant_division, steps, paths->max);
+    ant_division = check_total_ants(ant_division, f, &paths);
 	paths->longest = get_longest(ant_division, steps, paths->max);
 	ft_memdel((void*)&steps);
 	return (ant_division);

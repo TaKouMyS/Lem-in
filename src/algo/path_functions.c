@@ -59,6 +59,7 @@ t_path **set_path(t_path **path_list, int i, t_farm *f)
 	(*path_list)->max = i;
 	if (!((*path_list)->division = divide_ants(f, *path_list)))
 			(*path_list)->len = -1;
+	//print_paths(*path_list, f);
 	return (path_list);
 }
 

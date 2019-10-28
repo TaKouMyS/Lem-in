@@ -45,11 +45,11 @@ void	print_paths(t_path *paths, t_farm *f)
 
 	i = 0;
 	tracker = paths;
-	//printf("max = %d\n", paths->max);
+	printf("max = %d\n", paths->max);
 	while (i < paths->max)
 	{
 		j = 0;
-		printf("steps = %d. ", tracker->len + paths->division[i] + 1);
+		printf("ant = %d len = %d. ",  paths->division[i], tracker->len);
 	//	printf("i = %d, division = %d\n", i, paths->division[i]);
 		if (tracker->path != NULL)
 		{

@@ -6,7 +6,7 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/28 01:51:59 by amamy            ###   ########.fr        #
+#    Updated: 2019/10/29 00:29:41 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/send_ants.c 			\
 		$(ALGDIR)/optimize_ants.c 		\
 		$(ALGDIR)/path_functions.c 		\
+		$(ALGDIR)/weight_functions.c 	\
 		$(SRCDIR)/debug.c
+
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))
 LIB		= $(LIBDIR)/libft.a
