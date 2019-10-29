@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 18:21:58 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:44:25 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ static void	write_input(t_farm *f)
 	putchar('\n');
 }
 
-int	main(void)
+int			main(void)
 {
 	t_farm	*f;
 	t_room	*r;
+
 	if (!(f = ft_memalloc(sizeof(t_farm))))
 		return (-1);
 	if (!(r = ft_memalloc(sizeof(t_room))))
@@ -37,7 +38,6 @@ int	main(void)
 		ft_free_lemin(f, r);
 		return (-1);
 	}
-
 	if (get_input(f, r) == -1)
 	{
 		ft_free_lemin(f, r);

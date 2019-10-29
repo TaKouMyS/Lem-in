@@ -3,30 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcahill <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:28 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/10 17:31:29 by fcahill          ###   ########.fr       */
+/*   Updated: 2019/10/29 01:51:03 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
+#include "lem-in.h"
+#include "libft.h"
 
-
-
-int		find_neighbours(t_queue *q, t_room *r)
+static int		find_neighbours(t_queue *q, t_room *r)
 {
 	int j;
 
 	j = 0;
-
 	while (j < r->links_nb)
 	{
 //		printf("\ttrying %d, visited = %d flow = %d\n", r->links[j], q->visited[r->links[j]], q->flow[r->id][r->links[j]]);
-		if (q->visited[r->links[j]] == 0 //if there is a link and we have not visited the link
+		if (q->visited[r->links[j]] == 0  //if there is a link and we have not visited the link
 			&& q->flow[r->id][r->links[j]] == 1) //We repect the flow chart by only followig flows of one.
 		{
 			q->queue[q->position] = r->links[j]; // add to end of queue
@@ -39,7 +35,7 @@ int		find_neighbours(t_queue *q, t_room *r)
 	return (0);
 }
 
-int		bfs(t_farm *f, t_queue *q)
+int				bfs(t_farm *f, t_queue *q)
 {
 	int		i;
 	int		node;

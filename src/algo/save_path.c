@@ -6,25 +6,58 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:32:10 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/29 00:22:37 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 02:45:52 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "lem-in.h"
 
-void mark_path(t_farm *f, t_queue *q)
+static size_t	count_steps(t_queue *q, int start, int end)
 {
-	int path;
-	int j;
+	int		steps;
 
-	j = 0; 
+	steps = 0;
+	while (end != start)
+	{
+		end = q->prev[end];
+		++steps;
+	}
+	return (steps);
+}
+
+static int				*rev_path(t_farm *f, t_queue *q)
+{
+	int		*rev_path;
+	int		steps;
+	int		i;
+	int		pos;
+
+	i = 0;
+	pos = f->end->id;
+	steps = count_steps(q, f->start->id, f->end->id);
+	if (!(rev_path = ft_memalloc((sizeof(int)) * (steps + 1))))
+		return (NULL);
+	rev_path[steps] = pos;
+	while (i <= steps) //save the path reversed as it is currently stored from end to start
+	{
+		rev_path[steps - i] = pos;
+		pos = q->prev[pos];
+		++i;
+	}
+	return (rev_path);
+}
+
+static void		mark_path(t_farm *f, t_queue *q)
+{
+	int		path;
+	int		j;
+
+	j = 0;
 	path = q->prev[f->end->id];
-	while (path != f->start->id) 
+	while (path != f->start->id)
 	{
 		q->visited[path] = 2;
 		path = q->prev[path];
-
 	}
 	while (j < q->length)
 	{
@@ -36,18 +69,18 @@ void mark_path(t_farm *f, t_queue *q)
 	}
 }
 
-t_path **path_error(t_path **path)
+static t_path	**path_error(t_path **path)
 {
 	(*path)->len = -1;
 	return (path);
 }
 
-t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list)
+t_path			**save_paths(t_queue *q, t_farm *f, t_path **path_list)
 {
-	int *path;
-	size_t steps;
-	t_path *new;
-	int i;
+	int		*path;
+	size_t	steps;
+	t_path	*new;
+	int		i;
 
 	i = 0;
 	set_weights(f);
@@ -68,37 +101,4 @@ t_path **save_paths(t_queue *q, t_farm *f, t_path **path_list)
 	return (path_list);
 }
 
-size_t count_steps(t_queue *q, int start, int end)
-{
-	int steps;
 
-	steps = 0;
-	while (end != start)
-	{
-		end = q->prev[end];
-		++steps;
-	}
-	return (steps);
-}
-
-int *rev_path(t_farm *f, t_queue *q)
-{
-	int *rev_path;
-	int steps;
-	int i;
-	int pos;
-
-	i = 0;
-	pos = f->end->id;
-	steps = count_steps(q, f->start->id, f->end->id);
-	if (!(rev_path = ft_memalloc((sizeof(int)) * (steps + 1))))
-		return (NULL);
-	rev_path[steps] = pos;
-	while (i <= steps) //save the path reversed as it is currently stored from end to start
-	{
-		rev_path[steps - i] = pos;
-		pos = q->prev[pos];
-		++i;     
-	}
-	return (rev_path);
-	}

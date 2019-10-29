@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/29 00:06:00 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:33:26 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	creates_table(t_room *r, t_farm *f)
 	return (0);
 }
 
-static void	usage()
+static void	usage(void)
 {
 	ft_printf("INPUT ERROR\n");
 	ft_putstr("\n\nUsage :\nLem-in reads standard entry.\n\n");
@@ -79,7 +79,7 @@ static int	get_quantity_ants(t_farm *f)
 
 	i = 0;
 	line = NULL;
- 	if ((ret = gnl_store(0, &line, f, GET_ANTS_LINKS) >= 0) && line)
+	if ((ret = gnl_store(0, &line, f, GET_ANTS_LINKS) >= 0) && line)
 	{
 		while (line[i] != '\0')
 		{
@@ -142,9 +142,9 @@ int			get_input(t_farm *f, t_room *r)
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0 \
 		|| create_link_list(f) != 0)
-		{
-			usage();
-			return (-1);
-		}
+	{
+		usage();
+		return (-1);
+	}
 	return (0);
 }

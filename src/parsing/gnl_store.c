@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 00:12:16 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 02:01:17 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:31:53 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	is_com_start_end(char *line)
 static int	store(t_farm *f, char *line, int ret)
 {
 	t_input *new;
+
 	if (ret > 0)
 	{
 		f->input->line = ft_strdup(line);

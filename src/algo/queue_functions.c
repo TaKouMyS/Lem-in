@@ -6,12 +6,12 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:18:03 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/27 20:40:57 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 02:01:35 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
+#include "lem-in.h"
+#include "libft.h"
 #include <stdio.h>
 
 int		set_to_n(int **set, int length, int n)
@@ -31,7 +31,7 @@ int		initialise_queue(t_queue *q, int length, int start)
 	i = 0;
 	q->length = length;
 	q->queue = NULL;
-	q->prev= NULL;
+	q->prev = NULL;
 	q->flow = NULL;
 	q->visited = NULL;
 	if (!(q->queue = ft_memalloc(sizeof(int) * length)))
@@ -44,9 +44,8 @@ int		initialise_queue(t_queue *q, int length, int start)
 		return (-1);
 	while (i < q->length)
 	{
-		if (!(q->flow[i] = ft_memalloc(sizeof(int) * q->length)))
+		if (!(q->flow[i++] = ft_memalloc(sizeof(int) * q->length)))
 			return (-1);
-		++i;
 	}
 	set_to_n(&q->queue, length, -1);
 	set_to_n(&q->prev, length, -1);

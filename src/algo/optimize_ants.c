@@ -6,31 +6,18 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:31:47 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/29 00:23:51 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:58:37 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
-#include <stdio.h>
-
-// UNUSED? TO BE REMOVE
-// //count steps on saved path
-// static int		count_path(int end, int *path)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (path[i] != end)
-// 		++i;
-// 	return (i);
-// }
+#include "lem-in.h"
+#include "libft.h"
 
 //calculate ants to send on each path
-static int *calculate_divide(int *ant_division, t_farm *f, int total, int *steps)
+
+static int	*calculate_divide(int *ant_division, t_farm *f, int total, int *steps)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	total = (total + f->ant_nb) / f->max_paths;
@@ -44,10 +31,12 @@ static int *calculate_divide(int *ant_division, t_farm *f, int total, int *steps
 
 //check that we have allocated all the ants, if there are leftovers add them to shorest
 //path
-int	*split_remainder(int *ant_division, int remainder, t_path **paths)
+
+static int	*split_remainder(int *ant_division, int remainder, t_path **paths)
 {
-	int i;
-	int full;
+	int		i;
+	int		full;
+
 	full = 0;
 	while (remainder > 0)
 	{
@@ -72,21 +61,20 @@ int	*split_remainder(int *ant_division, int remainder, t_path **paths)
 	return (ant_division);
 }
 
-static int *check_total_ants(int *ant_division, t_farm *f, t_path **paths)
+static int	*check_total_ants(int *ant_division, t_farm *f, t_path **paths)
 {
-	int i;
-	int total;
+	int		i;
+	int		total;
 
 	i = 0;
 	total = 0;
 	while (i < (*paths)->max)
 	{
-	//	printf("i = %d divde = %d\n", i, ant_division[i]);
+		//	printf("i = %d divde = %d\n", i, ant_division[i]);
 		total = total + ant_division[i];
-	//	printf(" max%d\n", (*paths)->max);
-	//	printf("%d\n", ant_division[i]);
+		//	printf(" max%d\n", (*paths)->max);
+		//	printf("%d\n", ant_division[i]);
 		++i;
-		
 	}
 	if (total < f->ant_nb)
 		ant_division = split_remainder(ant_division, f->ant_nb - total, paths);
@@ -94,11 +82,12 @@ static int *check_total_ants(int *ant_division, t_farm *f, t_path **paths)
 }
 
 //Save the length of each path, and the total length of all paths.
-int     *get_path_lengths(t_farm *f, t_path *paths, int *total)
+
+static int	*get_path_lengths(t_farm *f, t_path *paths, int *total)
 {
-	int i;
-	int *steps;
-	t_path *path;
+	int		i;
+	int		*steps;
+	t_path	*path;
 
 	i = 0;
 	path = paths;
@@ -114,10 +103,10 @@ int     *get_path_lengths(t_farm *f, t_path *paths, int *total)
 	return (steps);
 }
 
-int		get_longest(int *ant_division, int *steps, int max)
+static int	get_longest(int *ant_division, int *steps, int max)
 {
-	int i;
-	int longest;
+	int		i;
+	int		longest;
 
 	i = -1;
 	longest = 0;
@@ -127,13 +116,13 @@ int		get_longest(int *ant_division, int *steps, int max)
 			longest = steps[i] + ant_division[i] - 1;
 	}
 	return (longest);
-
 }
-int		*divide_ants(t_farm *f, t_path *paths)
+
+int			*divide_ants(t_farm *f, t_path *paths)
 {
-	int *ant_division;
-	int *steps;
-	int total;
+	int		*ant_division;
+	int		*steps;
+	int		total;
 
 	total = 0;
 	//printf("%lu\n max = %d", sizeof(int) * f->max_paths, f->max_paths);
@@ -144,7 +133,7 @@ int		*divide_ants(t_farm *f, t_path *paths)
 		return (NULL);
 	ant_division = calculate_divide(ant_division, f, total, steps);
 	paths->longest = get_longest(ant_division, steps, paths->max);
-    ant_division = check_total_ants(ant_division, f, &paths);
+	ant_division = check_total_ants(ant_division, f, &paths);
 	paths->longest = get_longest(ant_division, steps, paths->max);
 	ft_memdel((void*)&steps);
 	return (ant_division);

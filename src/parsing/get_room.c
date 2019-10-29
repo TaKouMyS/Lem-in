@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 20:30:31 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:36:29 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ static int	check_comment(t_farm *f, char *line)
 	return (0);
 }
 
-
 /*
 ** ==================== dash_comment ====================
 ** mode 0 : if the given line is NOT a link or is a comment return (0)
@@ -115,10 +114,7 @@ static int	dash_comment(char *line, int mode)
 	else if (mode == 1)
 	{
 		if ((ft_strchr(line, '-') != NULL && line[0] != '#'))
-		{
-
 			return (0);
-		}
 		else
 			return (-1);
 	}
@@ -155,6 +151,6 @@ int			get_room(t_room *r, t_farm *f)
 		if (line && dash_comment(line, 1) != -1 && ((f->line = line)))
 			return (0);
 	}
- 	ft_memdel((void*)&line);
+	ft_memdel((void*)&line);
 	return ((ret > 0) ? 0 : -1);
 }

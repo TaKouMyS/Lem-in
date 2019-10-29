@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/28 23:10:30 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 02:51:16 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,27 +84,23 @@ int						get_links(t_farm *f);
 int 					gnl_store(int fd, char **line, t_farm *f, int origin);
 int     				solve(t_farm *f, int length, int start);
 int 					bfs(t_farm *f, t_queue *q);
-int 					max_flow(t_queue *q, t_farm *f);
-size_t					count_steps(t_queue *q, int start, int end);
-int 					*rev_path(t_farm *f, t_queue *q);
 int						edmondskarp(t_queue *q, t_farm *f, t_path **path_list);
 int						send_ants(t_farm *f, t_path *paths, int moving_ants);
 void 					clear_queue(t_queue *q);
-void 					mark_path(t_farm *f, t_queue *q);
 int 					initialise_queue(t_queue *q, int length, int start);
-void 					print_map(int **map, int length);
 void 					reset_queue(t_queue *q, int start, int end);
 int 					set_to_n(int **set, int length, int n);
-int 					keep_path(t_queue *q, t_farm *f, int *longest_path, int paths);
 int						*divide_ants(t_farm *f, t_path *paths);
 void					free_queue(t_queue *q);
-void					print_paths(t_path *paths, t_farm *f);
 t_path					**save_paths(t_queue *q, t_farm *f, t_path **path_list);
 t_path 					*ft_new_path(int *path, int len);
 void					ft_add_path(t_path *paths, t_path *new);
 t_path 					**set_path(t_path **path_list, int i, t_farm *f);
 void 					free_path(t_path *path_list);
-void	set_weights(t_farm *f);
-int		check_weights(t_room *next, t_room *current, t_queue *q, t_farm *f);
+void					set_weights(t_farm *f);
+int						check_weights(t_room *next, t_room *current, t_queue *q, t_farm *f);
 
+//debug
+void 					print_map(int **map, int length);
+void					print_paths(t_path *paths, t_farm *f);
 #endif
