@@ -10,25 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-#define START 1
-#define END 2
+# include "libft.h"
+# define START 1
+# define END 2
 
-#define GET_ANTS_LINKS 1
-#define GET_ROOMS 2
+# define GET_ANTS_LINKS 1
+# define GET_ROOMS 2
 
-typedef	struct	s_path
+# define __INT_MAX__ 2147483647
+# define __INT_MIN__ -2147483648
+
+typedef	struct			s_path
 {
-	int				*path;
-	int				len;
-	int				max;
-	int				*division;
-	int				longest;
-	struct s_path	*next;
-}				t_path;
+	int					*path;
+	int					len;
+	int					max;
+	int					*division;
+	int					longest;
+	struct s_path		*next;
+}						t_path;
 
 typedef struct			s_queue
 {
@@ -52,12 +55,11 @@ typedef struct			s_room
 	int					weight;
 }						t_room;
 
-typedef struct 			s_input
+typedef struct			s_input
 {
 	char				*line;
 	struct s_input		*next;
 }						t_input;
-
 
 typedef struct			s_farm
 {
@@ -77,28 +79,28 @@ typedef struct			s_farm
 int						get_input(t_farm *f, t_room *r);
 int						get_room(t_room *r, t_farm *f);
 t_room					*new_room(t_farm *f, t_room *r, char *line, long id);
-void					ft_free_lemin(t_farm *f, t_room *r);
+int						ft_free_lemin(t_farm *f, t_room *r);
 int						free_links(char *line, char **rooms, int ret);
 int						error_free_line(char *line);
 int						get_links(t_farm *f);
-int 					gnl_store(int fd, char **line, t_farm *f, int origin);
-int     				solve(t_farm *f, int length, int start);
-int 					bfs(t_farm *f, t_queue *q);
-int						edmondskarp(t_queue *q, t_farm *f, t_path **path_list);
+int						gnl_store(int fd, char **line, t_farm *f, int origin);
+int						solve(t_farm *f, int length, int start);
+int						bfs(t_farm *f, t_queue *q);
+int						edmondskarp(t_queue *q, t_farm *f, t_path **p, int t);
 int						send_ants(t_farm *f, t_path *paths, int moving_ants);
-void 					clear_queue(t_queue *q);
-int 					initialise_queue(t_queue *q, int length, int start);
-void 					reset_queue(t_queue *q, int start, int end);
-int 					set_to_n(int **set, int length, int n);
+void					clear_queue(t_queue *q);
+int						initialise_queue(t_queue *q, int length, int start);
+void					reset_queue(t_queue *q, int start, int end);
+int						set_to_n(int **set, int length, int n);
 int						*divide_ants(t_farm *f, t_path *paths);
 void					free_queue(t_queue *q);
 t_path					**save_paths(t_queue *q, t_farm *f, t_path **path_list);
-t_path 					*ft_new_path(int *path, int len);
+t_path					*ft_new_path(int *path, int len);
 void					ft_add_path(t_path *paths, t_path *new);
-t_path 					**set_path(t_path **path_list, int i, t_farm *f);
-void 					free_path(t_path *path_list);
-void					set_weights(t_farm *f);
-int						check_weights(t_room *next, t_room *current, t_queue *q, t_farm *f);
+t_path					**set_path(t_path **path_list, int i, t_farm *f);
+void					free_path(t_path *path_list);
+int						send_new_ant(t_farm *f, int *p, int mov, int *fin);
+int						*get_path_lengths(t_farm *f, t_path *paths, int *total);
 
 //debug
 void 					print_map(int **map, int length);

@@ -10,12 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
+#include "lem_in.h"
 
-//calculate ants to send on each path
-
-static int	*calculate_divide(int *ant_division, t_farm *f, int total, int *steps)
+static int	*calculate_divide(int *ant_div, t_farm *f, int total, int *steps)
 {
 	int		i;
 
@@ -23,14 +20,11 @@ static int	*calculate_divide(int *ant_division, t_farm *f, int total, int *steps
 	total = (total + f->ant_nb) / f->max_paths;
 	while (i < f->max_paths)
 	{
-		ant_division[i] = total - steps[i];
+		ant_div[i] = total - steps[i];
 		++i;
 	}
-	return (ant_division);
+	return (ant_div);
 }
-
-//check that we have allocated all the ants, if there are leftovers add them to shorest
-//path
 
 static int	*split_remainder(int *ant_division, int remainder, t_path **paths)
 {
@@ -70,37 +64,12 @@ static int	*check_total_ants(int *ant_division, t_farm *f, t_path **paths)
 	total = 0;
 	while (i < (*paths)->max)
 	{
-		//	printf("i = %d divde = %d\n", i, ant_division[i]);
 		total = total + ant_division[i];
-		//	printf(" max%d\n", (*paths)->max);
-		//	printf("%d\n", ant_division[i]);
 		++i;
 	}
 	if (total < f->ant_nb)
 		ant_division = split_remainder(ant_division, f->ant_nb - total, paths);
 	return (ant_division);
-}
-
-//Save the length of each path, and the total length of all paths.
-
-static int	*get_path_lengths(t_farm *f, t_path *paths, int *total)
-{
-	int		i;
-	int		*steps;
-	t_path	*path;
-
-	i = 0;
-	path = paths;
-	if (!(steps = (int *)ft_memalloc(sizeof(int) * f->max_paths)))
-		return (NULL);
-	while (i < f->max_paths)
-	{
-		steps[i] = path->len;
-		total[0] = total[0] + steps[i];
-		++i;
-		path = path->next;
-	}
-	return (steps);
 }
 
 static int	get_longest(int *ant_division, int *steps, int max)
@@ -125,7 +94,6 @@ int			*divide_ants(t_farm *f, t_path *paths)
 	int		total;
 
 	total = 0;
-	//printf("%lu\n max = %d", sizeof(int) * f->max_paths, f->max_paths);
 	if (!(ant_division = (int *)ft_memalloc(sizeof(int) * paths->max)))
 		return (NULL);
 	f->max_paths = paths->max;

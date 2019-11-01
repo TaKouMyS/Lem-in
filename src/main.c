@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
-#include <stdio.h>
+#include "lem_in.h"
 
 static void	write_input(t_farm *f)
 {
@@ -23,7 +21,6 @@ static void	write_input(t_farm *f)
 		ft_putstr("\n");
 		f->input = f->input->next;
 	}
-	putchar('\n');
 }
 
 int			main(void)
@@ -34,16 +31,11 @@ int			main(void)
 	if (!(f = ft_memalloc(sizeof(t_farm))))
 		return (-1);
 	if (!(r = ft_memalloc(sizeof(t_room))))
-	{
-		ft_free_lemin(f, r);
-		return (-1);
-	}
+		return (ft_free_lemin(f, r));
 	if (get_input(f, r) == -1)
-	{
-		ft_free_lemin(f, r);
-		return (-1);
-	}
+		return (ft_free_lemin(f, r));
 	write_input(f);
+	ft_putchar('\n');
 	solve(f, f->room_nb, f->start->id);
 	ft_free_lemin(f, r);
 	return (0);

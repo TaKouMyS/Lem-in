@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static size_t	count_steps(t_queue *q, int start, int end)
 {
@@ -25,7 +25,7 @@ static size_t	count_steps(t_queue *q, int start, int end)
 	return (steps);
 }
 
-static int				*rev_path(t_farm *f, t_queue *q)
+static int		*rev_path(t_farm *f, t_queue *q)
 {
 	int		*rev_path;
 	int		steps;
@@ -38,7 +38,7 @@ static int				*rev_path(t_farm *f, t_queue *q)
 	if (!(rev_path = ft_memalloc((sizeof(int)) * (steps + 1))))
 		return (NULL);
 	rev_path[steps] = pos;
-	while (i <= steps) //save the path reversed as it is currently stored from end to start
+	while (i <= steps)
 	{
 		rev_path[steps - i] = pos;
 		pos = q->prev[pos];
@@ -83,22 +83,18 @@ t_path			**save_paths(t_queue *q, t_farm *f, t_path **path_list)
 	int		i;
 
 	i = 0;
-	set_weights(f);
-	//while there are paths to be found in this flow
 	while (bfs(f, q) == 0)
 	{
 		if (!(path = rev_path(f, q)))
-			return (path_error(path_list)); //save path
+			return (path_error(path_list));
 		steps = count_steps(q, f->start->id, f->end->id);
-		mark_path(f, q); //mark it to avoid duplicating in the loop
-		if (!(new = ft_new_path(path, steps + 1))) //make t_path
+		mark_path(f, q);
+		if (!(new = ft_new_path(path, steps + 1)))
 			return (path_error(path_list));
 		ft_memdel((void*)&path);
-		ft_add_path(*path_list, new); //add to lst
-		++i; //count how many paths found
+		ft_add_path(*path_list, new);
+		++i;
 	}
 	path_list = set_path(path_list, i, f);
 	return (path_list);
 }
-
-

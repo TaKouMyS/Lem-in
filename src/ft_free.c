@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
+#include "lem_in.h"
 
 /*
 ** ==================== free_links ====================
@@ -48,7 +47,7 @@ void	ft_free_input(t_input *input, t_input *start)
 ** Receive a pointeur to the first link of the chain r.
 */
 
-void	ft_free_lemin(t_farm *f, t_room *r)
+int		ft_free_lemin(t_farm *f, t_room *r)
 {
 	int		i;
 	t_room	*tmp;
@@ -69,6 +68,7 @@ void	ft_free_lemin(t_farm *f, t_room *r)
 	ft_memdel((void*)&f->links);
 	ft_free_input(f->input, f->input_start);
 	ft_memdel((void*)&f);
+	return (-1);
 }
 
 int		error_free_line(char *line)

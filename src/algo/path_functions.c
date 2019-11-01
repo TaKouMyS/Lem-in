@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_path	*ft_new_path(int *path, int len)
 {
@@ -35,8 +35,6 @@ t_path	*ft_new_path(int *path, int len)
 	return (new_elem);
 }
 
-//add new path to path solution
-
 void	ft_add_path(t_path *paths, t_path *new)
 {
 	t_path *tracker;
@@ -48,8 +46,6 @@ void	ft_add_path(t_path *paths, t_path *new)
 		tracker = tracker->next;
 	tracker->next = new;
 }
-
-//move path from iniial Null starting space.
 
 t_path	*clean_path(t_path *path_list)
 {
@@ -67,15 +63,12 @@ t_path	*clean_path(t_path *path_list)
 	return (path_list);
 }
 
-//fill in the missing boxes
-
 t_path	**set_path(t_path **path_list, int i, t_farm *f)
 {
 	*path_list = clean_path(*path_list);
 	(*path_list)->max = i;
 	if (!((*path_list)->division = divide_ants(f, *path_list)))
 		(*path_list)->len = -1;
-	//print_paths(*path_list, f);
 	return (path_list);
 }
 

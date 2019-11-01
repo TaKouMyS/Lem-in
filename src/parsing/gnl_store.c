@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int	is_com_start_end(char *line)
 {

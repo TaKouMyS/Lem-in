@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
-#include <stdio.h>
+#include "lem_in.h"
 
 int		set_to_n(int **set, int length, int n)
 {
@@ -55,10 +53,10 @@ int		initialise_queue(t_queue *q, int length, int start)
 
 void	reset_queue(t_queue *q, int start, int end)
 {
-	q->queue[0] = start; //first element in queue is the start of path
-	q->visited[start] = 1; //mark start as visited
-	q->position = 1; //we have one item in the queue
-	if (end >= 0)      //if we don't need to restet end, we can give -1
+	q->queue[0] = start;
+	q->visited[start] = 1;
+	q->position = 1;
+	if (end >= 0)
 		q->visited[end] = 0;
 }
 

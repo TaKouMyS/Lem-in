@@ -13,14 +13,14 @@
 NAME = lem-in
 SHELL = /bin/sh
 CC = clang
-CFLAGS += -Wall -Wextra -Werror -g
+CFLAGS += -Wall -Werror -Wextra
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing
 ALGDIR = $(SRCDIR)/algo
 LIBDIR	= libft
 INCLUDES = includes
-HEAD	= $(INCLUDES)/lem-in.h
+HEAD	= $(INCLUDES)/lem_in.h
 
 SRCS 	= $(SRCDIR)/main.c				\
 		$(SRCDIR)/ft_free.c				\
@@ -37,7 +37,7 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/send_ants.c 			\
 		$(ALGDIR)/optimize_ants.c 		\
 		$(ALGDIR)/path_functions.c 		\
-		$(ALGDIR)/weight_functions.c 	\
+		$(ALGDIR)/ant_functions_b.c 		\
 		$(SRCDIR)/debug.c
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
