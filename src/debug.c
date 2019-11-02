@@ -45,31 +45,27 @@ void	which_links_save(t_room **ids)
 */
 void	ft_print_list_debug(t_farm *f)
 {
+	int j;
+	int i;
 	ft_printf("links :\n");
-		int j = 0;
-		int i = 0;
-		ft_printf("room nb = %d\n", f->room_nb);
-		while (i < f->room_nb)
-		{
-			ft_printf("%d ", i);
-			++i;
-		}
-		ft_printf("\n................\n");
-		i = 0;
-		while (i < f->room_nb)
-		{
-			j = 0;
-			while (j < f->room_nb)
-			{
-				ft_printf("%d ", f->links[i][j]);
-				++j;
-			}
-			ft_putchar('\n');
-			++i;
-		}
+	j = 0;
+	i = 0;
+	ft_printf("room nb = %d\n", f->room_nb);
+	while (i < f->room_nb)
+	{
+		ft_printf("%d ", i);
+		++i;
+	}
+	ft_printf("\n................\n");
+	i = -1;
+	while (++i < f->room_nb)
+	{
+		j = -1;
+		while (++j < f->room_nb)
+			ft_printf("%d ", f->links[i][j]);
+		ft_putchar('\n');
+	}
 }
-
-//we won't need this later I think, it's just for debugging.
 
 void	print_map(int **map, int length)
 {
@@ -93,8 +89,6 @@ void	print_map(int **map, int length)
 	ft_printf("...........................\n");
 }
 
-//same for debugging
-
 void	print_paths(t_path *paths, t_farm *f)
 {
 	t_path	*tracker;
@@ -108,7 +102,6 @@ void	print_paths(t_path *paths, t_farm *f)
 	{
 		j = 0;
 		ft_printf("ant = %d len = %d. ", paths->division[i], tracker->len);
-		//	ft_printf("i = %d, division = %d\n", i, paths->division[i]);
 		if (tracker->path != NULL)
 		{
 			while (tracker->path[j] != f->end->id)

@@ -38,7 +38,7 @@ int		initialise_queue(t_queue *q, int length, int start)
 		return (-1);
 	if (!(q->visited = ft_memalloc(sizeof(int) * length)))
 		return (-1);
-	if (!(q->flow = ft_memalloc(sizeof(int *) * q->length)))
+	if (!(q->flow = ft_memalloc(sizeof(int *) * length)))
 		return (-1);
 	while (i < q->length)
 	{

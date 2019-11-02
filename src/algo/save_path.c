@@ -83,6 +83,7 @@ t_path			**save_paths(t_queue *q, t_farm *f, t_path **path_list)
 	int		i;
 
 	i = 0;
+	set_weights(f);
 	while (bfs(f, q) == 0)
 	{
 		if (!(path = rev_path(f, q)))

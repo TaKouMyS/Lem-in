@@ -19,6 +19,8 @@ static int	find_neg_flow(t_queue *q, t_room *r, t_farm *f)
 	i = 0;
 	while (i < r->links_nb)
 	{
+		if (f->id_table[r->links[i]]->weight != __INT_MAX__)
+			check_weights(f->id_table[r->links[i]], r, q, f);
 		if (q->visited[r->links[i]] != 1 && q->flow[r->id][r->links[i]] == -1)
 		{
 			q->queue[q->position] = r->links[i];
@@ -42,6 +44,8 @@ static int	find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 		return (0);
 	while (j < r->links_nb)
 	{
+		if (f->id_table[r->links[j]]->weight != __INT_MAX__)
+			check_weights(f->id_table[r->links[j]], r, q, f);
 		if (q->visited[r->links[j]] != 1
 			&& q->flow[r->id][r->links[j]] != 1)
 		{
@@ -92,7 +96,6 @@ static int	optimise_flow(t_farm *f, t_queue *q)
 	clear_queue(q);
 	reset_queue(q, f->start->id, f->end->id);
 	prev_flow = 0;
-	f->start->weight = 0;
 	while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
 	{
 		node = q->queue[i];
@@ -111,9 +114,9 @@ int			edmondskarp(t_queue *q, t_farm *f, t_path **p, int t)
 
 	*p = ft_new_path(NULL, 0);
 	(*p)->longest = 0;
-	while (optimise_flow(f, q) == 0)
+	set_weights(f);
+	while (optimise_flow(f, q) == 0 && (t = 1))
 	{
-		t = 1;
 		new = ft_new_path(NULL, 0);
 		new->longest = 0;
 		save_flow(q, f);
