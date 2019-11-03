@@ -89,7 +89,7 @@ int					bfs(t_farm *f, t_queue *q);
 int					edmondskarp(t_queue *q, t_farm *f, t_path **p, int t);
 int					send_ants(t_farm *f, t_path *paths, int moving_ants);
 void				clear_queue(t_queue *q);
-int					initialise_queue(t_queue *q, int length, int start);
+int					initialise_queue(t_queue *q, t_farm *f);
 void				reset_queue(t_queue *q, int start, int end);
 int					set_to_n(int **set, int length, int n);
 int					*divide_ants(t_farm *f, t_path *paths);
@@ -103,6 +103,7 @@ int					send_new_ant(t_farm *f, int *p, int mov, int *fin);
 int					*get_path_lengths(t_farm *f, t_path *paths, int *total);
 void				set_weights(t_farm *f);
 int					check_weights(t_room *n, t_room *c, t_queue *q, t_farm *f);
+int					ft_delete_line(char *line);
 
 //debug
 void 				print_map(int **map, int length);

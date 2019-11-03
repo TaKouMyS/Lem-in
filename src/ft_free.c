@@ -18,6 +18,12 @@
 ** Free stored ids and line.
 */
 
+int		ft_delete_line(char *line)
+{
+	ft_memdel((void *)&line);
+	return (-1);
+}
+
 int		free_links(char *line, char **rooms, int ret)
 {
 	ft_memdel((void*)&rooms[0]);

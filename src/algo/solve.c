@@ -17,7 +17,7 @@ int		solve(t_farm *f, int length, int start)
 	t_queue	q;
 	t_path	*path_list;
 
-	if (initialise_queue(&q, length, start) < 0)
+	if (initialise_queue(&q, f) < 0)
 	{
 		ft_printf("MALLOC ERROR\n");
 		free_queue(&q);

@@ -85,13 +85,10 @@ static int	get_quantity_ants(t_farm *f)
 		while (line[i] != '\0')
 		{
 			if (ft_isdigit(line[i++]) != 1)
-			{
-				ft_memdel((void*)&line);
-				return (-1);
-			}
+				return (ft_delete_line(line));
 		}
 		if ((t = ft_long_atoi(line)) == 0 || t > __INT_MAX__ || t < __INT_MIN__)
-			return (-1);
+			return (ft_delete_line(line));
 		f->ant_nb = t;
 	}
 	else

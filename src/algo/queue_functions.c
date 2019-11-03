@@ -22,32 +22,32 @@ int		set_to_n(int **set, int length, int n)
 	return (0);
 }
 
-int		initialise_queue(t_queue *q, int length, int start)
+int		initialise_queue(t_queue *q, t_farm *f)
 {
 	int i;
 
 	i = 0;
-	q->length = length;
+	q->length = f->room_nb;
 	q->queue = NULL;
 	q->prev = NULL;
 	q->flow = NULL;
 	q->visited = NULL;
-	if (!(q->queue = ft_memalloc(sizeof(int) * length)))
+	if (!(q->queue = ft_memalloc(sizeof(int) * q->length)))
 		return (-1);
-	if (!(q->prev = ft_memalloc(sizeof(int) * length)))
+	if (!(q->prev = ft_memalloc(sizeof(int) * q->length)))
 		return (-1);
-	if (!(q->visited = ft_memalloc(sizeof(int) * length)))
+	if (!(q->visited = ft_memalloc(sizeof(int) * q->length)))
 		return (-1);
-	if (!(q->flow = ft_memalloc(sizeof(int *) * length)))
+	if (!(q->flow = ft_memalloc(sizeof(int *) * q->length)))
 		return (-1);
 	while (i < q->length)
 	{
 		if (!(q->flow[i++] = ft_memalloc(sizeof(int) * q->length)))
 			return (-1);
 	}
-	set_to_n(&q->queue, length, -1);
-	set_to_n(&q->prev, length, -1);
-	reset_queue(q, start, -1);
+	set_to_n(&q->queue, q->length, -1);
+	set_to_n(&q->prev, q->length, -1);
+	reset_queue(q, f->start->id, -1);
 	return (0);
 }
 
