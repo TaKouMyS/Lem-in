@@ -44,12 +44,13 @@ static void	usage(void)
 	ft_printf("INPUT ERROR\n");
 	ft_putstr("\n\nUsage :\nLem-in reads from the standard input.\n\n");
 	ft_putstr("1 - The 1st line is an int between 1 & INT_MAX indicating ");
-	ft_putstr("ant quantity.\n\n2 - Below this we list the rooms \n\t\t- ");
-	ft_putstr("syntax : name Y X (Y and X represent coordinates).\n");
-	ft_putstr("\tRoom names can not start with L and can not contain '-'.\n\n");
+	ft_putstr("ant quantity. Any ant quantity larger that 2^64 results in");
+	ft_putstr(" undefined behaviour.\n\n2 - Below this we list the rooms. ");
+	ft_putstr("Room names can not start with L and can not contain '-'.\n\t");
+	ft_putstr("\t- syntax : name Y X (Y and X represent coordinates).\n\n");
 	ft_putstr("3. The program needs to know the starting and ending rooms.");
 	ft_putstr(" You can specify them with the ##start and ##end commands.\n");
-	ft_putstr("\tEach command is written on a single line ");
+	ft_putstr("Each command is written on a single line ");
 	ft_putstr("the line immediately after it will be start or end.\n\n");
 	ft_putstr("4 - list of links \n\t\t- syntax : ");
 	ft_putstr("Room1-Room2 ");

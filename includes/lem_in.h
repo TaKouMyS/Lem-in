@@ -87,7 +87,7 @@ int					gnl_store(int fd, char **line, t_farm *f, int origin);
 int					solve(t_farm *f, int length, int start);
 int					bfs(t_farm *f, t_queue *q);
 int					edmondskarp(t_queue *q, t_farm *f, t_path **p, int t);
-int					send_ants(t_farm *f, t_path *paths, int moving_ants);
+int					send_ants(t_farm *f, t_path *paths, int moving_ants, int x);
 void				clear_queue(t_queue *q);
 int					initialise_queue(t_queue *q, t_farm *f);
 void				reset_queue(t_queue *q, int start, int end);
@@ -104,6 +104,7 @@ int					*get_path_lengths(t_farm *f, t_path *paths, int *total);
 void				set_weights(t_farm *f);
 int					check_weights(t_room *n, t_room *c, t_queue *q, t_farm *f);
 int					ft_delete_line(char *line);
+int					check_print_space(int x);
 
 //debug
 void 				print_map(int **map, int length);

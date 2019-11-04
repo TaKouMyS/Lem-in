@@ -30,7 +30,7 @@ int		solve(t_farm *f, int length, int start)
 		free_path(path_list);
 		return (-1);
 	}
-	send_ants(f, path_list, f->ant_nb);
+	send_ants(f, path_list, f->ant_nb, 0);
 	free_path(path_list);
 	free_queue(&q);
 	return (0);

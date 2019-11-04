@@ -23,10 +23,18 @@ int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
 		f->id_table[p[1]]->empty = mov;
 		if (p[1] == f->end->id)
 			++fin[0];
-		ft_printf(" L%d-%s", mov, f->id_table[p[1]]->name);
+		ft_printf("L%d-%s", mov, f->id_table[p[1]]->name);
 		++i;
 	}
 	return (mov);
+}
+
+int	check_print_space(int x)
+{
+	if (x != 0)
+		ft_putchar(' ');
+	x = 1;
+	return (x);
 }
 
 int	*get_path_lengths(t_farm *f, t_path *paths, int *total)
