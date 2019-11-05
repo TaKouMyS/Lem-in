@@ -6,11 +6,12 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/29 01:33:26 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/04 21:44:46 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "libft.h"
 
 /*
 ** creates_table :
@@ -88,7 +89,8 @@ static int	get_quantity_ants(t_farm *f)
 			if (ft_isdigit(line[i++]) != 1)
 				return (ft_delete_line(line));
 		}
-		if ((t = ft_long_atoi(line)) == 0 || t > __INT_MAX__ || t < __INT_MIN__)
+		if ((t = ft_atoi_long(line)) == 0 || t > __INT_MAX__ || t <= 0 \
+			|| ft_strlen(line) > 10)
 			return (ft_delete_line(line));
 		f->ant_nb = t;
 	}

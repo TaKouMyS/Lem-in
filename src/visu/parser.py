@@ -72,4 +72,5 @@ def parser():
 		elif (reg_dict["is_error"].search(line)):
 			print ("ERROR")
 			quit()
+	farm.moves_nb = len(farm.moves)
 	return (farm)
