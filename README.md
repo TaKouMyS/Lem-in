@@ -25,10 +25,17 @@ It is expecting the description of a farm, which must contains :
 
 ###### In addition :
 
+<<<<<<< HEAD
 Start and end are commands, they starts with "##".
 All lines starting with "#" are comments.
 All lines starting with "##" are commands.
 If the line is an unknown command, it will be ignored.
+=======
+* Start and end are commands, they starts with **"##"**.
+* All lines starting with **"#"** are comments.
+* All lines starting with **"##"** are commands.
+* If the line is an unknown command, it will be ignored.
+>>>>>>> 4c5527ba28f8b3c5df361092be59922144d08c40
 
 ![Input](./imgs/input_legend.png)
 
