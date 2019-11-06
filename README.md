@@ -50,7 +50,7 @@ This leads us now naturally to Edmond-Karp’s or the Ford-Fulkerson method for 
 On this first iteration of Edmond-Karp’s, we find the shortest path and mark the flows. 
 
 
-![Flow2](./imgs/flo2.png)
+![Flow2](./imgs/flo2.jpg)
 
 
 On the second iteration we try and find other paths. First We will not revisit node A, is it is already in Path A. Path B will then be blocked a Node C, which is already in Path A. 
