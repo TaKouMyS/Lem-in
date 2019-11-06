@@ -1,0 +1,50 @@
+5
+##start
+start 1 1
+a3 2 2
+a2 3 3
+a1 4 4
+a0 5 5
+b3 6 6
+b2 7 7
+b1 8 8
+b0 9 9
+c7 10 10
+c6 11 11
+c5 12 12
+c4 13 13
+d5 14 14
+d4 15 15
+d3 16 16
+d2 17 17
+e4 18 18
+e3 19 19
+e2 20 20
+e1 21 21
+##end
+end 22 22
+start-a3
+a3-a2
+a2-a1
+a1-a0
+a0-end
+b3-a3
+b2-b3
+b1-b2
+b1-b0
+b0-end
+start-c7
+c7-c6
+c6-c5
+c5-c4
+c4-b3
+d5-start
+d4-d5
+d3-d4
+d2-d3
+d2-a1
+e4-start
+e3-e4
+e2-e3
+e1-e2
+e1-a0
