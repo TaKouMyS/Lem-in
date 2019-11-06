@@ -1,6 +1,0 @@
-to install matplotlib an networkx: 
-
-brew install libpng freetype pkg-config NumPy
-(numpy can take ages and 300mo)
-pip install matplotlib
-pip install networkx

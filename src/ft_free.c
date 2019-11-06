@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/29 01:43:37 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/06 11:04:28 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int		ft_delete_line(char *line)
 	return (-1);
 }
 
+/*
+** ==================== free_links ====================
+** Used in get_links.c to free read rooms.
+*/
+
 int		free_links(char *line, char **rooms, int ret)
 {
 	ft_memdel((void*)&rooms[0]);
@@ -31,6 +36,11 @@ int		free_links(char *line, char **rooms, int ret)
 	ft_memdel((void*)&line);
 	return (ret);
 }
+
+/*
+** ==================== ft_free_input ====================
+** Free the chained list which contains the input.
+*/
 
 void	ft_free_input(t_input *input, t_input *start)
 {
@@ -76,6 +86,11 @@ int		ft_free_lemin(t_farm *f, t_room *r)
 	ft_memdel((void*)&f);
 	return (-1);
 }
+
+/*
+** ==================== error_free_line ====================
+** Used to clarify returns, free a string and returns -1.
+*/
 
 int		error_free_line(char *line)
 {
