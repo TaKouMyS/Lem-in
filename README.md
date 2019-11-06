@@ -44,25 +44,25 @@ The task demanded for this particular task is quite particular. Except for very 
 This leads us now naturally to Edmond-Karp’s or the Ford-Fulkerson method for computing the maximum flow in a flow network. Here we can find maximum flow of our graph (i.e. optimising the amount of ants in the ant farm at one time). This involves using B.F.S (Breadth First Search) to explore the nodes by level. We add our starting node to the queue, and then add its’ children to the queue, marking start as the parent node, we then add the grandchildren to the queue, marking its’ parent, and so on and so forth until we reach the end node. We note which nodes we have visited and never visit the same node twice. We can then retrace the path of parent’s from end to start, and hence find a valid path. What Edmond-Karp’s adds to BFS is a theory of flows. When we mark a link from A to B, we will note that the flow from A to B is 1, and from B to A is -1. As all of our edges in this project have a capacity of 1, the flow from A to B is now saturated. The flow from to B to A is NOT saturated, so we can reuse these nodes but traveling in the opposite direction. If we do so, this neutralises flow an and we reset the flow between A and B, and B and A, to 0.  
 
 
-![Flow1](./imgs/flo1.png = 100px)
+![Flow1](./imgs/flo1.png)
 
 
 On this first iteration of Edmond-Karp’s, we find the shortest path and mark the flows. 
 
 
-![Flow2](./imgs/flo2.png = 100px)
+![Flow2](./imgs/flo2.png)
 
 
 On the second iteration we try and find other paths. First We will not revisit node A, is it is already in Path A. Path B will then be blocked a Node C, which is already in Path A. 
 
 
-![Flow3](./imgs/flow3.png =100px)
+![Flow3](./imgs/flow3.png)
 
 
 But if we take into account the flows, Path B can make use of the negative flow between C and A, and then continue on to End. We revise the flows, remembering than when we take a negative flow, we neutralize it to zero. 
 
 
-![Flow4](./imgs/flow4.png = 100px)
+![Flow4](./imgs/flow4.png)
 
 
 We now send our pathfinder, which can only take flows of 1, and not flows of zero, and it will find Path A and Path B.
