@@ -1,27 +1,46 @@
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   send_ants.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/10 17:32:23 by fcahill           #+#    #+#             */
+/*   Updated: 2019/10/29 02:19:59 by amamy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int find_last_ant(t_farm *f, int *path)
+#include "lem_in.h"
+
+/*
+** Iterate to the end of the path and then move backwards until we find an ant.
+** Hence finding the last ant (ant closest to end) on the path.
+*/
+
+static int	find_last_ant(t_farm *f, int *path)
 {
-	int j;
+	int	j;
 
 	j = 0;
-	//move to end of path
 	while (path[j] != f->end->id)
 		++j;
-	//find last full room i.e. last ant on path
-	while (f->id_table[path[j]]->empty == -1)
+	while (j != 0 && f->id_table[path[j]]->empty == -1)
 		--j;
 	return (j + 1);
 }
 
-static int reach_finish(int *path, t_farm *f, int j)
+/*
+** If the path has reached the end, remove it from path and return 1
+** Else return 0.
+*/
+
+static int	reach_finish(int *path, t_farm *f, int j, int *x)
 {
-	//If we've reached end of path return 1, else return 0. 
 	if (path[j] == f->end->id)
 	{
-		ft_printf("L%d-%s ", f->id_table[path[j - 1]]->empty, f->id_table[path[j]]->name);
+		x[0] = check_print_space(x[0]);
+		ft_printf("L%d-%s", f->id_table[path[j - 1]]->empty,
+			f->id_table[path[j]]->name);
 		if (j >= 1)
 			f->id_table[path[j - 1]]->empty = -1;
 		return (1);
@@ -29,86 +48,77 @@ static int reach_finish(int *path, t_farm *f, int j)
 	return (0);
 }
 
-static void move_the_ant(int *path, t_farm *f, int j)
+/*
+** If position j is empty and the place before j is not empty
+** move the ant into j
+*/
+
+static void	move_the_ant(int *path, t_farm *f, int j, int *x)
 {
-	//if the current space is empty and the prior place is not empty, MOVe
-	if (f->id_table[path[j]]->empty == -1 && j > 1 && f->id_table[path[j - 1]]->empty != -1 )
+	if (f->id_table[path[j]]->empty == -1 \
+		&& j > 1 && f->id_table[path[j - 1]]->empty != -1)
 	{
+		x[0] = check_print_space(x[0]);
 		f->id_table[path[j]]->empty = f->id_table[path[j - 1]]->empty;
 		f->id_table[path[j - 1]]->empty = -1;
-		ft_printf("L%d-%s ", f->id_table[path[j]]->empty, f->id_table[path[j]]->name);
+		ft_printf("L%d-%s", f->id_table[path[j]]->empty,
+			f->id_table[path[j]]->name);
 	}
 }
 
-int    send_new_ant(t_farm *f, int *path, int moving_ants, int *finished_ants)
-{
-    int i;
-    
-    i = 0;
-	// If first space on path (path[0] is start) is empty, send new ant
-    if (moving_ants <= f->ant_nb && f->id_table[path[1]]->empty == -1)
-	{	
-		++moving_ants; //we're adding a new ant into the mix
-        f->id_table[path[1]]->empty = moving_ants;
-		if (path[1] == f->end->id)
-			++finished_ants[0];
-		ft_printf("L%d-%s ", moving_ants, f->id_table[path[1]]->name);
-        	++i;
-    }
-    return (moving_ants);
-}
+/*
+** We find the last ant on the path, and then iterate to the beginning
+** of the path, moving the ants as we go, and checking if any have
+** reached the end node.
+*/
 
-void move_ants_on_path(t_farm *f, int *path, int *finished_ants)
+static void	move_ants_on_path(t_farm *f, int *path, int *finished_ants, int *x)
 {
-	int j;
+	int		j;
 
 	j = find_last_ant(f, path);
-	//we find the last ant on the path, move forward one space, check if he has finished the path, 
-	//then check the ant behind him, and behind him, until we reach beginning of path. 
 	while (j != 0)
 	{
-		if ((reach_finish(path, f, j)) == 1)
+		if ((reach_finish(path, f, j, x)) == 1)
 			++finished_ants[0];
 		else if (finished_ants[0] < f->ant_nb)
-			move_the_ant(path, f, j);
+			move_the_ant(path, f, j, x);
 		--j;
 	}
 }
 
+/*
+** We iterate through the paths, moving the ants on the path
+** and sending new ants onto the path, until we reach the cap
+** for each path / all ants have reached end. We print each move
+** as we go.
+*/
 
-int		send_ants(t_farm *f, int **paths, int moving_ants)
+int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 {
-    int finished_ants;
-    int i;
-	int *ant_division;
+	int		finished_ants;
+	int		i;
+	t_path	*path;
 
-    moving_ants = 0;
-    finished_ants = 0;
-    i = 0;
-	int j = 0;
-	ant_division = divide_ants(f, paths);
-	f->id_table[paths[0][0]]->empty = 0;
-
-	// printf("total ant s= %d\n", f->ant_nb); //to be deleted, for debugging
-
-    while (finished_ants < f->ant_nb)
-    {
-		i = 0;
-		//we cycle through our paths until all ants have finished paths
-		while (i < f->max_paths)
+	mv_ants = 0;
+	finished_ants = 0;
+	while (finished_ants < f->ant_nb)
+	{
+		i = -1;
+		path = paths;
+		x = 0;
+		while (++i < paths->max)
 		{
-			move_ants_on_path(f, paths[i], &finished_ants);
-			if (moving_ants < f->ant_nb && ant_division[i] >= 0) //if we have not yet sent all our ants
-				{
-					moving_ants = send_new_ant(f, paths[i], moving_ants, &finished_ants);
-					--ant_division[i];
-				}
-			++i;
+			move_ants_on_path(f, path->path, &finished_ants, &x);
+			if (mv_ants < f->ant_nb && paths->division[i] > 0)
+			{
+				x = check_print_space(x);
+				mv_ants = send_new_ant(f, path->path, mv_ants, &finished_ants);
+				--paths->division[i];
+			}
+			path = path->next;
 		}
 		ft_putchar('\n');
-		++j;
 	}
-	// printf("lines = %d\n", j);
-    return (0);
-
+	return (0);
 }

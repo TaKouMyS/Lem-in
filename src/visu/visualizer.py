@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import matplotlib.pyplot as plt
 import matplotlib.animation as matAni
@@ -110,7 +110,7 @@ try :
 	ani = matAni.FuncAnimation(
 		fig,
 		action,
-		frames = data['farm'].ants * settings['steps_between_nodes'],
+		frames = data['farm'].moves_nb * settings['steps_between_nodes'],
 		fargs = (data, fig, ant_squad, settings),
 		interval = settings['interval'],
 		repeat = settings['repeat'],

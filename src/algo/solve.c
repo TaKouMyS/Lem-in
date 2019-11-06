@@ -1,59 +1,47 @@
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/10 17:29:51 by fcahill           #+#    #+#             */
+/*   Updated: 2019/10/29 02:48:51 by amamy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//we won't need this later I think, it's just for debugging. 
-void print_map(int **map, int length)
+#include "lem_in.h"
+
+/*
+** We intialise our queueing system. If there is a malloc error, we free
+** any allocated areas and return -1. We then run our edmonds karp function
+** to find the optimal solution set. Should we not find a path, we print an
+** error message, free the queue the allocated head of the path list, and
+** return -1. Finally, if the previous two steps were successful, we send
+** our ants down the paths, printing our moves to the stdout. We then free
+** the queue and the solution set.
+*/
+
+int		solve(t_farm *f, int length, int start)
 {
-	int i;
-	int j;
+	t_queue	q;
+	t_path	*path_list;
 
-	i = 0;
-	printf("\n...........................\n");
-	while (i < length)
+	if (initialise_queue(&q, f) < 0)
 	{
-		j = 0;
-		printf("%d  |", i);
-		while (j < length)
-		{
-			printf("%d ", map[i][j]);
-			++j;
-		}
-		putchar('\n');
-		++i;
+		ft_printf("MALLOC ERROR\n");
+		free_queue(&q);
+		return (-1);
 	}
-	printf("...........................\n");
-}
-//same for debugging
-void print_paths(int **paths, t_farm *f, int max_paths)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < max_paths)
+	if (edmondskarp(&q, f, &path_list, 0) == -1)
 	{
-		j = 0;
-		while (paths[i][j] != f->end->id)
-		{
-			printf("%s ", f->id_table[paths[i][j]]->name);
-			++j;
-		}
-		printf("%s ", f->id_table[paths[i][j]]->name);
-		putchar('\n');
-		++i;
+		ft_printf("NO PATH FOUND\n");
+		free_queue(&q);
+		free_path(path_list);
+		return (-1);
 	}
-}
-
-int     solve(t_farm *f, int length, int start)
-{
-    t_queue q;
-    int		**paths;
-
-	if (initialise_queue(&q, length, start) < 0)
-        return (-1);
-    f->max_paths = edmondskarp(&q, f, &paths);
-// 	print_paths(paths, f, f->max_paths);
-	send_ants(f, paths, f->ant_nb);
-    return (0);
+	send_ants(f, path_list, f->ant_nb, 0);
+	free_path(path_list);
+	free_queue(&q);
+	return (0);
 }

@@ -6,12 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/03 23:37:07 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 21:47:38 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:34:47 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
+#include "lem_in.h"
 
 /*
 ** ==================== init_links ====================
@@ -118,10 +117,7 @@ int			get_links(t_farm *f)
 		|| (room_exist(f, room[0], ids, 0) != 1)						\
 		|| ((room[1] = get_rooms_name(line, 2)) == NULL)			\
 		|| (room_exist(f, room[1], ids, 1) != 1))
-		{
-			ft_printf("get_links");
 			return (free_links(line, room, -1));
-		}
 		save_links(f, ids);
 		free_links(line, room, 0);
 		ret = gnl_store(0, &line, f, GET_ANTS_LINKS);

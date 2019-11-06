@@ -6,17 +6,27 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 17:30:43 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 20:30:19 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/06 11:04:28 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
+#include "lem_in.h"
 
 /*
 ** ==================== free_links ====================
 ** Used in get_links to free temporary data if error detected.
 ** Free stored ids and line.
+*/
+
+int		ft_delete_line(char *line)
+{
+	ft_memdel((void *)&line);
+	return (-1);
+}
+
+/*
+** ==================== free_links ====================
+** Used in get_links.c to free read rooms.
 */
 
 int		free_links(char *line, char **rooms, int ret)
@@ -27,9 +37,15 @@ int		free_links(char *line, char **rooms, int ret)
 	return (ret);
 }
 
+/*
+** ==================== ft_free_input ====================
+** Free the chained list which contains the input.
+*/
+
 void	ft_free_input(t_input *input, t_input *start)
 {
 	t_input *tmp;
+
 	input = start;
 	while (input->line)
 	{
@@ -47,7 +63,7 @@ void	ft_free_input(t_input *input, t_input *start)
 ** Receive a pointeur to the first link of the chain r.
 */
 
-void	ft_free_lemin(t_farm *f, t_room *r)
+int		ft_free_lemin(t_farm *f, t_room *r)
 {
 	int		i;
 	t_room	*tmp;
@@ -68,8 +84,13 @@ void	ft_free_lemin(t_farm *f, t_room *r)
 	ft_memdel((void*)&f->links);
 	ft_free_input(f->input, f->input_start);
 	ft_memdel((void*)&f);
+	return (-1);
 }
 
+/*
+** ==================== error_free_line ====================
+** Used to clarify returns, free a string and returns -1.
+*/
 
 int		error_free_line(char *line)
 {
