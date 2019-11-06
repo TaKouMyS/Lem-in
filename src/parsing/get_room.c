@@ -6,12 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 16:22:19 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 22:09:48 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:36:29 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "lem-in.h"
+#include "lem_in.h"
 
 /*
 ** room_check_coo :
@@ -47,10 +46,8 @@ static int	room_check_coo(char *line)
 static char	*room_check_syntax(char *line)
 {
 	int		sp;
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	sp = 0;
 	tmp = line;
 	if (line[0] != '#')
@@ -132,9 +129,10 @@ int			get_room(t_room *r, t_farm *f)
 {
 	char	*line;
 	int		ret;
-	int		id;
+	long	id;
 
 	id = 0;
+	line = NULL;
 	ret = gnl_store(0, &line, f, GET_ROOMS);
 	while (ret > 0 && line && dash_comment(line, 0) != -1)
 	{

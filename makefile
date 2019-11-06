@@ -6,21 +6,21 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/10/10 21:40:46 by amamy            ###   ########.fr        #
+#    Updated: 2019/11/06 10:42:07 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SHELL = /bin/sh
 CC = clang
-CFLAGS += -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS += -g3
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing
 ALGDIR = $(SRCDIR)/algo
 LIBDIR	= libft
 INCLUDES = includes
-HEAD	= $(INCLUDES)/lem-in.h
+HEAD	= $(INCLUDES)/lem_in.h
 
 SRCS 	= $(SRCDIR)/main.c				\
 		$(SRCDIR)/ft_free.c				\
@@ -34,10 +34,11 @@ SRCS 	= $(SRCDIR)/main.c				\
 		$(ALGDIR)/queue_functions.c 	\
 		$(ALGDIR)/save_path.c 			\
 		$(ALGDIR)/solve.c 				\
-		$(ALGDIR)/keep_path.c 			\
 		$(ALGDIR)/send_ants.c 			\
 		$(ALGDIR)/optimize_ants.c 		\
-		$(SRCDIR)/debug.c
+		$(ALGDIR)/path_functions.c 		\
+		$(ALGDIR)/ant_functions_b.c 	\
+		$(ALGDIR)/weight_functions.c 	
 
 ALLFLAGS = -I$(LIBDIR)/includes -I$(INCLUDES) -o
 OBJ = $(subst $(SRCDIR), $(OBJDIR), $(SRCS:.c=.o))

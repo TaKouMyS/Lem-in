@@ -9,6 +9,7 @@ class ant_farm:
 		self.ants   		= None
 		self.start  		= None
 		self.end    		= None
+		self.moves_nb  		= None
 		self.nodes  		= []
 		self.used_nodes  	= []
 		self.pos    		= {}

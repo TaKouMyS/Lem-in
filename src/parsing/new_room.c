@@ -6,12 +6,11 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:02:47 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/10 21:59:03 by amamy            ###   ########.fr       */
+/*   Updated: 2019/10/29 01:34:21 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
-#include "libft.h"
+#include "lem_in.h"
 
 /*
 ** init_room :
@@ -51,12 +50,14 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 ** If START or END flag is raised, store it.
 */
 
-t_room		*new_room(t_farm *f, t_room *r, char *line, int id)
+t_room		*new_room(t_farm *f, t_room *r, char *line, long id)
 {
 	t_room *new;
 	t_room *tmp;
 
 	tmp = r;
+	if (id > __INT_MAX__)
+		return (NULL);
 	if (r->name != NULL)
 	{
 		if (!(new = ft_memalloc(sizeof(t_room))))

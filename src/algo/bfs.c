@@ -1,40 +1,63 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "../../includes/lem-in.h"
-#include "../../libft/includes/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bfs.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/10 17:31:28 by fcahill           #+#    #+#             */
+/*   Updated: 2019/10/29 01:51:03 by amamy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int find_neighbours(t_queue *q, int **map, int node)
+#include "lem_in.h"
+
+/*
+** This finds linked or (neighbouring) nodes and adds them to the queue
+** if they are accessible (flow of 1) and they have not already been
+** visited.
+*/
+
+static int		find_neighbours(t_queue *q, t_room *r)
 {
-    int j;
+	int j;
 
-    j = 0;                                                                                                                                               
-    while (j < q->length)
-    {
-        if (j != node && map[node][j] == 1 && q->visited[j] == 0 && q->flow[node][j] == 1) //if there is a link and we have not visited the link
-        {
-			q->queue[q->position] = j; // add to end of queue
-            q->prev[j] = node; //note from which node we linked this node
-            q->visited[j] = 1; //mark it as visited
-            ++q->position; //move up the end of queue marker
-        }
-        ++j; 
-    }
-    return (0);
+	j = 0;
+	while (j < r->links_nb)
+	{
+		if (q->visited[r->links[j]] == 0
+			&& q->flow[r->id][r->links[j]] == 1)
+		{
+			q->queue[q->position] = r->links[j];
+			q->prev[r->links[j]] = r->id;
+			q->visited[r->links[j]] = 1;
+			++q->position;
+		}
+		++j;
+	}
+	return (0);
 }
 
-int bfs(t_farm *f, t_queue *q)
-{
-    int i;
-    int node;
+/*
+** This is a breadth-first search function. We traverse the graph in levels,
+** terminating the search when we visit end. If we visit all possible nodes
+** but do not visit end, we return -1, to indicate a path was not foud.
+*/
 
-    i = -1;  
+int				bfs(t_farm *f, t_queue *q)
+{
+	int		i;
+	int		node;
+
+	i = -1;
+	set_to_n(&q->queue, q->length, -1);
 	reset_queue(q, f->start->id, f->end->id);
-    while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
-    {
-        node = q->queue[i]; //sets node to the next node in the queue
-		find_neighbours(q, f->links, node);
-    }
-    if (q->visited[f->end->id] != 1) //if while path finding we did not reach the end, we failed
-		    return (-1);
-    return (0);
+	while (++i < q->length && q->visited[f->end->id] != 1 && q->queue[i] >= 0)
+	{
+		node = q->queue[i];
+		find_neighbours(q, f->id_table[node]);
+	}
+	if (q->visited[f->end->id] != 1)
+		return (-1);
+	return (0);
 }
