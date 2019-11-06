@@ -12,6 +12,11 @@
 
 #include "lem_in.h"
 
+/*
+** Iterate to the end of the path and then move backwards until we find an ant.
+** Hence finding the last ant (ant closest to end) on the path.
+*/
+
 static int	find_last_ant(t_farm *f, int *path)
 {
 	int	j;
@@ -23,6 +28,11 @@ static int	find_last_ant(t_farm *f, int *path)
 		--j;
 	return (j + 1);
 }
+
+/*
+** If the path has reached the end, remove it from path and return 1
+** Else return 0.
+*/
 
 static int	reach_finish(int *path, t_farm *f, int j, int *x)
 {
@@ -38,6 +48,11 @@ static int	reach_finish(int *path, t_farm *f, int j, int *x)
 	return (0);
 }
 
+/*
+** If position j is empty and the place before j is not empty
+** move the ant into j
+*/
+
 static void	move_the_ant(int *path, t_farm *f, int j, int *x)
 {
 	if (f->id_table[path[j]]->empty == -1 \
@@ -50,6 +65,12 @@ static void	move_the_ant(int *path, t_farm *f, int j, int *x)
 			f->id_table[path[j]]->name);
 	}
 }
+
+/*
+** We find the last ant on the path, and then iterate to the beginning
+** of the path, moving the ants as we go, and checking if any have
+** reached the end node.
+*/
 
 static void	move_ants_on_path(t_farm *f, int *path, int *finished_ants, int *x)
 {
@@ -65,6 +86,13 @@ static void	move_ants_on_path(t_farm *f, int *path, int *finished_ants, int *x)
 		--j;
 	}
 }
+
+/*
+** We iterate through the paths, moving the ants on the path
+** and sending new ants onto the path, until we reach the cap
+** for each path / all ants have reached end. We print each move
+** as we go.
+*/
 
 int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 {

@@ -12,6 +12,12 @@
 
 #include "lem_in.h"
 
+/*
+** Here we calculate how many ants we will send per path using the formula
+** (sum of steps of all paths + total number of paths) / number of paths
+** - number of steps in current path. This is saved in the ant_div variable.
+*/
+
 static int	*calculate_divide(int *ant_div, t_farm *f, int total, int *steps)
 {
 	int		i;
@@ -25,6 +31,11 @@ static int	*calculate_divide(int *ant_div, t_farm *f, int total, int *steps)
 	}
 	return (ant_div);
 }
+
+/*
+** This function divdes the remaining ants between the potential paths
+** in a the least harmful way possible with regards to path length.
+*/
 
 static int	*split_remainder(int *ant_division, int remainder, t_path **paths)
 {
@@ -55,6 +66,13 @@ static int	*split_remainder(int *ant_division, int remainder, t_path **paths)
 	return (ant_division);
 }
 
+/*
+** The formula used to divide the ants can sometimes leave some stray
+** ants left over. Here we get the sum of ants designated for all the
+** paths, and compare it with the total ants we have. If there is a
+** remainder we divide it out using the split remainder function.
+*/
+
 static int	*check_total_ants(int *ant_division, t_farm *f, t_path **paths)
 {
 	int		i;
@@ -72,6 +90,14 @@ static int	*check_total_ants(int *ant_division, t_farm *f, t_path **paths)
 	return (ant_division);
 }
 
+/*
+** Here we iterate through the steps variable, which contains the quantity
+** of steps in each path, and add it to the quantity of ants designated
+** for this path, and remove 1 for the first ant. This corresponds to the
+** quantity of lines that will be printed by this path. We compare as
+** we go along to find the longest path, and hence the length of our solution.
+*/
+
 static int	get_longest(int *ant_division, int *steps, int max)
 {
 	int		i;
@@ -86,6 +112,12 @@ static int	get_longest(int *ant_division, int *steps, int max)
 	}
 	return (longest);
 }
+
+/*
+** Here our goal is to find the optimal quantity of ants to
+** send down each path, in order to have the shortest possible
+** solution.
+*/
 
 int			*divide_ants(t_farm *f, t_path *paths)
 {

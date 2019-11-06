@@ -12,6 +12,12 @@
 
 #include "lem_in.h"
 
+/*
+** This finds linked or (neighbouring) nodes and adds them to the queue
+** if they are accessible (flow of 1) and they have not already been
+** visited.
+*/
+
 static int		find_neighbours(t_queue *q, t_room *r)
 {
 	int j;
@@ -31,6 +37,12 @@ static int		find_neighbours(t_queue *q, t_room *r)
 	}
 	return (0);
 }
+
+/*
+** This is a breadth-first search function. We traverse the graph in levels,
+** terminating the search when we visit end. If we visit all possible nodes
+** but do not visit end, we return -1, to indicate a path was not foud.
+*/
 
 int				bfs(t_farm *f, t_queue *q)
 {

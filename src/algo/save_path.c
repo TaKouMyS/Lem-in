@@ -12,6 +12,10 @@
 
 #include "lem_in.h"
 
+/*
+** Count steps between start and end.
+*/
+
 static size_t	count_steps(t_queue *q, int start, int end)
 {
 	int		steps;
@@ -24,6 +28,12 @@ static size_t	count_steps(t_queue *q, int start, int end)
 	}
 	return (steps);
 }
+
+/*
+** As we trace our path from end to start, we need to save it in reverse.
+** Hence our first node is saved at len of path - 1, and then we work our
+** way down to 0.
+*/
 
 static int		*rev_path(t_farm *f, t_queue *q)
 {
@@ -47,6 +57,14 @@ static int		*rev_path(t_farm *f, t_queue *q)
 	return (rev_path);
 }
 
+/*
+** When we use our path finding functions we use 1 to mark
+** that we have visited the node during that iteration of
+** path finding. Here we mark the paths found with the number 2
+** in order to differenciate between nodes visited, and nodes
+** used in other paths.
+*/
+
 static void		mark_path(t_farm *f, t_queue *q)
 {
 	int		path;
@@ -69,11 +87,21 @@ static void		mark_path(t_farm *f, t_queue *q)
 	}
 }
 
+/*
+** If we have a malloc error in a t_path, we note the length as -1
+** and return the path.
+*/
+
 static t_path	**path_error(t_path **path)
 {
 	(*path)->len = -1;
 	return (path);
 }
+
+/*
+** Save our solution set to the t_path path_list, taking into account
+** the flows found and saved in the edmonds_karps function.
+*/
 
 t_path			**save_paths(t_queue *q, t_farm *f, t_path **path_list)
 {

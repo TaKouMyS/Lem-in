@@ -12,6 +12,13 @@
 
 #include "lem_in.h"
 
+/*
+** Here we check if there is a potential negative flow to explore from the
+** parent node. I.e. a path breaking flow. If there is we return 1, and
+** ignore the positive flowing child nodes for now. We also check weights
+** of visited child nodes.
+*/
+
 static int	find_neg_flow(t_queue *q, t_room *r, t_farm *f)
 {
 	int		i;
@@ -34,6 +41,16 @@ static int	find_neg_flow(t_queue *q, t_room *r, t_farm *f)
 	}
 	return (0);
 }
+
+/*
+** As our current goal is to explore the maximum quantity of paths to find
+** the best combined path solution, we initially see if there is a negative flow
+** (i.e. a path we can traverse inversely), and if there is we choose that flow.
+** If there isn't, we compare the weights between parent and child node, if
+** the node has been visited before. If the child node has not been visited,
+** we set it's weight (the weight of the parent node + 1, or - 1, depending on
+** the direction of the flow) and add it to the queue for investigation.
+*/
 
 static int	find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 {
@@ -63,6 +80,13 @@ static int	find_flow(t_queue *q, t_room *r, int prev_flow, t_farm *f)
 	return (0);
 }
 
+/*
+** Starting at end, we save the flow between a node and it's previous node,
+** until we reach start, and have completed the path. As all of our edges
+** have a potential value of 1, it is a question of adding or subtracting 1
+** depending on the previous flow value between nodes.
+*/
+
 static void	save_flow(t_queue *q, t_farm *f)
 {
 	int		p;
@@ -86,6 +110,12 @@ static void	save_flow(t_queue *q, t_farm *f)
 	}
 }
 
+/*
+** Starting at ths start node, we explore the nodes in the queue, taking note
+** of the flow from the parent to child node. Again, if at the end of the queue
+** we have not visited end, we have not found a path and return -1.
+*/
+
 static int	optimise_flow(t_farm *f, t_queue *q)
 {
 	int		i;
@@ -107,6 +137,14 @@ static int	optimise_flow(t_farm *f, t_queue *q)
 		return (-1);
 	return (0);
 }
+
+/*
+** This is an adapted implementation of the edmonds-karp algorithm. We find
+** a solution set of paths, adjust the flows and save the flows, and compare
+** the new solution set to our previous set, saving the shortest solution
+** and freeing the other. If t variable (intially 0), remains 0, this
+** signals no solution set was found, and we return -1.
+*/
 
 int			edmondskarp(t_queue *q, t_farm *f, t_path **p, int t)
 {

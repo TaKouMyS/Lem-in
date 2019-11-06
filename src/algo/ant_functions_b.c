@@ -12,6 +12,11 @@
 
 #include "lem_in.h"
 
+/*
+** If the first room on the path after start is empty, and
+** we have not yet sent out all ants, send a new ant onto the path.
+*/
+
 int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
 {
 	int		i;
@@ -29,6 +34,10 @@ int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
 	return (mov);
 }
 
+/*
+** Check's if it's necessary to print a space, using the x flag.
+*/
+
 int	check_print_space(int x)
 {
 	if (x != 0)
@@ -36,6 +45,12 @@ int	check_print_space(int x)
 	x = 1;
 	return (x);
 }
+
+/*
+** This function collects the number of steps in each path in the steps
+** variable. It also keeps track of sum total of all steps for all paths
+** in the variable total.
+*/
 
 int	*get_path_lengths(t_farm *f, t_path *paths, int *total)
 {

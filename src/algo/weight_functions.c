@@ -12,6 +12,10 @@
 
 #include "lem_in.h"
 
+/*
+** Sets all weights except the starting weight to INT MAX.
+*/
+
 void		set_weights(t_farm *f)
 {
 	int i;
@@ -21,6 +25,13 @@ void		set_weights(t_farm *f)
 		f->id_table[i]->weight = __INT_MAX__;
 	f->start->weight = 0;
 }
+
+/*
+** Find the potential new weight, taking into account flows,
+** and compare it with the current weight.
+** If there's a flow of one between the two noes we return 0,
+** as that means there is already a link between them.
+*/
 
 static int	compare_weights(t_room *next, t_room *current, t_queue *q)
 {
@@ -40,6 +51,10 @@ static int	compare_weights(t_room *next, t_room *current, t_queue *q)
 	return (0);
 }
 
+/*
+** Check if connecting next and current would create any infinite loops.
+*/
+
 static int	check_loops(t_room *current, t_room *next, t_queue *q, t_farm *f)
 {
 	int i;
@@ -57,6 +72,17 @@ static int	check_loops(t_room *current, t_room *next, t_queue *q, t_farm *f)
 	}
 	return (0);
 }
+
+/*
+** Checking if the current node is a better match for the next node, which
+** is already in a link with a parent node. We first check neither node
+** is start, and that we're not comparing the same node against itself.
+** We then check that making the new link will create no infinite loops,
+** and then if then compare the weights. If we are going to change the link
+** in next to link with current, we first check if it could make a count parent
+** node for it's soon to be abandoned parent. If so, we switch the links,
+** and then make current its' parent.
+*/
 
 int			check_weights(t_room *next, t_room *current, t_queue *q, t_farm *f)
 {

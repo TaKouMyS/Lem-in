@@ -12,6 +12,16 @@
 
 #include "lem_in.h"
 
+/*
+** We intialise our queueing system. If there is a malloc error, we free
+** any allocated areas and return -1. We then run our edmonds karp function
+** to find the optimal solution set. Should we not find a path, we print an
+** error message, free the queue the allocated head of the path list, and
+** return -1. Finally, if the previous two steps were successful, we send
+** our ants down the paths, printing our moves to the stdout. We then free
+** the queue and the solution set.
+*/
+
 int		solve(t_farm *f, int length, int start)
 {
 	t_queue	q;
