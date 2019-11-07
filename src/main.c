@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/11/07 16:08:20 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 16:40:28 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			main(void)
 		return (ft_free_lemin(f, r));
 	write_input(f);
 	ft_putchar('\n');
-	solve(f, f->room_nb, f->start->id);
+	solve(f);
 	ft_free_lemin(f, r);
 	return (0);
 }

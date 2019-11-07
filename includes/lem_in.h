@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/11/07 16:08:11 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 16:39:56 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int					gnl_store(int fd, char **line, t_farm *f, int origin);
 ** Algo :
 */
 int					error_free_line(char *line);
-int					solve(t_farm *f, int length, int start);
+int					solve(t_farm *f);
 int					bfs(t_farm *f, t_queue *q);
 int					edmondskarp(t_queue *q, t_farm *f, t_path **p, int t);
 int					send_ants(t_farm *f, t_path *paths, int moving_ants, int x);
