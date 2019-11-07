@@ -59,5 +59,7 @@ int				bfs(t_farm *f, t_queue *q)
 	}
 	if (q->visited[f->end->id] != 1)
 		return (-1);
+	if (q->flow[f->start->id][f->end->id] == 1 && q->prev[f->end->id] == f->start->id)
+		q->flow[f->start->id][f->end->id] = 0;
 	return (0);
 }

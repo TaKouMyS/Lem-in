@@ -27,7 +27,10 @@ int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
 		++mov;
 		f->id_table[p[1]]->empty = mov;
 		if (p[1] == f->end->id)
+		{
+			f->id_table[p[1]]->empty = -1;
 			++fin[0];
+		}
 		ft_printf("L%d-%s", mov, f->id_table[p[1]]->name);
 		++i;
 	}
