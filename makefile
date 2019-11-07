@@ -6,14 +6,14 @@
 #    By: amamy <amamy@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/28 18:16:49 by amamy             #+#    #+#              #
-#    Updated: 2019/11/06 10:42:07 by amamy            ###   ########.fr        #
+#    Updated: 2019/11/07 16:40:56 by amamy            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 SHELL = /bin/sh
 CC = clang
-CFLAGS += -g3
+CFLAGS += -Wall -Wextra -Werror
 OBJDIR = obj
 SRCDIR = src
 PARSDIR = $(SRCDIR)/parsing

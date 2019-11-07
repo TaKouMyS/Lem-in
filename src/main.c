@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/29 01:44:25 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 16:40:28 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ int			main(void)
 		return (-1);
 	if (!(r = ft_memalloc(sizeof(t_room))))
 		return (ft_free_lemin(f, r));
+	f->first_room = r;
 	if (get_input(f, r) == -1)
 		return (ft_free_lemin(f, r));
 	write_input(f);
 	ft_putchar('\n');
-	solve(f, f->room_nb, f->start->id);
+	solve(f);
 	ft_free_lemin(f, r);
 	return (0);
 }

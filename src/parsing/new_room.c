@@ -6,11 +6,32 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 22:02:47 by amamy             #+#    #+#             */
-/*   Updated: 2019/10/29 01:34:21 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 16:20:43 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+** ==================== room_exist ====================
+** Given the name of a room, compare it to the name of all other room.
+** If a room already have this name, return (-1) and stop exectuion.
+*/
+
+static int	room_exist(char *room, t_farm *f)
+{
+	t_room *tmp;
+
+	tmp = f->first_room;
+	while (tmp && tmp->next != NULL)
+	{
+		if (room[0] == tmp->name[0])
+			if (ft_strcmp(room, tmp->name) == 0)
+				return (-1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
 
 /*
 ** init_room :
@@ -26,6 +47,8 @@ static int	init_room(t_farm *f, t_room *r, char *line, int id)
 	while (line[name_size] != ' ')
 		name_size++;
 	if (!(r->name = ft_strndup(line, name_size)))
+		return (-1);
+	if (room_exist(r->name, f) == -1)
 		return (-1);
 	r->id = id;
 	r->empty = -1;

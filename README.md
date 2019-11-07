@@ -123,6 +123,9 @@ The visualizer has been coded in python 3 using two main libraries :
 
 ### Installation: 
 
+The visualizer has been coding with Python 3.7
+Requirement : Python 3.7
+
 ###### GNU/Linux debian based :
 
 Matplotlib and networkx require numpy and tkinter (tk) :
@@ -135,7 +138,6 @@ sudo apt install python3 python3-matplotlib python3-networkx python3-numpy pytho
 
 ```
 brew install libpng freetype pkg-config NumPy
-python -mpip install . (this is is to be checked, think we install pip3)
 pip3 install matplotlib
 pip3 install networkx
 ```

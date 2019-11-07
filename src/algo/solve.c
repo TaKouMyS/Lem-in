@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:29:51 by fcahill           #+#    #+#             */
-/*   Updated: 2019/10/29 02:48:51 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 16:39:35 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** the queue and the solution set.
 */
 
-int		solve(t_farm *f, int length, int start)
+int		solve(t_farm *f)
 {
 	t_queue	q;
 	t_path	*path_list;
