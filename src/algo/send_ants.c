@@ -108,7 +108,7 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 	{
 		i = -1;
 		path = paths;
-		x = 0;	
+		x = 0;
 		while (++i < paths->max)
 		{
 			move_ants_on_path(f, path->path, &finished_ants, &x);

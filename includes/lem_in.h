@@ -106,6 +106,7 @@ int					*get_path_lengths(t_farm *f, t_path *paths, int *total);
 void				set_weights(t_farm *f);
 int					check_weights(t_room *n, t_room *c, t_queue *q, t_farm *f);
 int					check_print_space(int x);
+int					check_start_end(t_farm *f, t_queue *q);
 
 /*
 ** Free :

@@ -118,24 +118,6 @@ static void	save_flow(t_queue *q, t_farm *f)
 ** of the flow from the parent to child node. Again, if at the end of the queue
 ** we have not visited end, we have not found a path and return -1.
 */
-static int check_start_end(t_farm *f, t_queue *q)
-{
-	int j; 
-
-	j = -1;
-
-	while (++j != f->start->links_nb)
-	{
-		if (f->start->links[j] == f->end->id)
-		{
-			q->flow[f->start->id][f->end->id] = 1;
-			q->flow[f->end->id][f->start->id] = -1;
-			q->prev[f->end->id] = f->start->id;
-			return (1);
-		}
-	}
-	return (0);
-}
 
 static int	optimise_flow(t_farm *f, t_queue *q, int t)
 {
@@ -155,7 +137,8 @@ static int	optimise_flow(t_farm *f, t_queue *q, int t)
 			prev_flow = q->flow[q->prev[node]][node];
 		find_flow(q, f->id_table[node], prev_flow, f);
 	}
-	if (q->prev[f->end->id] == -1 || (q->prev[f->end->id] == f->start->id && t == 1))
+	if (q->prev[f->end->id] == -1 ||
+		(q->prev[f->end->id] == f->start->id && t == 1))
 		return (-1);
 	return (0);
 }
@@ -177,7 +160,6 @@ int			edmondskarp(t_queue *q, t_farm *f, t_path **p, int t)
 	set_weights(f);
 	while (optimise_flow(f, q, t) == 0 && (t = 1))
 	{
-		
 		new = ft_new_path(NULL, 0);
 		new->longest = 0;
 		save_flow(q, f);
