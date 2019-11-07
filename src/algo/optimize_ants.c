@@ -129,6 +129,11 @@ int			*divide_ants(t_farm *f, t_path *paths)
 	if (!(ant_division = (int *)ft_memalloc(sizeof(int) * paths->max)))
 		return (NULL);
 	f->max_paths = paths->max;
+	if (paths->max == 1)
+	{
+		ant_division[0] = f->ant_nb;
+		return (ant_division);
+	}
 	if ((steps = get_path_lengths(f, paths, &total)) == NULL)
 		return (NULL);
 	ant_division = calculate_divide(ant_division, f, total, steps);

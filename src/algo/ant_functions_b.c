@@ -17,7 +17,7 @@
 ** we have not yet sent out all ants, send a new ant onto the path.
 */
 
-int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
+int		send_new_ant(t_farm *f, int *p, int mov, int *fin)
 {
 	int		i;
 
@@ -27,7 +27,10 @@ int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
 		++mov;
 		f->id_table[p[1]]->empty = mov;
 		if (p[1] == f->end->id)
+		{
+			f->id_table[p[1]]->empty = -1;
 			++fin[0];
+		}
 		ft_printf("L%d-%s", mov, f->id_table[p[1]]->name);
 		++i;
 	}
@@ -38,7 +41,7 @@ int	send_new_ant(t_farm *f, int *p, int mov, int *fin)
 ** Check's if it's necessary to print a space, using the x flag.
 */
 
-int	check_print_space(int x)
+int		check_print_space(int x)
 {
 	if (x != 0)
 		ft_putchar(' ');
@@ -52,7 +55,7 @@ int	check_print_space(int x)
 ** in the variable total.
 */
 
-int	*get_path_lengths(t_farm *f, t_path *paths, int *total)
+int		*get_path_lengths(t_farm *f, t_path *paths, int *total)
 {
 	int		i;
 	int		*steps;
@@ -70,4 +73,15 @@ int	*get_path_lengths(t_farm *f, t_path *paths, int *total)
 		path = path->next;
 	}
 	return (steps);
+}
+
+/*
+** This is to reset our send_ants function after each turn.
+*/
+
+t_path	*reset_ants(int *x, int *i, t_path *paths)
+{
+	x[0] = 0;
+	i[0] = -1;
+	return (paths);
 }

@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 22:35:25 by amamy             #+#    #+#             */
-/*   Updated: 2019/11/06 10:50:48 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 16:39:56 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_farm
 	t_room			**id_table;
 	t_room			*start;
 	t_room			*end;
+	t_room			*first_room;
 	t_input			*input;
 	t_input			*input_start;
 	char			*line;
@@ -82,12 +83,13 @@ int					get_room(t_room *r, t_farm *f);
 t_room				*new_room(t_farm *f, t_room *r, char *line, long id);
 int					get_links(t_farm *f);
 int					gnl_store(int fd, char **line, t_farm *f, int origin);
+int					usage(void);
 
 /*
 ** Algo :
 */
 int					error_free_line(char *line);
-int					solve(t_farm *f, int length, int start);
+int					solve(t_farm *f, int flag);
 int					bfs(t_farm *f, t_queue *q);
 int					edmondskarp(t_queue *q, t_farm *f, t_path **p, int t);
 int					send_ants(t_farm *f, t_path *paths, int moving_ants, int x);
@@ -105,6 +107,8 @@ int					*get_path_lengths(t_farm *f, t_path *paths, int *total);
 void				set_weights(t_farm *f);
 int					check_weights(t_room *n, t_room *c, t_queue *q, t_farm *f);
 int					check_print_space(int x);
+int					check_start_end(t_farm *f, t_queue *q);
+t_path				*reset_ants(int *x, int *i, t_path *paths);
 
 /*
 ** Free :

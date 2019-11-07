@@ -77,6 +77,8 @@ static void	move_ants_on_path(t_farm *f, int *path, int *finished_ants, int *x)
 	int		j;
 
 	j = find_last_ant(f, path);
+	if (path[0] == f->start->id && path[1] == f->end->id)
+		return ;
 	while (j != 0)
 	{
 		if ((reach_finish(path, f, j, x)) == 1)
@@ -98,15 +100,15 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 {
 	int		finished_ants;
 	int		i;
+	int		j;
 	t_path	*path;
 
 	mv_ants = 0;
+	j = 0;
 	finished_ants = 0;
-	while (finished_ants < f->ant_nb)
+	while (finished_ants < f->ant_nb && (++j || 1))
 	{
-		i = -1;
-		path = paths;
-		x = 0;
+		path = reset_ants(&x, &i, paths);
 		while (++i < paths->max)
 		{
 			move_ants_on_path(f, path->path, &finished_ants, &x);
@@ -120,5 +122,5 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 		}
 		ft_putchar('\n');
 	}
-	return (0);
+	return (j);
 }

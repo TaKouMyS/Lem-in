@@ -35,7 +35,7 @@ def on_key(event):
 		switch_node_color(settings)
 	elif (event.key == "g"):
 		switch_link_color(settings)
-	elif (event.key == "h"):
+	elif (event.key == "r"):
 		reset_settings(settings)
 
 def make_squad(data, settings, s_b_n):

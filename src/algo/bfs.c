@@ -18,6 +18,24 @@
 ** visited.
 */
 
+int				check_start_end(t_farm *f, t_queue *q)
+{
+	int j;
+
+	j = -1;
+	while (++j != f->start->links_nb)
+	{
+		if (f->start->links[j] == f->end->id)
+		{
+			q->flow[f->start->id][f->end->id] = 1;
+			q->flow[f->end->id][f->start->id] = -1;
+			q->prev[f->end->id] = f->start->id;
+			return (1);
+		}
+	}
+	return (0);
+}
+
 static int		find_neighbours(t_queue *q, t_room *r)
 {
 	int j;
@@ -59,5 +77,8 @@ int				bfs(t_farm *f, t_queue *q)
 	}
 	if (q->visited[f->end->id] != 1)
 		return (-1);
+	if (q->flow[f->start->id][f->end->id] == 1
+		&& q->prev[f->end->id] == f->start->id)
+		q->flow[f->start->id][f->end->id] = 0;
 	return (0);
 }
