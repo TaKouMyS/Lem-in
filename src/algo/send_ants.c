@@ -106,11 +106,9 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 	mv_ants = 0;
 	j = 0;
 	finished_ants = 0;
-	while (finished_ants < f->ant_nb)
+	while (finished_ants < f->ant_nb && (++j || 1))
 	{
-		i = -1;
-		path = paths;
-		x = 0;
+		path = reset_ants(&x, &i, paths);
 		while (++i < paths->max)
 		{
 			move_ants_on_path(f, path->path, &finished_ants, &x);
@@ -123,7 +121,6 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 			path = path->next;
 		}
 		ft_putchar('\n');
-		++j;
 	}
 	return (j);
 }

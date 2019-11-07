@@ -22,14 +22,15 @@ static void	write_input(t_farm *f)
 		f->input = f->input->next;
 	}
 }
+
 static int	parser(int argc, char **argv)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (argc > 1)
 	{
-		while(++i < argc)
+		while (++i < argc)
 		{
 			if (ft_strcmp(argv[i], "-l") == 0)
 				return (1);
@@ -44,7 +45,7 @@ int			main(int argc, char **argv)
 {
 	t_farm	*f;
 	t_room	*r;
-	int flag;
+	int		flag;
 
 	if ((flag = parser(argc, argv)) == -1)
 		return (usage());

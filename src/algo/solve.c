@@ -13,6 +13,18 @@
 #include "lem_in.h"
 
 /*
+** Print the number of lines printed, if -l flag is present
+*/
+
+static void	print_count(int i)
+{
+	ft_printf("%d line", i);
+	if (i != 1)
+		ft_putchar('s');
+	ft_putchar('\n');
+}
+
+/*
 ** We intialise our queueing system. If there is a malloc error, we free
 ** any allocated areas and return -1. We then run our edmonds karp function
 ** to find the optimal solution set. Should we not find a path, we print an
@@ -45,6 +57,6 @@ int		solve(t_farm *f, int flag)
 	free_path(path_list);
 	free_queue(&q);
 	if (flag == 1)
-		ft_printf("%d lines\n", i);
+		print_count(i);
 	return (0);
 }
