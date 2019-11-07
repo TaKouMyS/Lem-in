@@ -83,12 +83,13 @@ int					get_room(t_room *r, t_farm *f);
 t_room				*new_room(t_farm *f, t_room *r, char *line, long id);
 int					get_links(t_farm *f);
 int					gnl_store(int fd, char **line, t_farm *f, int origin);
+int					usage(void);
 
 /*
 ** Algo :
 */
 int					error_free_line(char *line);
-int					solve(t_farm *f);
+int					solve(t_farm *f, int flag);
 int					bfs(t_farm *f, t_queue *q);
 int					edmondskarp(t_queue *q, t_farm *f, t_path **p, int t);
 int					send_ants(t_farm *f, t_path *paths, int moving_ants, int x);

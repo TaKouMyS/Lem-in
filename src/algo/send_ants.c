@@ -100,9 +100,11 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 {
 	int		finished_ants;
 	int		i;
+	int		j;
 	t_path	*path;
 
 	mv_ants = 0;
+	j = 0;
 	finished_ants = 0;
 	while (finished_ants < f->ant_nb)
 	{
@@ -121,6 +123,7 @@ int			send_ants(t_farm *f, t_path *paths, int mv_ants, int x)
 			path = path->next;
 		}
 		ft_putchar('\n');
+		++j;
 	}
-	return (0);
+	return (j);
 }

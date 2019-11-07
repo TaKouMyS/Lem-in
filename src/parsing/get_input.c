@@ -40,7 +40,7 @@ static int	creates_table(t_room *r, t_farm *f)
 	return (0);
 }
 
-static void	usage(void)
+int		usage(void)
 {
 	ft_printf("INPUT ERROR\n");
 	ft_putstr("\n\nUsage :\nLem-in reads from the standard input.\n\n");
@@ -65,6 +65,7 @@ static void	usage(void)
 	ft_putstr("Room1-Room2\n");
 	ft_putstr("Room2-Room3\n");
 	ft_putstr("Room3-Ending_room\n\n");
+	return (0);
 }
 
 /*
@@ -144,7 +145,7 @@ int			get_input(t_farm *f, t_room *r)
 		|| creates_table(r, f) != 0 || get_links(f) != 0 \
 		|| create_link_list(f) != 0)
 	{
-		usage();
+	//	usage();
 		return (-1);
 	}
 	return (0);

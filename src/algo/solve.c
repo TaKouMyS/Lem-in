@@ -22,10 +22,11 @@
 ** the queue and the solution set.
 */
 
-int		solve(t_farm *f)
+int		solve(t_farm *f, int flag)
 {
 	t_queue	q;
 	t_path	*path_list;
+	int		i;
 
 	if (initialise_queue(&q, f) < 0)
 	{
@@ -40,8 +41,10 @@ int		solve(t_farm *f)
 		free_path(path_list);
 		return (-1);
 	}
-	send_ants(f, path_list, f->ant_nb, 0);
+	i = send_ants(f, path_list, f->ant_nb, 0);
 	free_path(path_list);
 	free_queue(&q);
+	if (flag == 1)
+		ft_printf("%d lines\n", i);
 	return (0);
 }
