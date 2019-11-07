@@ -34,7 +34,7 @@ static void	print_count(int i)
 ** the queue and the solution set.
 */
 
-int		solve(t_farm *f, int flag)
+int			solve(t_farm *f, int flag)
 {
 	t_queue	q;
 	t_path	*path_list;

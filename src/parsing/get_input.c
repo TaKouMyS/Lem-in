@@ -143,9 +143,9 @@ int			get_input(t_farm *f, t_room *r)
 	if (get_quantity_ants(f) != 0 || get_room(r, f) != 0 \
 		|| creates_table(r, f) != 0 || get_links(f) != 0 \
 		|| create_link_list(f) != 0)
-		{
-			ft_printf("ERROR\n");
-			return (-1);
-		}
+	{
+		ft_printf("ERROR\n");
+		return (-1);
+	}
 	return (0);
 }
