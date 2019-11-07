@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 17:29:51 by fcahill           #+#    #+#             */
-/*   Updated: 2019/11/07 16:39:35 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 21:04:41 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int		solve(t_farm *f)
 
 	if (initialise_queue(&q, f) < 0)
 	{
-		ft_printf("MALLOC ERROR\n");
+		ft_printf("ERROR\n");
 		free_queue(&q);
 		return (-1);
 	}
 	if (edmondskarp(&q, f, &path_list, 0) == -1)
 	{
-		ft_printf("NO PATH FOUND\n");
+		ft_printf("ERROR\n");
 		free_queue(&q);
 		free_path(path_list);
 		return (-1);
