@@ -26,19 +26,21 @@ static void	write_input(t_farm *f)
 static int	parser(int argc, char **argv)
 {
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	if (argc > 1)
 	{
 		while (++i < argc)
 		{
 			if (ft_strcmp(argv[i], "-l") == 0)
-				return (1);
-			else
+				j = 1;
+			if (ft_strcmp(argv[i], "-h") == 0)
 				return (-1);
 		}
 	}
-	return (0);
+	return (j);
 }
 
 int			main(int argc, char **argv)
