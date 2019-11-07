@@ -6,7 +6,7 @@
 /*   By: amamy <amamy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:19:28 by amamy             #+#    #+#             */
-/*   Updated: 2019/11/04 21:44:46 by amamy            ###   ########.fr       */
+/*   Updated: 2019/11/07 21:05:04 by amamy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	creates_table(t_room *r, t_farm *f)
 
 int		usage(void)
 {
-	ft_printf("INPUT ERROR\n");
+	ft_printf("ERROR\n");
 	ft_putstr("\n\nUsage :\nLem-in reads from the standard input.\n\n");
 	ft_putstr("1 - The 1st line is an int between 1 & INT_MAX indicating ");
 	ft_putstr("ant quantity. Any ant quantity larger that 2^64 results in");
